@@ -1,82 +1,233 @@
 # PYNEX Website
 
-Next.js + TypeScript + Tailwind CSS website for PYNEX. Built following the internal
-"PYNEX Website Documentation" spec — same page structure, color system, and component
-list as that doc, referencing easterntechno.com for layout/UX patterns only.
+PYNEX is a Next.js 14 website for AI solutions, business automation, custom software, and intelligent digital products. It uses TypeScript, Tailwind CSS, MDX content, Framer Motion, Embla Carousel, and Resend.
 
-## 1. Requirements
+The design follows the requested PYNEX documentation and uses easterntechno.com only as a reference for layout patterns and interaction ideas. PYNEX uses its own brand, content, logo, and project information.
 
-- Node.js 20 LTS — https://nodejs.org
-- A free Resend account (https://resend.com) for the contact form + newsletter emails
-- A GitHub account and a Vercel account for deployment
+## Requirements
 
-## 2. First-time setup
+- Node.js 20 LTS or newer: https://nodejs.org
+- npm
+- Git
+- A Resend account for live contact and newsletter email delivery
+- A GitHub repository for version control
+- Vercel or another Next.js-compatible host for deployment
 
-```bash
-npm install
-cp .env.local.example .env.local
+Check your installed versions:
+
+```powershell
+node --version
+npm --version
+git --version
 ```
 
-Open `.env.local` and fill in:
-- `RESEND_API_KEY` — from your Resend dashboard
-- `CONTACT_TO_EMAIL` — where contact form submissions should go
-- `NEXT_PUBLIC_GA_ID` — your Google Analytics 4 measurement ID (optional at first)
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` — PYNEX's WhatsApp number, digits only
+## First-Time Setup
 
-## 3. Run it locally
+From the project directory:
 
-```bash
+```powershell
+npm install
+Copy-Item .env.local.example .env.local
+```
+
+Open `.env.local` and replace the placeholder values. Never commit this file.
+
+```env
+RESEND_API_KEY=your_resend_api_key
+CONTACT_TO_EMAIL=pynexcompany@gmail.com
+CONTACT_FROM_EMAIL=onboarding@resend.dev
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_WHATSAPP_NUMBER=923141754779
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+`NEXT_PUBLIC_GA_ID` is optional during development. Use your real production URL for `NEXT_PUBLIC_SITE_URL` after deployment.
+
+## Run Locally
+
+Development mode:
+
+```powershell
 npm run dev
 ```
 
-Open http://localhost:3000
+Open http://localhost:3000.
 
-## 4. Where things live
+Stop the server with `Ctrl+C`. Do not run `npm run build` at the same time as `npm run dev` because both commands use the `.next` directory.
 
-- `app/` — every page (Next.js App Router). Each folder = one route.
-- `components/` — shared UI: Header, Footer, cards, buttons, carousel, etc.
-- `content/` — all editable content. Add a new blog post, project, or service by
-  adding a new `.mdx` file in the matching folder — no code changes needed.
-- `lib/content.ts` — reads the content files. Don't need to touch this to add content.
-- `styles/globals.css` — color variables and shared component styles.
-- `public/images/` — put real photos/screenshots here, then reference them in the
-  matching `.mdx` file's `image:` field.
+If a stale Next.js error appears, reset generated files and restart:
 
-## 5. Adding content (no code required)
+```powershell
+Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force
+Remove-Item .next -Recurse -Force -ErrorAction SilentlyContinue
+npm run dev
+```
 
-**New blog post:** add a file to `content/blog/your-slug.mdx` with the same
-frontmatter fields as the existing posts.
+## Production Check
 
-**New project case study:** add a file to `content/projects/your-slug.mdx`.
+Stop development mode first, then run:
 
-**New team member:** add an entry to `content/team.json`.
+```powershell
+npm run build
+npm start
+```
 
-**New testimonial:** add an entry to `content/testimonials.json` — the testimonials
-section on the home page only appears once there are 2 or more entries.
+Open http://localhost:3000 to test the production server.
 
-## 6. Before launch — testing checklist
+Available npm scripts:
 
-- [ ] Site tested on real phone, tablet, and desktop
-- [ ] Every nav link and footer link works
-- [ ] Contact form sends an email and shows a confirmation
-- [ ] Newsletter form sends a welcome email
-- [ ] WhatsApp button opens a chat with the correct number
-- [ ] Cookie banner appears once, and Analytics only loads after Accept
-- [ ] At least 3 projects, 3 blog posts, and real team members are added
-- [ ] All images have alt text
-- [ ] Site loads fast (check with Lighthouse in Chrome DevTools)
-- [ ] `<title>` and description are correct on every page (browser tab)
+```text
+npm run dev    Start the development server
+npm run build  Create a production build
+npm start      Start the production server
+npm run lint   Run Next.js lint checks
+```
 
-## 7. Deploying
+## Project Structure
 
-1. Push this project to a GitHub repository.
-2. Go to vercel.com → New Project → import the repo.
-3. Add the same environment variables from `.env.local` in Vercel's project settings.
-4. Deploy. Vercel gives you a live URL immediately; connect your real domain after.
+```text
+app/                    Pages, layouts, API routes, and sitemap
+app/api/contact/        Contact form server route
+app/api/subscribe/      Newsletter server route
+components/             Header, menu, cards, carousel, forms, and shared UI
+content/blog/           Blog articles in MDX
+content/projects/       Project case studies in MDX
+content/services/       Service pages in MDX
+content/team.json       Team member data
+content/testimonials.json Approved testimonials
+lib/content.ts          Content file loader
+public/images/          Logo, project, blog, and team images
+styles/globals.css      Global styles, colors, animations, and responsive rules
+```
 
-## 8. Team split (for this project)
+## Routes
 
-- **Design & content:** pages, copywriting, images, matching the reference site's layout
-- **Technical build:** setup, forms, deployment, SEO, analytics, testing
+```text
+/                         Home
+/about                    About PYNEX
+/services                 Services overview
+/services/[slug]          Service detail pages
+/projects                 Projects overview
+/projects/[slug]          Project case studies
+/blog                     Blog overview
+/blog/[slug]              Blog articles
+/contact                  Contact form
+/privacy-policy           Privacy policy
+/terms                    Terms
+/cookies                  Cookie policy
+/sitemap.xml              Generated XML sitemap
+```
 
-See the original PYNEX Website Documentation for full section-by-section detail.
+## Adding Content
+
+### Blog article
+
+Create a new file in `content/blog/`, for example `content/blog/new-article.mdx`:
+
+```mdx
+---
+title: "Article title"
+date: "2026-10-01"
+author: "Author name"
+category: "Automation"
+summary: "A short article summary."
+image: "/images/blog/new-article.jpg"
+readingTime: "5 min read"
+---
+
+## Article heading
+
+Article content goes here.
+```
+
+### Project case study
+
+Create a new file in `content/projects/` with `title`, `location`, `category`, `summary`, `scope`, and `image` frontmatter. Set `featured: true` for the project shown in the homepage spotlight. Only one project should normally be featured.
+
+### Service
+
+Create a new file in `content/services/` with `title`, `icon`, and `shortDescription` frontmatter.
+
+### Images
+
+Place files in these folders:
+
+```text
+public/images/logo.png
+public/images/blog/
+public/images/projects/
+public/images/team/
+```
+
+Use real approved assets, descriptive filenames, and alt text. Recommended sizes are 1600x900 for blog images, 1600x1000 for project screenshots, and 800x800 for team photos.
+
+### Team and testimonials
+
+Replace the placeholder entries in `content/team.json` with approved team information. Add testimonials to `content/testimonials.json` only after the client approves the exact wording. The homepage displays testimonials only when at least two entries exist.
+
+## GitHub Workflow
+
+Check the current status:
+
+```powershell
+git status
+```
+
+After making changes:
+
+```powershell
+git add .
+git commit -m "Describe the change"
+git push origin main
+```
+
+Never commit `.env.local`, API keys, passwords, or private client data. The repository already ignores `.env.local` and `.next`.
+
+## Deployment
+
+### Vercel
+
+1. Push the project to GitHub.
+2. Open https://vercel.com and create a new project.
+3. Import `rabia-irshad2/pynex-website`.
+4. Add the environment variables from `.env.local` in Vercel Project Settings.
+5. Set `NEXT_PUBLIC_SITE_URL` to the final public URL.
+6. Deploy and test the generated URL.
+
+The contact and newsletter routes require `RESEND_API_KEY`. Use a verified Resend sender domain for `CONTACT_FROM_EMAIL` in production.
+
+## Pre-Launch Checklist
+
+- [ ] Add real approved team names, roles, bios, and photos
+- [ ] Add real approved project screenshots
+- [ ] Add at least three verified projects
+- [ ] Add approved testimonials if available
+- [ ] Add real LinkedIn, Facebook, and Instagram URLs
+- [ ] Configure Resend and test the contact form
+- [ ] Test newsletter delivery and unsubscribe handling
+- [ ] Set the final production URL in `NEXT_PUBLIC_SITE_URL`
+- [ ] Test the site on phone, tablet, and desktop
+- [ ] Test every menu, footer, WhatsApp, and legal link
+- [ ] Test cookie consent and analytics behavior
+- [ ] Test `/sitemap.xml` and `/robots.txt`
+- [ ] Run `npm run build`
+- [ ] Confirm no secrets are committed
+- [ ] Review Lighthouse performance and accessibility
+
+## Current Limitations
+
+The codebase and routes build successfully, but some documentation items depend on real PYNEX inputs and are not invented in code:
+
+- Project and team imagery must be supplied by PYNEX.
+- Testimonials remain hidden until approved entries are added.
+- Contact and newsletter delivery require Resend credentials.
+- Social profile URLs must be supplied before replacing the temporary links.
+- Search, advanced scroll reveals, and some reference-site interactions are future enhancements.
+
+## Security Notes
+
+- Keep `.env.local` private.
+- Store production secrets in Vercel environment variables.
+- Use verified sender domains with Resend.
+- Do not publish client names, logos, screenshots, or results without written permission.
+- Update dependencies and review security alerts regularly.
