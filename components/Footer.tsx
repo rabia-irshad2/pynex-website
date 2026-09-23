@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import NewsletterForm from './NewsletterForm';
 
 const SERVICES = [
@@ -29,7 +30,9 @@ export default function Footer({ googleRating }: { googleRating?: number }) {
 
       <div className="max-w-content mx-auto px-6 md:px-12 pb-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
         <div>
-          <p className="font-bold text-lg mb-3">PYNEX</p>
+          <span className="logo-lockup logo-lockup-footer">
+            <Image src="/images/logo.png" alt="PYNEX" fill className="logo-image" />
+          </span>
           <p className="text-white/60">AI solutions, business automation, custom software, and intelligent digital products.</p>
         </div>
 

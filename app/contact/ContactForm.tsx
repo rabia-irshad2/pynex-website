@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', website: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', service: '', message: '', website: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
 
   function update(field: string, value: string) {
@@ -79,8 +79,26 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-main-text mb-1">Message</label>
+        <label className="block text-sm font-medium text-main-text mb-1" htmlFor="service">Service of interest</label>
+        <select
+          id="service"
+          value={form.service}
+          onChange={(e) => update('service', e.target.value)}
+          className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 bg-white focus:outline-none focus:border-primary-blue"
+        >
+          <option value="">Select a service</option>
+          <option value="AI solutions">AI solutions</option>
+          <option value="Business automation">Business automation</option>
+          <option value="Custom software development">Custom software development</option>
+          <option value="Intelligent digital products">Intelligent digital products</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-main-text mb-1" htmlFor="message">Project details</label>
         <textarea
+          id="message"
           required
           rows={5}
           value={form.message}

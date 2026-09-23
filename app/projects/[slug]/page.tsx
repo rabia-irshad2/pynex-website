@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import fs from 'fs';
+import path from 'path';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Button from '@/components/Button';
 import SectionLabel from '@/components/SectionLabel';
@@ -22,6 +24,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
+  const hasImage = fs.existsSync(path.join(process.cwd(), 'public', project.frontmatter.image));
 
   return (
     <>
@@ -38,7 +41,13 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
       <section className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-12 bg-soft-bg">
-            <Image src={project.frontmatter.image} alt={project.frontmatter.title} fill className="object-cover" />
+            {hasImage ? (
+              <Image src={project.frontmatter.image} alt={project.frontmatter.title} fill className="object-cover" />
+            ) : (
+              <div className="project-placeholder project-placeholder-large">
+                <span>{project.frontmatter.category}</span><strong>{project.frontmatter.title}</strong>
+              </div>
+            )}
           </div>
 
           <div className="grid md:grid-cols-3 gap-12">

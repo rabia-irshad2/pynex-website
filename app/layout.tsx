@@ -10,7 +10,7 @@ import CookieBanner from '@/components/CookieBanner';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pynex.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: {
     default: 'PYNEX — AI Solutions & Business Automation',
     template: '%s | PYNEX',

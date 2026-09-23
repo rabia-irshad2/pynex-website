@@ -13,6 +13,15 @@ import {
   getTestimonials,
 } from '@/lib/content';
 
+const qualities = [
+  ['01', 'Practical solutions', 'Technology chosen to solve a real business problem.'],
+  ['02', 'AI and automation expertise', 'Intelligent systems that turn repetitive work into progress.'],
+  ['03', 'Efficient delivery', 'Clear plans and steady momentum from first workshop to launch.'],
+  ['04', 'Scalable systems', 'Built to keep working as your team, data, and ambition grow.'],
+  ['05', 'Client-focused approach', 'Every decision stays connected to your goals and workflow.'],
+  ['06', 'Reliable support', 'A long-term partner to improve and extend what we build.'],
+];
+
 export default function HomePage() {
   const services = getAllServices();
   const projects = getAllProjects();
@@ -26,35 +35,37 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="bg-black text-white min-h-[90vh] flex items-center">
-        <div className="max-w-content mx-auto px-6 md:px-12 py-20">
-          <SectionLabel>pynex</SectionLabel>
-          <h1 className="text-4xl md:text-6xl font-bold max-w-3xl leading-tight mb-6">
-            AI solutions and automation for businesses ready to grow smarter
-          </h1>
-          <p className="text-white/70 max-w-xl mb-8 text-lg">
-            We design and build AI-driven tools, automate operations, and ship custom software
-            that fits how your business actually works.
-          </p>
-          <Button href="/contact">Book a consultation</Button>
+      <section className="hero-shell bg-black text-white min-h-[90vh] flex items-center overflow-hidden">
+        <div className="hero-grid" aria-hidden="true" />
+        <div className="max-w-content mx-auto px-6 md:px-12 py-28 w-full relative">
+          <div className="hero-orbit hero-orbit-one" aria-hidden="true">AI</div>
+          <div className="hero-orbit hero-orbit-two" aria-hidden="true">&lt;/&gt;</div>
+          <div className="max-w-4xl relative">
+            <SectionLabel>AI. Automation. Software.</SectionLabel>
+            <h1 className="hero-title mt-5 mb-7">Built for smarter business</h1>
+            <p className="text-white/65 max-w-xl mb-9 text-lg md:text-xl">
+              Technology that makes your business smarter, faster, and more efficient.
+            </p>
+            <Button href="/contact">Book a consultation</Button>
+          </div>
         </div>
       </section>
 
       {/* 2. Proof / trust bar */}
-      <section className="bg-soft-bg py-10">
-        <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-secondary-text text-sm font-medium">
-          <span>Trusted across multiple industries</span>
-          <span>{projects.length}+ projects delivered</span>
-          <span>Custom AI &amp; automation builds</span>
+      <section className="proof-strip bg-soft-bg py-8">
+        <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-6 text-secondary-text text-sm font-medium">
+          <span className="proof-number">{projects.length.toString().padStart(2, '0')}<small>+</small></span>
+          <span>Projects shaped around real workflows</span>
+          <span>AI systems</span><span>Automation</span><span>Custom software</span>
         </div>
       </section>
 
       {/* 3. Services overview */}
       <section className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
-          <SectionLabel>what we do</SectionLabel>
-          <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Our services</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SectionLabel>services</SectionLabel>
+          <h2 className="section-title mb-12 text-main-text">Explore our complete technology services</h2>
+          <div className="service-stack">
             {services.map((s) => (
               <ServiceCard key={s.slug} service={s.frontmatter} />
             ))}
@@ -76,19 +87,23 @@ export default function HomePage() {
                 View case study
               </Link>
             </div>
-            <div className="aspect-[4/3] bg-white rounded-2xl border border-black/5" />
+            <div className="project-visual" aria-label="Abstract interface preview">
+              <div className="visual-window"><span /><span /><span /></div>
+              <div className="visual-chart"><i /><i /><i /><i /><i /></div>
+              <div className="visual-stat">+42%<small>workflow efficiency</small></div>
+            </div>
           </div>
         </section>
       )}
 
       {/* 5. Slogan band */}
-      <SloganBand text="Built to think, automate, and scale with you." />
+      <SloganBand text="INNOVATE. BUILD. SCALE. • TECHNOLOGY THAT DRIVES IMPACT •" />
 
       {/* 6. Projects carousel */}
       <section className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>our work</SectionLabel>
-          <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Recent projects</h2>
+          <h2 className="section-title mb-10 text-main-text">Define. Automate. Grow.</h2>
           <Carousel>
             {projects.map((p) => (
               <div key={p.slug} className="min-w-[280px] md:min-w-[340px]">
@@ -119,12 +134,26 @@ export default function HomePage() {
         </section>
       )}
 
+      <section className="bg-soft-bg py-section-phone md:py-section-desktop">
+        <div className="max-w-content mx-auto px-6 md:px-12">
+          <SectionLabel>qualities</SectionLabel>
+          <h2 className="section-title mb-12 text-main-text">Why work with PYNEX</h2>
+          <div className="quality-grid">
+            {qualities.map(([number, title, text]) => (
+              <article key={number} className="quality-item">
+                <span>{number}</span><h3>{title}</h3><p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 8. Team preview */}
       {team.length > 0 && (
         <section className="py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
-            <SectionLabel>the people behind pynex</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Meet the team</h2>
+            <SectionLabel>team</SectionLabel>
+            <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
               {team.map((member: any) => (
                 <div key={member.name} className="text-center">

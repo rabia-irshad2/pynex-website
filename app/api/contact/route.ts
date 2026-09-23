@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     // Created inside the handler (not at module load) so a missing key during
     // build doesn't crash the build — only a real request needs a real key.
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { name, email, company, message, website } = await req.json();
+    const { name, email, company, service, message, website } = await req.json();
 
     // Honeypot check — if this hidden field is filled, it's almost certainly a bot.
     if (website) {
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       to: TO_EMAIL,
       reply_to: email,
       subject: `New contact form message from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || '-'}\n\nMessage:\n${message}`,
+      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || '-'}\nService: ${service || '-'}\n\nMessage:\n${message}`,
     });
 
     return NextResponse.json({ ok: true });
