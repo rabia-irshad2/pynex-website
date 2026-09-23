@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary-blue: #0057ff;
+  --color-accent-cyan: #00c6ff;
+  --color-bg-dark: #000000;
+  --color-main-text: #0b1f44;
+  --color-secondary-text: #5b6577;
+  --color-soft-bg: #f6f9ff;
+  --gradient-pynex: linear-gradient(135deg, #00c6ff, #0057ff);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-main-text);
+  background-color: #ffffff;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* Section label — small lowercase label above every section heading (Section 4.4) */
+.section-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: lowercase;
+  color: var(--color-accent-cyan);
+  letter-spacing: 0.05em;
+}
+
+/* Primary button — gradient, arrow slides on hover (Section 4.4) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  background-image: var(--gradient-pynex);
+  transition: filter 0.2s ease;
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+.btn-primary .arrow {
+  transition: transform 0.2s ease;
+}
+.btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Secondary button — outline style (Section 4.4) */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-primary-blue);
+  border: 1.5px solid var(--color-primary-blue);
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.btn-secondary:hover {
+  background: rgba(0, 87, 255, 0.06);
+}
+
+/* Cards (Section 4.4) */
+.pynex-card {
+  background: #fff;
+  border: 1px solid #e6ecfb;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(11, 31, 68, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.pynex-card:hover {
+  box-shadow: 0 8px 24px rgba(11, 31, 68, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Respect reduced-motion preference site-wide (Section 4.4) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
