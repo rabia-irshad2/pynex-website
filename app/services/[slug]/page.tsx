@@ -3,10 +3,10 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Button from '@/components/Button';
 import SectionLabel from '@/components/SectionLabel';
-import { getAllServices, getServiceBySlug, getAllProjects } from '@/lib/content';
+import { getAllServices, getServiceBySlug, getAllProjects, getMarkdownBullets } from '@/lib/content';
 import Reveal from '@/components/Reveal';
 
-const process = ['Understand', 'Design', 'Build and test', 'Launch and support'];
+const process = ['Understand the problem', 'Design the solution', 'Build and test', 'Launch and support'];
 
 export function generateStaticParams() {
   return getAllServices().map((s) => ({ slug: s.slug }));
@@ -25,7 +25,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   const service = getServiceBySlug(params.slug);
   if (!service) notFound();
   const relatedProjects = getAllProjects().filter((project) => project.frontmatter.category.toLowerCase().includes(service.frontmatter.title.toLowerCase().split(' ')[0])).slice(0, 2);
-  const deliverables = service.frontmatter.deliverables || [];
+  const deliverables = service.frontmatter.deliverables || getMarkdownBullets(service.content, "What's included");
   const technologies = service.frontmatter.technologies || [];
 
   return (

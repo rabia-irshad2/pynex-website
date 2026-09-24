@@ -81,6 +81,7 @@ export default function Footer({ googleRating }: { googleRating?: number }) {
           <Link href="/cookies">Cookies</Link>
           <Link href="/privacy-policy">Privacy Policy</Link>
           <Link href="/terms">Terms</Link>
+          <Link href="/unsubscribe">Unsubscribe</Link>
         </div>
       </div>
     </footer>

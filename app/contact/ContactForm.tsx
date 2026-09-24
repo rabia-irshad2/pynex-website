@@ -49,8 +49,9 @@ export default function ContactForm() {
       />
 
       <div>
-        <label className="block text-sm font-medium text-main-text mb-1">Name</label>
+        <label htmlFor="contact-name" className="block text-sm font-medium text-main-text mb-1">Full name</label>
         <input
+          id="contact-name"
           required
           value={form.name}
           onChange={(e) => update('name', e.target.value)}
@@ -59,8 +60,9 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-main-text mb-1">Email</label>
+        <label htmlFor="contact-email" className="block text-sm font-medium text-main-text mb-1">Email address</label>
         <input
+          id="contact-email"
           type="email"
           required
           value={form.email}
@@ -70,8 +72,9 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-main-text mb-1">Company (optional)</label>
+        <label htmlFor="contact-company" className="block text-sm font-medium text-main-text mb-1">Company (optional)</label>
         <input
+          id="contact-company"
           value={form.company}
           onChange={(e) => update('company', e.target.value)}
           className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 focus:outline-none focus:border-primary-blue"
@@ -107,12 +110,12 @@ export default function ContactForm() {
         />
       </div>
 
-      <button type="submit" disabled={status === 'loading'} className="btn-primary w-full justify-center disabled:opacity-60">
-        {status === 'loading' ? 'Sending...' : 'Send message'}
+      <button type="submit" disabled={status === 'loading'} aria-busy={status === 'loading'} className="btn-primary w-full justify-center disabled:opacity-60">
+        {status === 'loading' ? <><span className="spinner" aria-hidden="true" />Sending...</> : 'Send message'}
       </button>
 
       {status === 'error' && (
-        <p className="text-red-500 text-sm">Something went wrong. Please try again or email us directly.</p>
+        <p className="text-red-500 text-sm" role="alert">Email delivery is not available yet. Please email pynexcompany@gmail.com or WhatsApp +92 314 1754779 directly.</p>
       )}
     </form>
   );

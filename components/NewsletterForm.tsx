@@ -33,6 +33,7 @@ export default function NewsletterForm() {
       <p className="text-white/70 text-sm mb-1">
         Subscribe to our newsletter and receive the latest updates from PYNEX
       </p>
+      <p className="text-white/50 text-xs">You can unsubscribe at any time from our <a href="/unsubscribe" className="underline hover:text-accent-cyan">unsubscribe page</a>.</p>
       {/* Honeypot field — hidden from real visitors via CSS, catches basic bots */}
       <input
         type="text"
@@ -57,10 +58,10 @@ export default function NewsletterForm() {
           disabled={status === 'loading'}
           className="px-4 py-2 rounded-full bg-pynex-gradient text-white text-sm font-semibold disabled:opacity-60"
         >
-          {status === 'loading' ? '...' : 'Subscribe'}
+          {status === 'loading' ? <span className="spinner" aria-label="Submitting" /> : 'Subscribe'}
         </button>
       </div>
-      {status === 'error' && <p className="text-red-400 text-xs">Something went wrong. Try again.</p>}
+      {status === 'error' && <p className="text-red-400 text-xs" role="alert">Newsletter delivery is not configured yet. Please try again later.</p>}
     </form>
   );
 }

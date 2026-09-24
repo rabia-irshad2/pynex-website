@@ -72,7 +72,7 @@ export function getProjectBySlug(slug: string) {
 
 export function getFeaturedProject() {
   const projects = getAllProjects();
-  return projects.find((p) => p.frontmatter.featured) || projects[0] || null;
+  return projects.find((p) => p.frontmatter.featured) || null;
 }
 
 export function getAllBlogPosts() {
@@ -100,4 +100,12 @@ export function getTestimonials() {
 export function getMarkdownBullets(content: string, heading: string) {
   const section = content.match(new RegExp(`##\\s+${heading}\\s*\\n([\\s\\S]*?)(?=\\n##\\s|$)`, 'i'))?.[1] || '';
   return Array.from(section.matchAll(/^[-*]\s+(.+)$/gm), (match) => match[1].trim());
+}
+
+export function getPublicImages(subfolder: string) {
+  const dir = path.join(process.cwd(), 'public', 'images', subfolder);
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
+    .filter((file) => /\.(avif|jpg|jpeg|png|webp)$/i.test(file))
+    .map((file) => `/images/${subfolder}/${file}`);
 }

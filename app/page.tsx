@@ -6,6 +6,8 @@ import ProjectCard from '@/components/ProjectCard';
 import Carousel from '@/components/Carousel';
 import SloganBand from '@/components/SloganBand';
 import Reveal from '@/components/Reveal';
+import SafeImage from '@/components/SafeImage';
+import { BarChart3, BrainCircuit, Cloud, Code2, Globe2, Workflow } from 'lucide-react';
 import {
   getAllServices,
   getAllProjects,
@@ -39,12 +41,12 @@ export default function HomePage() {
       <section className="hero-shell bg-black text-white min-h-[90vh] flex items-center overflow-hidden">
         <div className="hero-grid" aria-hidden="true" />
         <div className="max-w-content mx-auto px-6 md:px-12 py-28 w-full relative">
-          <div className="hero-tech-icon hero-tech-ai" aria-hidden="true">AI</div>
-          <div className="hero-tech-icon hero-tech-automation" aria-hidden="true">⚙</div>
-          <div className="hero-tech-icon hero-tech-code" aria-hidden="true">&lt;/&gt;</div>
-          <div className="hero-tech-icon hero-tech-cloud" aria-hidden="true">☁</div>
-          <div className="hero-tech-icon hero-tech-chart" aria-hidden="true">↗</div>
-          <div className="hero-tech-icon hero-tech-globe" aria-hidden="true">◎</div>
+          <div className="hero-tech-icon hero-tech-ai" aria-label="AI"><BrainCircuit size={26} /></div>
+          <div className="hero-tech-icon hero-tech-automation" aria-label="Automation"><Workflow size={26} /></div>
+          <div className="hero-tech-icon hero-tech-code" aria-label="Code"><Code2 size={26} /></div>
+          <div className="hero-tech-icon hero-tech-cloud" aria-label="Cloud"><Cloud size={26} /></div>
+          <div className="hero-tech-icon hero-tech-chart" aria-label="Analytics"><BarChart3 size={26} /></div>
+          <div className="hero-tech-icon hero-tech-globe" aria-label="Global technology"><Globe2 size={26} /></div>
           <div className="max-w-4xl relative">
             <SectionLabel>AI. Automation. Software.</SectionLabel>
             <h1 className="hero-title mt-5 mb-7">Built for smarter business</h1>
@@ -92,29 +94,39 @@ export default function HomePage() {
                 View case study
               </Link>
             </div>
-            <div className="project-visual" aria-label="Abstract interface preview">
-              <div className="visual-window"><span /><span /><span /></div>
-              <div className="visual-chart"><i /><i /><i /><i /><i /></div>
+            <div className="project-visual" aria-label={`${featuredProject.frontmatter.title} project preview`}>
+              <SafeImage
+                src={featuredProject.frontmatter.image}
+                alt={`Preview of ${featuredProject.frontmatter.title}`}
+                fill
+                className="object-cover project-image"
+                fallback={<div className="project-placeholder project-placeholder-large"><span>{featuredProject.frontmatter.category}</span><strong>{featuredProject.frontmatter.title}</strong></div>}
+              />
+            </div>
+            <div className="md:col-span-2 grid sm:grid-cols-2 gap-4 mt-8">
+              {featuredProject.frontmatter.features?.length ? featuredProject.frontmatter.features.slice(0, 2).map((feature) => (
+                <div className="pynex-card p-5" key={feature}><p className="text-main-text">{feature}</p></div>
+              )) : <p className="text-secondary-text text-sm">Approved project feature details will appear here when provided.</p>}
             </div>
           </div>
         </Reveal>
       )}
 
       {/* 5. Slogan band */}
-      <SloganBand text="INNOVATE. BUILD. SCALE. • TECHNOLOGY THAT DRIVES IMPACT •" />
+      <SloganBand />
 
       {/* 6. Projects carousel */}
       <Reveal className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>our work</SectionLabel>
           <h2 className="section-title mb-10 text-main-text">Define. Automate. Grow.</h2>
-          <Carousel>
+          {projects.length ? <Carousel>
             {projects.map((p) => (
               <div key={p.slug} className="min-w-[280px] md:min-w-[340px]">
                 <ProjectCard project={p.frontmatter} />
               </div>
             ))}
-          </Carousel>
+          </Carousel> : <p className="text-secondary-text">Approved project case studies will appear here when available.</p>}
         </div>
       </Reveal>
 
@@ -158,15 +170,17 @@ export default function HomePage() {
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>team</SectionLabel>
             <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <Carousel>
               {team.map((member: any) => (
-                <div key={member.name} className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-soft-bg mx-auto mb-4" />
+                <div key={member.name} className="text-center min-w-[260px]">
+                  <div className="w-24 h-24 rounded-full bg-soft-bg mx-auto mb-4 overflow-hidden flex items-center justify-center">
+                    {member.photo ? <SafeImage src={member.photo} alt={member.name} width={96} height={96} className="h-full w-full object-cover" fallback={<span className="text-primary-blue font-bold text-xl">{member.name.charAt(0)}</span>} /> : <span className="text-primary-blue font-bold text-xl">{member.name.charAt(0)}</span>}
+                  </div>
                   <p className="font-semibold text-main-text">{member.name}</p>
                   <p className="text-sm text-secondary-text">{member.role}</p>
                 </div>
               ))}
-            </div>
+            </Carousel>
           </div>
         </Reveal>
       )}

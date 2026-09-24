@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import SectionLabel from '@/components/SectionLabel';
 import Button from '@/components/Button';
-import { getTeam } from '@/lib/content';
+import { getPublicImages, getTeam } from '@/lib/content';
 import Carousel from '@/components/Carousel';
 import Reveal from '@/components/Reveal';
+import SafeImage from '@/components/SafeImage';
 
 const qualities = [
   ['Practical Solutions', 'Technology chosen because it solves a real problem.'],
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   const team = getTeam();
+  const insidePhotos = getPublicImages('inside');
 
   return (
     <>
@@ -99,6 +101,20 @@ export default function AboutPage() {
                 </div>
               ))}
             </Carousel>
+          </div>
+        </Reveal>
+      )}
+
+      {insidePhotos.length > 0 && (
+        <Reveal className="py-section-phone md:py-section-desktop">
+          <div className="max-w-content mx-auto px-6 md:px-12">
+            <SectionLabel>inside pynex</SectionLabel>
+            <h2 className="section-title mb-10 text-main-text">The people and place behind the work.</h2>
+            <div className="inside-gallery">
+              {insidePhotos.map((photo) => (
+                <SafeImage key={photo} src={photo} alt="PYNEX team and workspace" width={500} height={320} className="h-56 w-full object-cover" fallback={null} />
+              ))}
+            </div>
           </div>
         </Reveal>
       )}

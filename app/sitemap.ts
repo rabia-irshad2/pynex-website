@@ -5,7 +5,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const pages = ['', '/about', '/services', '/projects', '/blog', '/contact', '/privacy-policy', '/terms', '/cookies'];
+  const pages = ['', '/about', '/services', '/projects', '/blog', '/contact', '/privacy-policy', '/terms', '/cookies', '/unsubscribe'];
 
   return [
     ...pages.map((path) => ({ url: `${siteUrl}${path}`, lastModified: now })),

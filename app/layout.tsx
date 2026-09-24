@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'PYNEX',
-    images: ['/images/og-default.jpg'],
+    images: ['/images/logo.png'],
   },
   twitter: {
     card: 'summary_large_image',
