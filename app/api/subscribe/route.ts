@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { isRateLimited } from '@/lib/rateLimit';
 
 const ADMIN_EMAIL = process.env.CONTACT_TO_EMAIL || 'pynexcompany@gmail.com';
 
 export async function POST(req: NextRequest) {
   try {
+    const clientKey = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (isRateLimited(`subscribe:${clientKey}`, 5, 60 * 60 * 1000)) {
+      return NextResponse.json({ error: 'Too many submissions. Please try again later.' }, { status: 429 });
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json({ error: 'Email delivery is not configured yet.' }, { status: 503 });
+    }
+
     // Created inside the handler (not at module load) so a missing key during
     // build doesn't crash the build — only a real request needs a real key.
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -19,6 +29,14 @@ export async function POST(req: NextRequest) {
     }
 
     // Notify PYNEX of the new subscriber
+    if (process.env.RESEND_AUDIENCE_ID) {
+      await resend.contacts.create({
+        audienceId: process.env.RESEND_AUDIENCE_ID,
+        email,
+        unsubscribed: false,
+      });
+    }
+
     await resend.emails.send({
       from: 'PYNEX Website <onboarding@resend.dev>',
       to: ADMIN_EMAIL,

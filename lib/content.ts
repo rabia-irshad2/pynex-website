@@ -9,6 +9,8 @@ export type ServiceFrontmatter = {
   slug: string;
   icon: string;
   shortDescription: string;
+  deliverables?: string[];
+  technologies?: string[];
 };
 
 export type ProjectFrontmatter = {
@@ -21,6 +23,9 @@ export type ProjectFrontmatter = {
   website?: string;
   featured?: boolean;
   image: string;
+  features?: string[];
+  technologies?: string[];
+  service?: string;
 };
 
 export type BlogFrontmatter = {
@@ -90,4 +95,9 @@ export function getTestimonials() {
   const file = path.join(CONTENT_DIR, 'testimonials.json');
   if (!fs.existsSync(file)) return [];
   return JSON.parse(fs.readFileSync(file, 'utf8'));
+}
+
+export function getMarkdownBullets(content: string, heading: string) {
+  const section = content.match(new RegExp(`##\\s+${heading}\\s*\\n([\\s\\S]*?)(?=\\n##\\s|$)`, 'i'))?.[1] || '';
+  return Array.from(section.matchAll(/^[-*]\s+(.+)$/gm), (match) => match[1].trim());
 }

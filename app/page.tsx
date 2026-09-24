@@ -5,6 +5,7 @@ import ServiceCard from '@/components/ServiceCard';
 import ProjectCard from '@/components/ProjectCard';
 import Carousel from '@/components/Carousel';
 import SloganBand from '@/components/SloganBand';
+import Reveal from '@/components/Reveal';
 import {
   getAllServices,
   getAllProjects,
@@ -38,8 +39,12 @@ export default function HomePage() {
       <section className="hero-shell bg-black text-white min-h-[90vh] flex items-center overflow-hidden">
         <div className="hero-grid" aria-hidden="true" />
         <div className="max-w-content mx-auto px-6 md:px-12 py-28 w-full relative">
-          <div className="hero-orbit hero-orbit-one" aria-hidden="true">AI</div>
-          <div className="hero-orbit hero-orbit-two" aria-hidden="true">&lt;/&gt;</div>
+          <div className="hero-tech-icon hero-tech-ai" aria-hidden="true">AI</div>
+          <div className="hero-tech-icon hero-tech-automation" aria-hidden="true">⚙</div>
+          <div className="hero-tech-icon hero-tech-code" aria-hidden="true">&lt;/&gt;</div>
+          <div className="hero-tech-icon hero-tech-cloud" aria-hidden="true">☁</div>
+          <div className="hero-tech-icon hero-tech-chart" aria-hidden="true">↗</div>
+          <div className="hero-tech-icon hero-tech-globe" aria-hidden="true">◎</div>
           <div className="max-w-4xl relative">
             <SectionLabel>AI. Automation. Software.</SectionLabel>
             <h1 className="hero-title mt-5 mb-7">Built for smarter business</h1>
@@ -52,16 +57,16 @@ export default function HomePage() {
       </section>
 
       {/* 2. Proof / trust bar */}
-      <section className="proof-strip bg-soft-bg py-8">
+      <Reveal className="proof-strip bg-soft-bg py-8">
         <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-6 text-secondary-text text-sm font-medium">
           <span className="proof-number">{projects.length.toString().padStart(2, '0')}<small>+</small></span>
           <span>Projects shaped around real workflows</span>
           <span>AI systems</span><span>Automation</span><span>Custom software</span>
         </div>
-      </section>
+      </Reveal>
 
       {/* 3. Services overview */}
-      <section className="py-section-phone md:py-section-desktop">
+      <Reveal className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>services</SectionLabel>
           <h2 className="section-title mb-12 text-main-text">Explore our complete technology services</h2>
@@ -71,11 +76,11 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* 4. Featured project spotlight */}
       {featuredProject && (
-        <section className="bg-soft-bg py-section-phone md:py-section-desktop">
+        <Reveal className="bg-soft-bg py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
             <div>
               <SectionLabel>featured project</SectionLabel>
@@ -90,17 +95,16 @@ export default function HomePage() {
             <div className="project-visual" aria-label="Abstract interface preview">
               <div className="visual-window"><span /><span /><span /></div>
               <div className="visual-chart"><i /><i /><i /><i /><i /></div>
-              <div className="visual-stat">+42%<small>workflow efficiency</small></div>
             </div>
           </div>
-        </section>
+        </Reveal>
       )}
 
       {/* 5. Slogan band */}
       <SloganBand text="INNOVATE. BUILD. SCALE. • TECHNOLOGY THAT DRIVES IMPACT •" />
 
       {/* 6. Projects carousel */}
-      <section className="py-section-phone md:py-section-desktop">
+      <Reveal className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>our work</SectionLabel>
           <h2 className="section-title mb-10 text-main-text">Define. Automate. Grow.</h2>
@@ -112,7 +116,7 @@ export default function HomePage() {
             ))}
           </Carousel>
         </div>
-      </section>
+      </Reveal>
 
       {/* 7. Testimonials — hidden until 2+ approved testimonials exist (Section 3.1) */}
       {showTestimonials && (
@@ -134,7 +138,7 @@ export default function HomePage() {
         </section>
       )}
 
-      <section className="bg-soft-bg py-section-phone md:py-section-desktop">
+      <Reveal className="bg-soft-bg py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>qualities</SectionLabel>
           <h2 className="section-title mb-12 text-main-text">Why work with PYNEX</h2>
@@ -146,11 +150,11 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* 8. Team preview */}
       {team.length > 0 && (
-        <section className="py-section-phone md:py-section-desktop">
+        <Reveal className="py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>team</SectionLabel>
             <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
@@ -164,7 +168,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
       )}
 
       {/* 9. Closing CTA */}

@@ -2,10 +2,32 @@
 
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function Carousel({ children }: { children: React.ReactNode }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: 'start' });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [snapCount, setSnapCount] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const update = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    setSnapCount(emblaApi.scrollSnapList().length);
+    update();
+    emblaApi.on('select', update);
+    return () => {
+      emblaApi.off('select', update);
+    };
+  }, [emblaApi]);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === 'ArrowLeft') emblaApi?.scrollPrev();
+      if (event.key === 'ArrowRight') emblaApi?.scrollNext();
+    }
+    if (emblaApi) window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [emblaApi]);
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
@@ -16,7 +38,7 @@ export default function Carousel({ children }: { children: React.ReactNode }) {
         <div className="flex gap-6">{children}</div>
       </div>
 
-      <div className="flex gap-3 mt-6 justify-center">
+      <div className="flex items-center gap-3 mt-6 justify-center">
         <button
           aria-label="Previous"
           onClick={scrollPrev}
@@ -31,6 +53,9 @@ export default function Carousel({ children }: { children: React.ReactNode }) {
         >
           <ChevronRight size={18} />
         </button>
+        <span className="carousel-counter" aria-live="polite">
+          {snapCount ? `${selectedIndex + 1} / ${snapCount}` : '1 / 1'}
+        </span>
       </div>
     </div>
   );

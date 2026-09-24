@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import NewsletterForm from './NewsletterForm';
+import SocialLinks from './SocialLinks';
 
 const SERVICES = [
   { href: '/services/ai-solutions', label: 'AI solutions' },
@@ -66,6 +67,7 @@ export default function Footer({ googleRating }: { googleRating?: number }) {
           <p className="font-semibold mb-3">Get in touch</p>
           <p className="text-white/70 mb-1">pynexcompany@gmail.com</p>
           <p className="text-white/70 mb-4">+92 314 1754779</p>
+          <SocialLinks />
           {googleRating && (
             <p className="text-white/70 mb-4">Rated {googleRating.toFixed(1)}/5 on Google</p>
           )}

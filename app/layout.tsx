@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 import '@/styles/globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CookieBanner from '@/components/CookieBanner';
+import Analytics from '@/components/Analytics';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -33,26 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-sans">
-        {/* Google Analytics 4 — only fires after the visitor accepts cookies (Section 5.7 / 9) */}
-        {GA_ID && (
-          <>
-            <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', { anonymize_ip: true });
-                if (localStorage.getItem('pynex-cookie-consent') !== 'accepted') {
-                  gtag('consent', 'default', { analytics_storage: 'denied' });
-                }
-                window.addEventListener('pynex-cookie-consent-changed', function () {
-                  gtag('consent', 'update', { analytics_storage: 'granted' });
-                });
-              `}
-            </Script>
-          </>
-        )}
+        <Analytics measurementId={GA_ID} />
 
         <Header />
         <main className="pt-20">{children}</main>

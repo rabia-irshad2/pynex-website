@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SectionLabel from '@/components/SectionLabel';
+import CookiePreference from '@/components/CookiePreference';
 
 export const metadata: Metadata = { title: 'Cookies Policy' };
 
@@ -15,9 +16,10 @@ export default function CookiesPage() {
           understand how the site is used — these only load after you accept the cookie banner.
         </p>
         <p>
-          You can change your choice anytime by clearing your browser&apos;s local storage for
-          this site and reloading, which will show the banner again.
+          You can change your choice anytime using the control below. Your current choice is stored
+          only in this browser.
         </p>
+        <CookiePreference />
       </div>
     </section>
   );

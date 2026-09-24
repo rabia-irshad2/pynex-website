@@ -22,6 +22,8 @@ export default function Header() {
           Book a consultation
         </Link>
         <button
+          id="pynex-menu-trigger"
+          aria-expanded={menuOpen}
           aria-label="Open menu"
           onClick={() => setMenuOpen(true)}
           className="text-white p-2 rounded-full hover:bg-white/10 transition"

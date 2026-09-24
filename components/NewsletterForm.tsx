@@ -25,7 +25,7 @@ export default function NewsletterForm() {
   }
 
   if (status === 'done') {
-    return <p className="text-accent-cyan text-sm">Thanks — you're subscribed.</p>;
+    return <p className="text-accent-cyan text-sm">Thanks — you&apos;re subscribed.</p>;
   }
 
   return (

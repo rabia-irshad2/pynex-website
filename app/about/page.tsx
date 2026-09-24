@@ -2,6 +2,19 @@ import type { Metadata } from 'next';
 import SectionLabel from '@/components/SectionLabel';
 import Button from '@/components/Button';
 import { getTeam } from '@/lib/content';
+import Carousel from '@/components/Carousel';
+import Reveal from '@/components/Reveal';
+
+const qualities = [
+  ['Practical Solutions', 'Technology chosen because it solves a real problem.'],
+  ['AI and Automation Expertise', 'Skills that turn repetitive work into automatic work.'],
+  ['Efficient Delivery', 'Clear plans and steady progress so projects finish on time.'],
+  ['Scalable Systems', 'Solutions that keep working as your business and data grow.'],
+  ['Client-Focused Approach', 'Every decision is tied back to your goals and workflow.'],
+  ['Reliable Support', 'A team that stays available after launch to improve and extend.'],
+];
+
+const process = ['Understand the problem', 'Design the solution', 'Build and test', 'Launch and support'];
 
 export const metadata: Metadata = {
   title: 'About',
@@ -26,7 +39,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-section-phone md:py-section-desktop">
+      <Reveal className="py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12">
           <div>
             <SectionLabel>our mission</SectionLabel>
@@ -47,25 +60,47 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
+      </Reveal>
+
+      <Reveal className="bg-soft-bg py-section-phone md:py-section-desktop">
+        <div className="max-w-content mx-auto px-6 md:px-12">
+          <SectionLabel>what we believe</SectionLabel>
+          <h2 className="section-title mb-10 text-main-text">Practical technology, measured by the difference it makes.</h2>
+          <div className="quality-grid">
+            {qualities.map(([title, text], index) => (
+              <article key={title} className="quality-item"><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal className="py-section-phone md:py-section-desktop">
+        <div className="max-w-content mx-auto px-6 md:px-12">
+          <SectionLabel>how we work</SectionLabel>
+          <h2 className="section-title mb-10 text-main-text">From a clear problem to a useful system.</h2>
+          <ol className="process-line">
+            {process.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span><strong>{step}</strong></li>)}
+          </ol>
+        </div>
+      </Reveal>
 
       {team.length > 0 && (
-        <section className="bg-soft-bg py-section-phone md:py-section-desktop">
+        <Reveal className="bg-soft-bg py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>the team</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Meet the people behind PYNEX</h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <Carousel>
               {team.map((member: any) => (
-                <div key={member.name} className="pynex-card p-6 text-center">
-                  <div className="w-20 h-20 rounded-full bg-white mx-auto mb-4" />
+                <div key={member.name} className="pynex-card p-6 text-center min-w-[260px] md:min-w-[320px]">
+                  <div className="w-20 h-20 rounded-full bg-white mx-auto mb-4 flex items-center justify-center text-primary-blue font-bold text-xl">{member.name.charAt(0)}</div>
                   <p className="font-semibold text-main-text">{member.name}</p>
                   <p className="text-sm text-secondary-text mb-2">{member.role}</p>
                   {member.bio && <p className="text-xs text-secondary-text">{member.bio}</p>}
                 </div>
               ))}
-            </div>
+            </Carousel>
           </div>
-        </section>
+        </Reveal>
       )}
 
       <section className="py-section-phone md:py-section-desktop text-center">

@@ -29,8 +29,8 @@ export default function ContactForm() {
   if (status === 'done') {
     return (
       <div className="pynex-card p-8">
-        <p className="text-lg font-semibold text-main-text mb-2">Thanks — message received.</p>
-        <p className="text-secondary-text text-sm">We&apos;ll get back to you within one business day.</p>
+        <p className="text-lg font-semibold text-main-text mb-2">Thank you for contacting PYNEX.</p>
+        <p className="text-secondary-text text-sm">We have received your inquiry and will reply within one business day.</p>
       </div>
     );
   }
