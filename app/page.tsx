@@ -7,6 +7,7 @@ import Carousel from '@/components/Carousel';
 import SloganBand from '@/components/SloganBand';
 import Reveal from '@/components/Reveal';
 import SafeImage from '@/components/SafeImage';
+import QualityGrid from '@/components/QualityGrid';
 import { BarChart3, BrainCircuit, Cloud, Code2, Globe2, Workflow } from 'lucide-react';
 import {
   getAllServices,
@@ -16,7 +17,7 @@ import {
   getTestimonials,
 } from '@/lib/content';
 
-const qualities = [
+const qualities: [string, string, string][] = [
   ['01', 'Practical solutions', 'Technology chosen to solve a real business problem.'],
   ['02', 'AI and automation expertise', 'Intelligent systems that turn repetitive work into progress.'],
   ['03', 'Efficient delivery', 'Clear plans and steady momentum from first workshop to launch.'],
@@ -154,13 +155,7 @@ export default function HomePage() {
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>qualities</SectionLabel>
           <h2 className="section-title mb-12 text-main-text">Why work with PYNEX</h2>
-          <div className="quality-grid">
-            {qualities.map(([number, title, text]) => (
-              <article key={number} className="quality-item">
-                <span>{number}</span><h3>{title}</h3><p>{text}</p>
-              </article>
-            ))}
-          </div>
+          <QualityGrid qualities={qualities} />
         </div>
       </Reveal>
 

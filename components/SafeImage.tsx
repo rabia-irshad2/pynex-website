@@ -3,11 +3,11 @@
 import Image, { type ImageProps } from 'next/image';
 import { useState } from 'react';
 
-type SafeImageProps = ImageProps & { fallback: React.ReactNode };
+type SafeImageProps = Omit<ImageProps, 'src'> & { src?: ImageProps['src']; fallback: React.ReactNode };
 
-export default function SafeImage({ fallback, alt, ...props }: SafeImageProps) {
+export default function SafeImage({ fallback, alt, src, ...props }: SafeImageProps) {
   const [failed, setFailed] = useState(false);
-  if (failed) return <>{fallback}</>;
+  if (failed || !src) return <>{fallback}</>;
 
-  return <Image {...props} alt={alt} onError={() => setFailed(true)} />;
+  return <Image {...props} src={src} alt={alt} onError={() => setFailed(true)} />;
 }

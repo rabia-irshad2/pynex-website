@@ -22,7 +22,7 @@ export type ProjectFrontmatter = {
   scope: string[];
   website?: string;
   featured?: boolean;
-  image: string;
+  image?: string;
   features?: string[];
   technologies?: string[];
   service?: string;
@@ -54,6 +54,12 @@ function readAll<T>(subfolder: string): { frontmatter: T; content: string; slug:
     });
 }
 
+function normalizeImagePath(image: unknown) {
+  if (typeof image !== 'string' || !image) return undefined;
+  const filePath = path.join(process.cwd(), 'public', image.replace(/^\//, ''));
+  return fs.existsSync(filePath) ? image : undefined;
+}
+
 export function getAllServices() {
   return readAll<ServiceFrontmatter>('services');
 }
@@ -63,7 +69,10 @@ export function getServiceBySlug(slug: string) {
 }
 
 export function getAllProjects() {
-  return readAll<ProjectFrontmatter>('projects');
+  return readAll<ProjectFrontmatter>('projects').map((project) => ({
+    ...project,
+    frontmatter: { ...project.frontmatter, image: normalizeImagePath(project.frontmatter.image) },
+  }));
 }
 
 export function getProjectBySlug(slug: string) {
@@ -76,7 +85,10 @@ export function getFeaturedProject() {
 }
 
 export function getAllBlogPosts() {
-  return readAll<BlogFrontmatter>('blog').sort(
+  return readAll<BlogFrontmatter>('blog').map((post) => ({
+    ...post,
+    frontmatter: { ...post.frontmatter, image: normalizeImagePath(post.frontmatter.image) || '' },
+  })).sort(
     (a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
   );
 }

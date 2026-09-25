@@ -5,6 +5,7 @@ import { getPublicImages, getTeam } from '@/lib/content';
 import Carousel from '@/components/Carousel';
 import Reveal from '@/components/Reveal';
 import SafeImage from '@/components/SafeImage';
+import QualityGrid from '@/components/QualityGrid';
 
 const qualities = [
   ['Practical Solutions', 'Technology chosen because it solves a real problem.'],
@@ -68,11 +69,7 @@ export default function AboutPage() {
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>what we believe</SectionLabel>
           <h2 className="section-title mb-10 text-main-text">Practical technology, measured by the difference it makes.</h2>
-          <div className="quality-grid">
-            {qualities.map(([title, text], index) => (
-              <article key={title} className="quality-item"><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>
-            ))}
-          </div>
+          <QualityGrid qualities={qualities.map(([title, text], index) => [String(index + 1).padStart(2, '0'), title, text])} />
         </div>
       </Reveal>
 
