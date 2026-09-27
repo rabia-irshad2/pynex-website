@@ -32,7 +32,18 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
   const result = getSection(project.content, 'The result|Results and impact');
   const features = project.frontmatter.features || getMarkdownBullets(project.content, 'Core Features');
   const technologies = project.frontmatter.technologies || [];
-  const relatedService = project.frontmatter.service || ({ 'AI Solutions': 'ai-solutions', 'Business Automation': 'business-automation', 'Custom Software': 'custom-software', 'Digital Products': 'digital-products' } as Record<string, string>)[project.frontmatter.category];
+  const CATEGORY_TO_SERVICE: Record<string, string> = {
+  'AI Solutions': 'ai-solutions',
+  'Business Automation': 'business-automation',
+  'Custom Software': 'custom-software',
+  'Digital Products': 'digital-products',
+};
+
+const relatedService =
+  project.frontmatter.service ||
+  (project.frontmatter.category
+    ? CATEGORY_TO_SERVICE[project.frontmatter.category]
+    : undefined);
 
   return (
     <>

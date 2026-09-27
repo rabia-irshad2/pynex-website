@@ -36,10 +36,16 @@ export async function POST(req: NextRequest) {
 
     // Server-side validation
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
-      return NextResponse.json({ error: 'Please provide your full name.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Please provide your full name.' },
+        { status: 400 }
+      );
     }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json({ error: 'Please provide a valid email address.' }, { status: 400 });
+      return NextResponse.json(
+        { error: 'Please provide a valid email address.' },
+        { status: 400 }
+      );
     }
     if (!message || typeof message !== 'string' || message.trim().length < 10) {
       return NextResponse.json(
@@ -59,7 +65,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: `PYNEX Website <${FROM_EMAIL}>`,
       to: ADMIN_EMAIL,
-      replyTo: email,
+      reply_to: email, // ← FIXED: was `replyTo`
       subject: `New PYNEX inquiry from ${esc(name)}`,
       html: `
         <h2 style="font-family:sans-serif">New inquiry from the PYNEX website</h2>

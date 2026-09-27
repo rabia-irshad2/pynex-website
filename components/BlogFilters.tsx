@@ -19,12 +19,15 @@ const options = [
 
 export default function BlogFilters({ posts }: { posts: Post[] }) {
   const [filter, setFilter] = useState('All');
+
   const visiblePosts =
     filter === 'All'
       ? posts
-      : posts.filter(({ frontmatter }) =>
-          frontmatter.category.toLowerCase().includes(filter.toLowerCase())
-        );
+      : posts.filter(({ frontmatter }) => {
+          const category = frontmatter.category;
+          if (!category) return false;
+          return category.toLowerCase().includes(filter.toLowerCase());
+        });
 
   return (
     <>
@@ -47,19 +50,24 @@ export default function BlogFilters({ posts }: { posts: Post[] }) {
                     className="blog-placeholder"
                     aria-label={`${post.frontmatter.title} image placeholder`}
                   >
-                    <span>{post.frontmatter.category}</span>
+                    <span>{post.frontmatter.category || 'Article'}</span>
                   </div>
                 }
               />
             </div>
             <div className="p-6">
-              <p className="section-label mb-1">{post.frontmatter.category}</p>
+              <p className="section-label mb-1">
+                {post.frontmatter.category || 'Article'}
+              </p>
               <h2 className="text-lg font-semibold text-main-text mb-2">
                 {post.frontmatter.title}
               </h2>
-              <p className="text-secondary-text text-sm mb-3">{post.frontmatter.summary}</p>
+              <p className="text-secondary-text text-sm mb-3">
+                {post.frontmatter.summary}
+              </p>
               <p className="text-xs text-secondary-text">
-                {post.frontmatter.author} &middot; {post.frontmatter.readingTime || 'Read'}
+                {post.frontmatter.author} &middot;{' '}
+                {post.frontmatter.readingTime || 'Read'}
               </p>
             </div>
           </Link>
