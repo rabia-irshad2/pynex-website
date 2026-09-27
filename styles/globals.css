@@ -132,3 +132,21 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Append to styles/globals.css */
+
+/* Ensure scrollbar-gutter so page doesn't jump when drawer opens */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Header: solid black so the PNG logo with black bg blends perfectly */
+header.site-header {
+  background-color: #000 !important;
+  backdrop-filter: none !important;
+}
+
+/* Drawer polish */
+.drawer-panel {
+  will-change: transform;
+}

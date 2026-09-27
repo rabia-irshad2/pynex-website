@@ -1,3 +1,4 @@
+//app/components/Carousel.tsx
 'use client';
 
 import useEmblaCarousel from 'embla-carousel-react';

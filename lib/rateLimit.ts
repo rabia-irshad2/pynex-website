@@ -1,3 +1,5 @@
+// lib/rateLimit.ts
+
 const requests = new Map<string, { count: number; resetAt: number }>();
 
 export function isRateLimited(key: string, limit = 5, windowMs = 60 * 60 * 1000) {
