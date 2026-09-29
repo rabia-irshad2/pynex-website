@@ -18,7 +18,7 @@ const config: Config = {
         'soft-bg': '#F6F9FF',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'Arial', 'sans-serif'],
+        sans: ['"Inter Variable"', 'Inter', 'Arial', 'sans-serif'],
       },
       backgroundImage: {
         'pynex-gradient': 'linear-gradient(135deg, #00C6FF, #0057FF)',

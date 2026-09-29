@@ -42,13 +42,13 @@ export default function HomePage() {
       <section className="hero-shell bg-black text-white min-h-[90vh] flex items-center overflow-hidden">
         <div className="hero-grid" aria-hidden="true" />
         <div className="max-w-content mx-auto px-6 md:px-12 py-28 w-full relative">
-          <div className="hero-tech-icon hero-tech-ai" aria-label="AI"><BrainCircuit size={26} /></div>
-          <div className="hero-tech-icon hero-tech-automation" aria-label="Automation"><Workflow size={26} /></div>
-          <div className="hero-tech-icon hero-tech-code" aria-label="Code"><Code2 size={26} /></div>
-          <div className="hero-tech-icon hero-tech-cloud" aria-label="Cloud"><Cloud size={26} /></div>
-          <div className="hero-tech-icon hero-tech-chart" aria-label="Analytics"><BarChart3 size={26} /></div>
-          <div className="hero-tech-icon hero-tech-globe" aria-label="Global technology"><Globe2 size={26} /></div>
-          <div className="max-w-4xl relative">
+          <div className="hero-tech-icon hero-tech-ai" aria-hidden="true"><BrainCircuit size={26} /></div>
+          <div className="hero-tech-icon hero-tech-automation" aria-hidden="true"><Workflow size={26} /></div>
+          <div className="hero-tech-icon hero-tech-code" aria-hidden="true"><Code2 size={26} /></div>
+          <div className="hero-tech-icon hero-tech-cloud" aria-hidden="true"><Cloud size={26} /></div>
+          <div className="hero-tech-icon hero-tech-chart" aria-hidden="true"><BarChart3 size={26} /></div>
+          <div className="hero-tech-icon hero-tech-globe" aria-hidden="true"><Globe2 size={26} /></div>
+          <div className="max-w-4xl relative hero-copy">
             <SectionLabel>AI. Automation. Software.</SectionLabel>
             <h1 className="hero-title mt-5 mb-7">Built for smarter business</h1>
             <p className="text-white/65 max-w-xl mb-9 text-lg md:text-xl">
@@ -137,16 +137,16 @@ export default function HomePage() {
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>what clients say</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Testimonials</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+            <Carousel loop label="Client testimonials">
               {testimonials.map((t: any, i: number) => (
-                <div key={i} className="pynex-card p-8">
+                <div key={i} className="pynex-card p-8 min-w-[280px] md:min-w-[420px]">
                   <p className="text-main-text mb-4">&ldquo;{t.quote}&rdquo;</p>
                   <p className="text-sm text-secondary-text font-medium">
                     {t.name}, {t.company}
                   </p>
                 </div>
               ))}
-            </div>
+            </Carousel>
           </div>
         </section>
       )}
@@ -165,7 +165,7 @@ export default function HomePage() {
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>team</SectionLabel>
             <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
-            <Carousel>
+            <Carousel loop label="PYNEX team">
               {team.map((member: any) => (
                 <div key={member.name} className="text-center min-w-[260px]">
                   <div className="w-24 h-24 rounded-full bg-soft-bg mx-auto mb-4 overflow-hidden flex items-center justify-center">

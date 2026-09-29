@@ -65,7 +65,11 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: `PYNEX Website <${FROM_EMAIL}>`,
       to: ADMIN_EMAIL,
+<<<<<<< HEAD
       reply_to: email, // ← FIXED: was `replyTo`
+=======
+      reply_to: email,
+>>>>>>> 0c06a87 (Fix Google Fonts build error, add self-hosted font)
       subject: `New PYNEX inquiry from ${esc(name)}`,
       html: `
         <h2 style="font-family:sans-serif">New inquiry from the PYNEX website</h2>

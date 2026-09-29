@@ -51,6 +51,7 @@ export default function ServiceDetailPage({
 }) {
   const service = getServiceBySlug(params.slug);
   if (!service) notFound();
+<<<<<<< HEAD
 
   // Safely find related projects:
   //  1. Prefer projects whose `service` field matches this slug
@@ -71,6 +72,22 @@ export default function ServiceDetailPage({
   const deliverables =
     service.frontmatter.deliverables ||
     getMarkdownBullets(service.content, "What's included");
+=======
+  const relatedCategoryBySlug: Record<string, string[]> = {
+    'ai-solutions': ['ai'],
+    'business-automation': ['automation'],
+    'custom-software': ['custom software'],
+    'digital-products': ['digital products', 'digital product'],
+  };
+  const relatedCategories = relatedCategoryBySlug[service.slug] || [];
+  const relatedProjects = getAllProjects()
+    .filter((project) => {
+      const category = project.frontmatter.category?.toLowerCase() || '';
+      return relatedCategories.some((relatedCategory) => category.includes(relatedCategory));
+    })
+    .slice(0, 2);
+  const deliverables = service.frontmatter.deliverables || getMarkdownBullets(service.content, "What's included");
+>>>>>>> 0c06a87 (Fix Google Fonts build error, add self-hosted font)
   const technologies = service.frontmatter.technologies || [];
 
   return (
