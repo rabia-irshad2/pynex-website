@@ -29,15 +29,15 @@ export default function ContactForm() {
 
   if (status === 'done') {
     return (
-      <div className="pynex-card p-8">
-        <p className="text-lg font-semibold text-main-text mb-2">Thank you for contacting PYNEX.</p>
-        <p className="text-secondary-text text-sm">We have received your inquiry and will reply within one business day.</p>
+      <div className="contact-success-box">
+        <p className="contact-success-title">Thank you for contacting PYNEX.</p>
+        <p className="contact-success-copy">We have received your inquiry and will reply within one business day.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="pynex-card p-8 space-y-4">
+    <form onSubmit={handleSubmit} className="contact-form">
       {/* Honeypot field — hidden from real visitors, catches basic bots (Section 5.5) */}
       <input
         type="text"
@@ -49,46 +49,44 @@ export default function ContactForm() {
         aria-hidden="true"
       />
 
-      <div>
-        <label htmlFor="contact-name" className="block text-sm font-medium text-main-text mb-1">Full name</label>
+      <h2 className="contact-form-title">SEND US AN EMAIL</h2>
+
+      <div className="contact-field">
+        <label htmlFor="contact-name">YOUR FULL NAME</label>
         <input
           id="contact-name"
           required
           value={form.name}
           onChange={(e) => update('name', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 focus:outline-none focus:border-primary-blue"
         />
       </div>
 
-      <div>
-        <label htmlFor="contact-email" className="block text-sm font-medium text-main-text mb-1">Email address</label>
+      <div className="contact-field">
+        <label htmlFor="contact-email">YOUR EMAIL ADDRESS</label>
         <input
           id="contact-email"
           type="email"
           required
           value={form.email}
           onChange={(e) => update('email', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 focus:outline-none focus:border-primary-blue"
         />
       </div>
 
-      <div>
-        <label htmlFor="contact-company" className="block text-sm font-medium text-main-text mb-1">Company (optional)</label>
+      <div className="contact-field">
+        <label htmlFor="contact-company">YOUR PHONE NUMBER</label>
         <input
           id="contact-company"
           value={form.company}
           onChange={(e) => update('company', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 focus:outline-none focus:border-primary-blue"
         />
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-main-text mb-1" htmlFor="service">Service of interest</label>
+      <div className="contact-field">
+        <label htmlFor="service">SERVICE OF INTEREST</label>
         <select
           id="service"
           value={form.service}
           onChange={(e) => update('service', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 bg-white focus:outline-none focus:border-primary-blue"
         >
           <option value="">Select a service</option>
           <option value="AI solutions">AI solutions</option>
@@ -99,24 +97,25 @@ export default function ContactForm() {
         </select>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-main-text mb-1" htmlFor="message">Project details</label>
+      <div className="contact-field">
+        <label htmlFor="message">TELL US ABOUT YOUR PROJECT...</label>
         <textarea
           id="message"
           required
           rows={5}
           value={form.message}
           onChange={(e) => update('message', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 focus:outline-none focus:border-primary-blue"
         />
       </div>
 
-      <button type="submit" disabled={status === 'loading'} aria-busy={status === 'loading'} className="btn-primary w-full justify-center disabled:opacity-60">
-        {status === 'loading' ? <><span className="spinner" aria-hidden="true" />Sending...</> : 'Send message'}
-      </button>
+      <div className="contact-form-actions">
+        <button type="submit" disabled={status === 'loading'} aria-busy={status === 'loading'} className="btn-primary justify-center disabled:opacity-60">
+          {status === 'loading' ? <><span className="spinner" aria-hidden="true" />Sending...</> : 'Send message'}
+        </button>
+      </div>
 
       {status === 'error' && (
-        <p className="text-red-500 text-sm" role="alert">Email delivery is not available yet. Please email pynexcompany@gmail.com or WhatsApp +92 314 1754779 directly.</p>
+        <p className="contact-error" role="alert">Email delivery is not available yet. Please email info@easterntechno.com or WhatsApp +92 314 1754779 directly.</p>
       )}
     </form>
   );

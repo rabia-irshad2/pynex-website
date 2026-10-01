@@ -1,6 +1,5 @@
-//app/contact/page.tsx
+﻿//app/contact/page.tsx
 import type { Metadata } from 'next';
-import SectionLabel from '@/components/SectionLabel';
 import ContactForm from './ContactForm';
 import SocialLinks from '@/components/SocialLinks';
 
@@ -12,57 +11,57 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="py-section-phone md:py-section-desktop">
-      <div className="max-w-content mx-auto px-6 md:px-12">
-        <SectionLabel>contact</SectionLabel>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-main-text">
-          Get in touch
-        </h1>
-        <p className="text-secondary-text max-w-2xl mb-16">
-          We&apos;re here to help you turn your ideas into impactful digital solutions.
-        </p>
+    <section className="contact-page py-section-phone md:py-section-desktop">
+      <div className="max-w-[1700px] mx-auto px-5 md:px-8">
+        <div className="contact-shell">
+          <div className="contact-copy">
+            <h1 className="contact-title">
+              LET&apos;S BUILD
+              <span>SOMETHING TOGETHER</span>
+            </h1>
 
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-main-text">
-          Let&apos;s Build Something Together
-        </h2>
+            <p className="contact-subtitle">
+              Tell us what you want to build and our team will help you turn your idea into a scalable digital solution.
+            </p>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact details column */}
-          <div className="space-y-6">
-            <div>
-              <p className="section-label mb-1">call us</p>
-              <a
-                href="tel:+923141754779"
-                className="text-main-text hover:text-primary-blue transition"
-              >
-                +92 314 1754779
-              </a>
-              <span className="text-secondary-text text-sm"> (also on WhatsApp)</span>
-            </div>
+            <div className="contact-meta-grid">
+              <div className="contact-meta-column">
+                <div className="contact-item">
+                  <p className="contact-label">CALL US</p>
+                  <a href="tel:+923141754779" className="contact-link">+92 314 1754779</a>
+                </div>
 
-            <div>
-              <p className="section-label mb-1">location</p>
-              <p className="text-main-text">Islamabad, Pakistan</p>
-            </div>
+                <div className="contact-item compact">
+                  <p className="contact-label">LOCATION</p>
+                  <p className="contact-text">Islamabad, Pakistan</p>
+                  <a
+                    href="https://maps.app.goo.gl/rfMw8sbvLK6Aumag9?g_st=ic"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="contact-link"
+                  >
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
 
-            <div>
-              <p className="section-label mb-1">email us</p>
-              <a
-                href="mailto:pynexcompany@gmail.com"
-                className="text-main-text hover:text-primary-blue transition"
-              >
-                pynexcompany@gmail.com
-              </a>
-            </div>
+              <div className="contact-meta-column">
+                <div className="contact-item">
+                  <p className="contact-label">EMAIL US</p>
+                  <a href="mailto:pynexcompany@gmail.com" className="contact-link">pynexcompany@gmail.com</a>
+                </div>
 
-            <div>
-              <p className="section-label mb-2">social networks</p>
-              <SocialLinks />
+                <div className="contact-item">
+                  <p className="contact-label">SOCIAL NETWORKS</p>
+                  <SocialLinks />
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Form column */}
-          <ContactForm />
+          <div className="contact-form-panel">
+            <ContactForm />
+          </div>
         </div>
       </div>
     </section>

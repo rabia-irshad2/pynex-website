@@ -1,9 +1,9 @@
 import { Linkedin, Facebook, Instagram } from 'lucide-react';
 
 export const socialLinks = [
-  { label: 'LinkedIn', href: process.env.NEXT_PUBLIC_LINKEDIN_URL, icon: Linkedin },
-  { label: 'Facebook', href: process.env.NEXT_PUBLIC_FACEBOOK_URL, icon: Facebook },
-  { label: 'Instagram', href: process.env.NEXT_PUBLIC_INSTAGRAM_URL, icon: Instagram },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/pynex.pk/', icon: Linkedin },
+  { label: 'Facebook', href: 'https://www.facebook.com/share/1KLfm9ApiW/?mibextid=wwXIfr', icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/pynex.tech?stkn=NWhhd3R6cXpvdmlt&utm_source=qr', icon: Instagram },
 ];
 
 export default function SocialLinks() {

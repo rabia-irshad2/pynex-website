@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import SectionLabel from '@/components/SectionLabel';
 import ServiceCard from '@/components/ServiceCard';
-import { getAllServices, getAllProjects } from '@/lib/content';
+import { getAllServices, getAllProjects, getFeaturedProject, getTeam, getTestimonials } from '@/lib/content';
 import Button from '@/components/Button';
 import ProjectCard from '@/components/ProjectCard';
 
@@ -13,9 +13,14 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   const services = getAllServices();
   const projects = getAllProjects().slice(0, 2);
+  const featuredProject = getFeaturedProject();
+  const team = getTeam();
+  const testimonials = getTestimonials();
+  const TESTIMONIALS_ENABLED = false;
+  const showTestimonials = TESTIMONIALS_ENABLED && testimonials.length >= 2;
 
   return (
-    <section className="py-section-phone md:py-section-desktop">
+    <section className="services-page py-section-phone md:py-section-desktop">
       <div className="max-w-content mx-auto px-6 md:px-12">
         <SectionLabel>services</SectionLabel>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 text-main-text">Services built around real business problems</h1>

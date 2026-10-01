@@ -14,8 +14,9 @@ export default function Button({ href, children, variant = 'primary' }: ButtonPr
   return (
     <Link href={href} className={className}>
       {children}
-      <span className="arrow inline-flex items-center justify-center rounded-full bg-white/20 p-1">
-        <ArrowRight size={14} />
+      <span className="arrow-swap" aria-hidden="true">
+        <span className="arrow-disc arrow-disc-front"><ArrowRight size={14} /></span>
+        <span className="arrow-disc arrow-disc-back"><ArrowRight size={14} /></span>
       </span>
     </Link>
   );

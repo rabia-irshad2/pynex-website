@@ -177,17 +177,7 @@ export default function MobileMenu({
                           : 'text-white/85 hover:text-white'
                       }`}
                     >
-                      <span className="inline-flex items-center gap-3">
-                        <span
-                          className={`h-[2px] transition-all duration-300 ${
-                            active
-                              ? 'w-6 bg-accent-cyan'
-                              : 'w-3 bg-white/30 group-hover:w-6 group-hover:bg-accent-cyan'
-                          }`}
-                          aria-hidden="true"
-                        />
-                        {link.label}
-                      </span>
+                      <span>{link.label}</span>
                       <ArrowUpRight
                         size={20}
                         className={`opacity-0 -translate-x-1 transition-all duration-300 ${

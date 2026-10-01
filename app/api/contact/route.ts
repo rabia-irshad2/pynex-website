@@ -36,16 +36,10 @@ export async function POST(req: NextRequest) {
 
     // Server-side validation
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
-      return NextResponse.json(
-        { error: 'Please provide your full name.' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Please provide your full name.' }, { status: 400 });
     }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json(
-        { error: 'Please provide a valid email address.' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Please provide a valid email address.' }, { status: 400 });
     }
     if (!message || typeof message !== 'string' || message.trim().length < 10) {
       return NextResponse.json(

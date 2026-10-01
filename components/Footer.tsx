@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowUpRight, MapPin } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
 import SocialLinks from './SocialLinks';
 
@@ -18,70 +19,74 @@ const QUICK_LINKS = [
   { href: '/contact', label: 'Contact' },
 ];
 
-// googleRating: pass a number 1–5 once PYNEX has 5+ public Google reviews; otherwise leave undefined to hide it (Section 3.7).
-export default function Footer({ googleRating }: { googleRating?: number }) {
+const MAPS_URL = 'https://maps.app.goo.gl/rfMw8sbvLK6Aumag9?g_st=ic';
+
+// Only provide both values after confirming at least five real public Google reviews.
+export default function Footer({
+  googleRating,
+  googleReviewCount = 0,
+}: {
+  googleRating?: number;
+  googleReviewCount?: number;
+}) {
+  const showGoogleRating = googleReviewCount >= 5 && typeof googleRating === 'number' && googleRating >= 0 && googleRating <= 5;
+
   return (
-    <footer className="bg-black text-white">
-      <div className="max-w-content mx-auto px-6 md:px-12 py-16 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to make your business smarter?</h2>
-        <Link href="/contact" className="btn-primary">
-          Book a consultation
-        </Link>
-      </div>
+    <footer className="pynex-footer bg-black text-white">
+      <div className="max-w-content mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-10">
+        <div className="footer-main-grid">
+          <div className="footer-brand-column">
+            <span className="logo-lockup logo-lockup-footer">
+              <Image src="/images/logo.png" alt="PYNEX" fill className="logo-image" />
+            </span>
+            <h2 className="footer-brand-heading">AI.<br />AUTOMATION.<br />SOFTWARE.</h2>
+            <Link href="/contact" className="footer-meeting-link">
+              Book a consultation <ArrowUpRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
 
-      <div className="max-w-content mx-auto px-6 md:px-12 pb-12 grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
-        <div>
-          <span className="logo-lockup logo-lockup-footer">
-            <Image src="/images/logo.png" alt="PYNEX" fill className="logo-image" />
-          </span>
-          <p className="text-white/60">AI solutions, business automation, custom software, and intelligent digital products.</p>
+          <nav className="footer-link-column" aria-label="Quick links">
+            <p className="footer-eyebrow">PYNEX</p>
+            <ul>
+              {QUICK_LINKS.map((link) => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}
+            </ul>
+          </nav>
+
+          <nav className="footer-link-column" aria-label="Services">
+            <p className="footer-eyebrow">Services</p>
+            <ul>
+              {SERVICES.map((service) => <li key={service.href}><Link href={service.href}>{service.label}</Link></li>)}
+            </ul>
+          </nav>
+
+          <div className="footer-contact-column">
+            <p className="footer-eyebrow">Contact us</p>
+            <a href="mailto:pynexcompany@gmail.com">pynexcompany@gmail.com</a>
+            <a href="tel:+923141754779">+92 314 1754779</a>
+            <SocialLinks />
+            {showGoogleRating && <a className="footer-rating" href="https://www.google.com/search?q=PYNEX+Islamabad+reviews" target="_blank" rel="noreferrer">Google average rating <strong>{googleRating.toFixed(1)} / 5</strong></a>}
+          </div>
+
+          <a className="footer-location-panel" href={MAPS_URL} target="_blank" rel="noopener noreferrer" aria-label="PYNEX location in Islamabad, Pakistan on Google Maps">
+            <span className="footer-location-dots" aria-hidden="true" />
+            <span className="footer-location-badge"><MapPin size={17} aria-hidden="true" /> Islamabad, Pakistan <ArrowUpRight size={15} aria-hidden="true" /></span>
+          </a>
         </div>
 
-        <div>
-          <p className="font-semibold mb-3">Quick links</p>
-          <ul className="space-y-2 text-white/70">
-            {QUICK_LINKS.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className="hover:text-accent-cyan">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="footer-newsletter-panel">
+          {showGoogleRating && <div className="footer-rating-summary"><span className="footer-eyebrow">Google average rating</span><strong>{googleRating.toFixed(1)} <span>/ 5</span></strong></div>}
+          <div className="footer-newsletter-copy">Subscribe to our newsletter and receive the latest updates from PYNEX.</div>
+          <div className="footer-newsletter-form"><NewsletterForm /></div>
         </div>
 
-        <div>
-          <p className="font-semibold mb-3">Services</p>
-          <ul className="space-y-2 text-white/70">
-            {SERVICES.map((s) => (
-              <li key={s.href}>
-                <Link href={s.href} className="hover:text-accent-cyan">
-                  {s.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p className="font-semibold mb-3">Get in touch</p>
-          <p className="text-white/70 mb-1">pynexcompany@gmail.com</p>
-          <p className="text-white/70 mb-4">+92 314 1754779</p>
-          <SocialLinks />
-          {googleRating && (
-            <p className="text-white/70 mb-4">Rated {googleRating.toFixed(1)}/5 on Google</p>
-          )}
-          <NewsletterForm />
-        </div>
-      </div>
-
-      <div className="border-t border-white/10 px-6 md:px-12 py-6 flex flex-col md:flex-row justify-between gap-3 text-xs text-white/50 max-w-content mx-auto">
-        <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>
-        <div className="flex gap-4">
-          <Link href="/cookies">Cookies</Link>
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/terms">Terms</Link>
-          <Link href="/unsubscribe">Unsubscribe</Link>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>
+          <div className="footer-legal-links">
+            <Link href="/cookies">Cookies</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms">Terms</Link>
+            <Link href="/unsubscribe">Unsubscribe</Link>
+          </div>
         </div>
       </div>
     </footer>

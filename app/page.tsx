@@ -48,10 +48,10 @@ export default function HomePage() {
           <div className="hero-tech-icon hero-tech-cloud" aria-hidden="true"><Cloud size={26} /></div>
           <div className="hero-tech-icon hero-tech-chart" aria-hidden="true"><BarChart3 size={26} /></div>
           <div className="hero-tech-icon hero-tech-globe" aria-hidden="true"><Globe2 size={26} /></div>
-          <div className="max-w-4xl relative hero-copy">
+          <div className="max-w-5xl mx-auto relative hero-copy text-center">
             <SectionLabel>AI. Automation. Software.</SectionLabel>
             <h1 className="hero-title mt-5 mb-7">Built for smarter business</h1>
-            <p className="text-white/65 max-w-xl mb-9 text-lg md:text-xl">
+            <p className="text-white/65 max-w-2xl mx-auto mb-9 text-lg md:text-xl">
               Technology that makes your business smarter, faster, and more efficient.
             </p>
             <Button href="/contact">Book a consultation</Button>
@@ -59,9 +59,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Overview bridge inspired by the reference layout; PYNEX-specific copy and styling. */}
+      <Reveal className="overview-band theme-dark-section py-section-phone md:py-section-desktop">
+        <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-[1fr_0.8fr] gap-8 items-center">
+          <div>
+            <SectionLabel>overview</SectionLabel>
+            <h2 className="section-title mt-3 text-white">Powering your next innovation</h2>
+            <p className="text-white/70 max-w-2xl mt-5">We bring AI, automation, and software together to help solve practical business challenges.</p>
+            <div className="mt-8"><Button href="/contact">Book a consultation</Button></div>
+          </div>
+          <div className="overview-art" aria-hidden="true"><Workflow /><Code2 /><BrainCircuit /></div>
+        </div>
+      </Reveal>
+
       {/* 2. Proof / trust bar */}
-      <Reveal className="proof-strip bg-soft-bg py-8">
-        <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-6 text-secondary-text text-sm font-medium">
+      <Reveal className="proof-strip theme-dark-section py-8">
+        <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-6 text-white/70 text-sm font-medium">
           <span className="proof-number">{projects.length.toString().padStart(2, '0')}<small>+</small></span>
           <span>Projects shaped around real workflows</span>
           <span>AI systems</span><span>Automation</span><span>Custom software</span>
@@ -69,10 +82,10 @@ export default function HomePage() {
       </Reveal>
 
       {/* 3. Services overview */}
-      <Reveal className="py-section-phone md:py-section-desktop">
+      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>services</SectionLabel>
-          <h2 className="section-title mb-12 text-main-text">Explore our complete technology services</h2>
+          <h2 className="section-title mb-12 text-white">Explore our complete technology services</h2>
           <div className="service-stack">
             {services.map((s) => (
               <ServiceCard key={s.slug} service={s.frontmatter} />
@@ -83,14 +96,14 @@ export default function HomePage() {
 
       {/* 4. Featured project spotlight */}
       {featuredProject && (
-        <Reveal className="bg-soft-bg py-section-phone md:py-section-desktop">
+        <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
             <div>
               <SectionLabel>featured project</SectionLabel>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-main-text">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 {featuredProject.frontmatter.title}
               </h2>
-              <p className="text-secondary-text mb-6">{featuredProject.frontmatter.summary}</p>
+              <p className="text-white/70 mb-6">{featuredProject.frontmatter.summary}</p>
               <Link href={`/projects/${featuredProject.slug}`} className="btn-secondary">
                 View case study
               </Link>
@@ -106,8 +119,8 @@ export default function HomePage() {
             </div>
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-4 mt-8">
               {featuredProject.frontmatter.features?.length ? featuredProject.frontmatter.features.slice(0, 2).map((feature) => (
-                <div className="pynex-card p-5" key={feature}><p className="text-main-text">{feature}</p></div>
-              )) : <p className="text-secondary-text text-sm">Approved project feature details will appear here when provided.</p>}
+                <div className="pynex-card p-5" key={feature}><p className="text-white">{feature}</p></div>
+              )) : <p className="text-white/65 text-sm">Approved project feature details will appear here when provided.</p>}
             </div>
           </div>
         </Reveal>
@@ -117,7 +130,7 @@ export default function HomePage() {
       <SloganBand />
 
       {/* 6. Projects carousel */}
-      <Reveal className="py-section-phone md:py-section-desktop">
+      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>our work</SectionLabel>
           <h2 className="section-title mb-10 text-main-text">Define. Automate. Grow.</h2>
@@ -151,7 +164,7 @@ export default function HomePage() {
         </section>
       )}
 
-      <Reveal className="bg-soft-bg py-section-phone md:py-section-desktop">
+      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>qualities</SectionLabel>
           <h2 className="section-title mb-12 text-main-text">Why work with PYNEX</h2>
@@ -161,7 +174,7 @@ export default function HomePage() {
 
       {/* 8. Team preview */}
       {team.length > 0 && (
-        <Reveal className="py-section-phone md:py-section-desktop">
+        <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>team</SectionLabel>
             <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
@@ -179,6 +192,9 @@ export default function HomePage() {
           </div>
         </Reveal>
       )}
+
+      {/* Second ticker placement follows the reference rhythm before the closing CTA. */}
+      <SloganBand />
 
       {/* 9. Closing CTA */}
       <section className="bg-black text-white py-section-phone md:py-section-desktop text-center">

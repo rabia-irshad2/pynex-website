@@ -14,7 +14,7 @@ export default function BlogPage() {
   const featured = posts[0];
 
   return (
-    <section className="py-section-phone md:py-section-desktop">
+    <section className="blog-theme py-section-phone md:py-section-desktop">
       <div className="max-w-content mx-auto px-6 md:px-12">
         <SectionLabel>insights</SectionLabel>
         <h1 className="text-4xl md:text-5xl font-bold mb-10 text-main-text">Blog</h1>
