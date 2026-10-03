@@ -1,3 +1,4 @@
+//app/layout.tsx
 import type { Metadata } from 'next';
 import '@fontsource/bebas-neue/400.css';
 import '@fontsource-variable/geist-mono';
@@ -7,9 +8,13 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import CookieBanner from '@/components/CookieBanner';
 import Analytics from '@/components/Analytics';
+import ScrollProgress from '@/components/ScrollProgress';
+import BackToTop from '@/components/BackToTop';
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  ),
   title: {
     default: 'PYNEX — AI Solutions & Business Automation',
     template: '%s | PYNEX',
@@ -21,9 +26,7 @@ export const metadata: Metadata = {
     siteName: 'PYNEX',
     images: ['/images/logo/logo.png'],
   },
-  twitter: {
-    card: 'summary_large_image',
-  },
+  twitter: { card: 'summary_large_image' },
 };
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -31,13 +34,14 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="font-sans">
+      <body>
+        <ScrollProgress />
         <Analytics measurementId={GA_ID} />
-
         <Header />
-        <main className="pt-20">{children}</main>
+        <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <BackToTop />
         <CookieBanner />
       </body>
     </html>

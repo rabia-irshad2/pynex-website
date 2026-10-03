@@ -1,0 +1,297 @@
+/* styles/modules/11-fx.css
+ * Advanced visual effects (background grid, overlays, animations).
+ */
+
+/* ═══ SCROLL PROGRESS ═══ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4fa9ff, #0057ff, #4fa9ff);
+  background-size: 200% 100%;
+  transform-origin: left;
+  z-index: 200;
+  pointer-events: none;
+  box-shadow: 0 0 14px rgba(79, 169, 255, 0.75);
+  animation: gradient-slide 3s linear infinite;
+}
+
+@keyframes gradient-slide {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* ═══ BACK TO TOP ═══ */
+.back-to-top {
+  position: fixed;
+  bottom: 108px;
+  left: 24px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(79, 169, 255, 0.25);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.back-to-top:hover {
+  background: #1769bb;
+  border-color: #4fa9ff;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(79, 169, 255, 0.4);
+}
+
+/* ═══ WHATSAPP FAB ═══ */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 40;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    background 0.2s;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow:
+    0 10px 28px rgba(37, 211, 102, 0.4),
+    0 0 0 12px rgba(37, 211, 102, 0.1);
+}
+
+.whatsapp-fab.is-clicked {
+  animation: whatsapp-pop 0.65s var(--ease-out);
+}
+
+@keyframes whatsapp-pop {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+  40% {
+    transform: scale(1.15);
+    box-shadow:
+      0 0 0 0 rgba(37, 211, 102, 0.7),
+      0 10px 30px rgba(37, 211, 102, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 20px rgba(37, 211, 102, 0),
+      0 6px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@media (max-width: 640px) {
+  .whatsapp-fab {
+    width: 52px;
+    height: 52px;
+    bottom: 20px;
+    right: 20px;
+  }
+  .back-to-top {
+    bottom: 88px;
+    left: 20px;
+  }
+}
+
+/* ═══ COOKIE BANNER ═══ */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 60;
+  max-width: 380px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(5, 12, 24, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(79, 169, 255, 0.15);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+  animation: cookie-slide-up 0.5s var(--ease-spring);
+}
+
+@keyframes cookie-slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cookie-banner p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.55;
+}
+
+.cookie-banner a {
+  color: #4fa9ff;
+  text-decoration: underline;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cookie-actions button {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+}
+
+.cookie-decline {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.cookie-decline:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cookie-accept {
+  background: linear-gradient(135deg, #4fa9ff, #0057ff);
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.cookie-accept:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(79, 169, 255, 0.4);
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}
+
+/* ═══ ANIMATED BACKGROUND GRID ═══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(79, 169, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 169, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 60% 40% at 50% 0%, black 30%, transparent 80%);
+}
+
+/* ═══ TESTIMONIAL CARD ═══ */
+.testimonial-card {
+  min-width: 300px;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(16, 26, 44, 0.6), rgba(8, 17, 31, 0.6));
+  border: 1px solid rgba(122, 163, 226, 0.15);
+}
+
+.testimonial-quote {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ═══ 404 / NOT FOUND ═══ */
+.not-found-page {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: 6rem;
+}
+
+/* ═══ REDUCED MOTION ═══ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-copy > *,
+  .slogan-track,
+  .logo-row-track,
+  .hero-shell::before,
+  .mesh-blob,
+  .whatsapp-fab,
+  .scroll-progress,
+  .nav-link-active::before {
+    animation: none !important;
+  }
+
+  .btn-primary:hover {
+    animation: none !important;
+  }
+
+  .section-title::after,
+  .services-page-title::after,
+  .projects-page-title::after,
+  .about-hero-title::after,
+  .blog-page-title::after,
+  .footer-link-column a::after,
+  .process-line li::before {
+    transition: none;
+  }
+}

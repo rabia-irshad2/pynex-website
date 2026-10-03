@@ -1,6 +1,8 @@
+//app/components/HeroVisuals.tsx
 'use client';
 
 import Image from 'next/image';
+
 export default function HeroVisuals() {
   return (
     <div className="hero-photo-layer" aria-hidden="true">

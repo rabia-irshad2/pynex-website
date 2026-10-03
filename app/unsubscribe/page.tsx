@@ -1,3 +1,4 @@
+//app/unsubscribe/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -7,6 +8,7 @@ export default function UnsubscribePage() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
@@ -20,27 +22,91 @@ export default function UnsubscribePage() {
       });
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || 'Unable to unsubscribe.');
+      setSuccess(true);
       setMessage('Your email has been removed from the newsletter.');
       setEmail('');
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : 'Unable to unsubscribe right now.');
+      setMessage(
+        error instanceof Error ? error.message : 'Unable to unsubscribe right now.'
+      );
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <section className="py-section-phone md:py-section-desktop">
+    <section className="theme-dark-section py-16 md:py-24">
       <div className="max-w-content mx-auto px-6 md:px-12 max-w-xl">
-        <SectionLabel>newsletter</SectionLabel>
-        <h1 className="text-4xl md:text-5xl font-bold text-main-text mb-5">Unsubscribe</h1>
-        <p className="text-secondary-text mb-8">Enter your newsletter email address to remove it from future updates.</p>
-        <form onSubmit={submit} className="pynex-card p-6 space-y-4">
-          <label htmlFor="unsubscribe-email" className="block text-sm font-medium text-main-text">Email address</label>
-          <input id="unsubscribe-email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} className="w-full px-4 py-2 rounded-lg border border-secondary-text/20 focus:outline-none focus:border-primary-blue" />
-          <button type="submit" disabled={loading} className="btn-primary disabled:opacity-60">{loading ? 'Removing...' : 'Unsubscribe'}</button>
-          {message && <p className="text-secondary-text text-sm" role="status">{message}</p>}
-        </form>
+        <SectionLabel>Newsletter</SectionLabel>
+        <h1
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            lineHeight: 0.95,
+            textTransform: 'uppercase',
+            color: '#fff',
+            marginBottom: '1rem',
+          }}
+        >
+          Unsubscribe
+        </h1>
+        <p
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.9rem',
+            color: 'rgba(255,255,255,0.65)',
+            lineHeight: 1.7,
+            marginBottom: '2rem',
+          }}
+        >
+          Enter your newsletter email address to remove it from future updates.
+        </p>
+
+        {success ? (
+          <div className="contact-success-box">
+            <p className="contact-success-title">You&apos;re unsubscribed.</p>
+            <p className="contact-success-copy">{message}</p>
+          </div>
+        ) : (
+          <form onSubmit={submit} className="contact-form-panel">
+            <div className="contact-field">
+              <label htmlFor="unsubscribe-email">
+                Email address <span>*</span>
+              </label>
+              <input
+                id="unsubscribe-email"
+                type="email"
+                required
+                placeholder="you@company.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="contact-form-actions">
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn-primary disabled:opacity-60"
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner" aria-hidden="true" />
+                    Removing...
+                  </>
+                ) : (
+                  'Unsubscribe'
+                )}
+              </button>
+            </div>
+
+            {message && (
+              <p className="contact-error" role="status">
+                {message}
+              </p>
+            )}
+          </form>
+        )}
       </div>
     </section>
   );

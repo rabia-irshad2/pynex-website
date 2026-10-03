@@ -1,0 +1,110 @@
+/* styles/modules/02-layout.css
+ * Layout primitives: container, sections, labels, headings.
+ */
+
+.max-w-content {
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.py-section-phone {
+  padding-block: 4rem;
+}
+
+.py-section-desktop {
+  padding-block: 6rem;
+}
+
+@media (min-width: 768px) {
+  .py-section-desktop {
+    padding-block: 7.5rem;
+  }
+}
+
+.section-pynex {
+  position: relative;
+}
+
+.section-pynex + .section-pynex::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 1200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79, 169, 255, 0.15), transparent);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(79, 169, 255, 0.15), transparent);
+  margin-block: 4rem;
+}
+
+.theme-dark-section {
+  position: relative;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79, 169, 255, 0.05), transparent 60%),
+    #05080f;
+}
+
+.theme-dark-section .text-main-text { color: #fff; }
+.theme-dark-section .text-secondary-text { color: rgba(255, 255, 255, 0.68); }
+
+/* Section label */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent-cyan);
+  margin-bottom: 1rem;
+}
+
+/* Section title with animated underline */
+.section-title,
+.services-page-title,
+.projects-page-title,
+.about-hero-title,
+.blog-page-title {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: clamp(3.1rem, 6vw, 6rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+}
+
+.section-title::after,
+.services-page-title::after,
+.projects-page-title::after,
+.about-hero-title::after,
+.blog-page-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -14px;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #4fa9ff, transparent);
+  border-radius: 2px;
+  transition: width 0.6s var(--ease-spring);
+}
+
+section:hover .section-title::after,
+section:hover .services-page-title::after,
+section:hover .projects-page-title::after,
+section:hover .about-hero-title::after,
+section:hover .blog-page-title::after {
+  width: 120px;
+}
