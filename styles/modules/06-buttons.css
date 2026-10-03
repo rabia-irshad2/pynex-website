@@ -39,7 +39,52 @@
   background: #111b29;
   border-color: rgba(79, 169, 255, 0.18);
 }
+/* ═══════════════════════════════════════════════
+   BUTTON — ADVANCED POLISH
+   ═══════════════════════════════════════════════ */
 
+.btn-primary {
+  position: relative;
+  overflow: visible;
+}
+
+/* Glow ring that appears on hover */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #4fa9ff, #0057ff);
+  opacity: 0;
+  filter: blur(14px);
+  z-index: -1;
+  transition: opacity 0.35s var(--ease-out);
+}
+
+.btn-primary:hover::after {
+  opacity: 0.6;
+}
+
+/* Secondary button — animated border */
+.btn-secondary {
+  position: relative;
+  background-image:
+    linear-gradient(#05080f, #05080f),
+    linear-gradient(135deg, #4fa9ff, transparent 50%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border: 1px solid transparent;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.btn-secondary:hover {
+  background-image:
+    linear-gradient(rgba(79, 169, 255, 0.06), rgba(0, 87, 255, 0.06)),
+    linear-gradient(135deg, #4fa9ff, #7de5ff);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 12px 40px rgba(79, 169, 255, 0.25);
+}
 .btn-primary::before {
   content: '';
   position: absolute;

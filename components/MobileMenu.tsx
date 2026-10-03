@@ -106,7 +106,7 @@ export default function MobileMenu({
                 className="drawer-brand"
                 aria-label="PYNEX home"
               >
-                <PynexLogo size={36} />
+                <PynexLogo height={36} />
                 <span className="header-brand-text">PYNEX</span>
               </Link>
               <button

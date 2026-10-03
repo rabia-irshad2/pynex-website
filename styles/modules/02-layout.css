@@ -108,3 +108,26 @@ section:hover .about-hero-title::after,
 section:hover .blog-page-title::after {
   width: 120px;
 }
+/* ═══════════════════════════════════════════════
+   ALTERNATING SECTION BACKGROUNDS
+   ═══════════════════════════════════════════════ */
+
+/* Every other section gets a subtle lighter background */
+.theme-dark-section.alt-bg {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(79, 169, 255, 0.02) 0%,
+      rgba(79, 169, 255, 0.04) 50%,
+      rgba(79, 169, 255, 0.02) 100%
+    ),
+    #070d18;
+}
+
+/* Soft background variant for light-ish sections */
+.section-soft {
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79, 169, 255, 0.06), transparent 60%),
+    #05080f;
+  color: #fff;
+}

@@ -25,17 +25,18 @@ export default function ServiceCard({
     <Link
       href={`/services/${service.slug}`}
       aria-label={`Learn more about ${service.title}`}
-      className="premium-service-card service-flip-card"
+      className="service-flip-card"
     >
       <div className="service-flip-inner">
-        {/* FRONT */}
-        <div className="service-flip-front premium-service-face">
+        {/* FRONT FACE */}
+        <div className="service-flip-front">
           <Image
             src={imageSrc}
             alt=""
             fill
+            sizes="(max-width: 768px) 100vw, 25vw"
             className="service-face-image"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            priority={false}
           />
           <div className="service-face-shade" aria-hidden="true" />
           <div className="premium-service-body">
@@ -45,22 +46,22 @@ export default function ServiceCard({
           </div>
         </div>
 
-        {/* BACK */}
-        <div className="service-flip-back premium-service-face">
+        {/* BACK FACE — separate image element */}
+        <div className="service-flip-back">
           <Image
             src={imageSrc}
             alt=""
             fill
-            className="service-face-image"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            sizes="(max-width: 768px) 100vw, 25vw"
+            className="service-back-image"
           />
           <div className="service-face-shade service-face-shade-back" aria-hidden="true" />
           <div className="premium-service-body">
-            <span className="service-chip">Service overview</span>
+            <span className="service-chip">Overview</span>
             <h3>{service.title}</h3>
             <p>{description}</p>
             <span className="premium-service-link">
-              Explore service <ArrowRight size={18} aria-hidden="true" />
+              Explore service <ArrowRight size={16} aria-hidden="true" />
             </span>
           </div>
         </div>

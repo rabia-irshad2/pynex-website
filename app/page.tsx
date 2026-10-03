@@ -6,13 +6,13 @@ import HeroVisuals from '@/components/HeroVisuals';
 import SectionLabel from '@/components/SectionLabel';
 import ServiceCard from '@/components/ServiceCard';
 import ProjectCard from '@/components/ProjectCard';
-import Carousel from '@/components/Carousel';
 import SloganBand from '@/components/SloganBand';
 import Reveal from '@/components/Reveal';
 import SafeImage from '@/components/SafeImage';
 import QualityGrid from '@/components/QualityGrid';
 import LogoRow from '@/components/LogoRow';
 import TeamAvatar from '@/components/TeamAvatar';
+import ServicesArrows from '@/components/ServicesArrows';
 import {
   getAllServices,
   getAllProjects,
@@ -31,15 +31,6 @@ const qualities: [string, string, string][] = [
   ['06', 'Reliable support', 'A long-term partner to improve and extend what we build.'],
 ];
 
-const clientLogosFromDisk = [
-  { src: '/images/clients/client-1.png', alt: 'Client' },
-  { src: '/images/clients/client-2.png', alt: 'Client' },
-  { src: '/images/clients/client-3.png', alt: 'Client' },
-  { src: '/images/clients/client-4.png', alt: 'Client' },
-  { src: '/images/clients/client-5.png', alt: 'Client' },
-  { src: '/images/clients/client-6.png', alt: 'Client' },
-];
-
 export default function HomePage() {
   const services = getAllServices();
   const projects = getAllProjects();
@@ -52,121 +43,159 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ══════════════ 1. HERO ══════════════ */}
-      <section className="hero-shell bg-black text-white min-h-[90vh] flex items-center overflow-hidden">
-        <div className="hero-grid" aria-hidden="true" />
-        <HeroVisuals />
-        <div className="hero-layout max-w-content mx-auto px-6 md:px-12 py-24 w-full relative">
-          <div className="hero-copy relative">
-            <h1 className="hero-title mb-7">
-              <span>Built for</span>
-              <span>smarter</span>
-              <span className="hero-title-accent">business.</span>
-            </h1>
-            <p className="hero-subtitle max-w-2xl">
-              Technology that makes your business smarter, faster, and more efficient.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* ═══════════════ HERO ═══════════════ */}
+<section className="hero-shell">
+  <HeroVisuals />
+  <div className="hero-grid" aria-hidden="true" />
+  <div className="hero-layout max-w-content mx-auto px-6 md:px-12">
+    <div className="hero-copy">
+      <p className="section-label">Technology. Automation. Software.</p>
+      <h1 className="hero-title">
+        <span>Built for</span>
+        <span className="hero-title-accent">smarter business.</span>
+      </h1>
+      <p className="hero-subtitle">
+        We design AI, automation, and software systems that turn repetitive work into measurable business results.
+      </p>
+    </div>
+  </div>
+  
+</section>
 
-      {/* ══════════════ 2. OVERVIEW ══════════════ */}
-      <Reveal className="overview-band theme-dark-section py-section-phone md:py-section-desktop">
-        <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-[1fr_0.8fr] gap-10 items-center">
-          <div>
-            <SectionLabel>built around your business</SectionLabel>
-            <h2 className="section-title mt-3 text-white">
-              Make more room for what&apos;s next.
-            </h2>
-            <p className="text-white/70 max-w-2xl mt-5">
-              We bring AI, automation, and software together to help solve practical
-              business challenges.
-            </p>
-            <div className="overview-proof" aria-label="More than 150 implementations">
-              <strong>
-                150<sup>+</sup>
-              </strong>
-              <span>
-                successfully completed by PYNEX
-                <br />
-                for real business needs
-              </span>
-            </div>
-            <div className="mt-8">
-              <Button href="/contact">Book a Call</Button>
-            </div>
-          </div>
-          <div className="overview-visual-wrap">
-            <div className="overview-visual">
-              <Image
-                src="/images/overview/overview.jpg"
-                alt="Team collaborating around a table"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      {/* ══════════════ 3. PROOF STRIP ══════════════ */}
-      <Reveal className="proof-strip theme-dark-section py-8">
-        <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-6 text-white/70 text-sm font-medium">
-          <span className="proof-statement">Technology that moves work forward.</span>
-          <span>AI systems</span>
-          <span>Automation</span>
-          <span>Custom software</span>
-        </div>
-      </Reveal>
-
-      {/* ══════════════ 4. CLIENT LOGOS ══════════════ */}
-      <Reveal className="client-logo-strip theme-dark-section">
-        <div className="max-w-content mx-auto px-6 md:px-12">
-          <h2>Trusted partnerships. Progress that moves business forward.</h2>
-        </div>
-        {clientLogos.length > 0 ? (
-          <LogoRow
-            logos={clientLogos.map((src, i) => ({ src, alt: `Client ${i + 1}` }))}
-            speed={48}
-          />
-        ) : (
-          <div className="flex flex-wrap items-center justify-center gap-8 py-8 opacity-60">
-            {clientLogosFromDisk.map((l) => (
-              <Image
-                key={l.src}
-                src={l.src}
-                alt={l.alt}
-                width={140}
-                height={48}
-                className="h-10 w-auto object-contain grayscale brightness-200"
-              />
-            ))}
-          </div>
-        )}
-      </Reveal>
-
-      {/* ══════════════ 5. SERVICES ══════════════ */}
-      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
-        <div className="max-w-content mx-auto px-6 md:px-12">
-          <SectionLabel>what we do</SectionLabel>
-          <h2 className="section-title mb-12 text-white">
-            Technology built around real work.
+      {/* ═══════════════ 2. OVERVIEW ═══════════════ */}
+<section className="overview-section theme-dark-section">
+  <div className="container-pynex">
+    <div className="overview-grid">
+      <div className="overview-text">
+        <Reveal>
+          <p className="section-label">Built around your business</p>
+          <h2 className="overview-title">
+            Make more room for{' '}
+            <span className="overview-accent">what&apos;s next.</span>
           </h2>
-          <div className="service-stack premium-service-stack">
-            {services.map((s) => (
-              <ServiceCard
-                key={s.slug}
-                service={s.frontmatter}
-                introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()}
-              />
-            ))}
+          <p className="overview-subtitle">
+            We bring AI, automation, and software together to help solve
+            practical business challenges.
+          </p>
+
+          <div className="overview-stats">
+            <div className="overview-stat">
+              <strong>150+</strong>
+              <span>Successful implementations</span>
+            </div>
+            <div className="overview-stat">
+              <strong>12</strong>
+              <span>Industries served</span>
+            </div>
           </div>
-          <div className="mt-10 flex justify-center">
-            <Button href="/services">View more</Button>
+
+          <div className="overview-actions">
+            <Button href="/contact">Book a Call</Button>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="overview-visual-wrap">
+        <div className="overview-visual">
+          <Image
+            src="/images/overview/overview.jpg"
+            alt="Team collaborating around a table"
+            fill
+            sizes="(max-width: 1024px) 100vw, 500px"
+            className="object-cover"
+          />
+          <div className="overview-visual-badge">
+            <span className="overview-visual-badge-dot" />
+            <span>Live workspace</span>
           </div>
         </div>
-      </Reveal>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* ═══════════════ 3. PROOF STRIP ═══════════════ */}
+<section className="proof-band theme-dark-section">
+  <div className="container-pynex">
+    <div className="proof-band-inner">
+      <div className="proof-band-heading">
+        <p className="section-label">Technology that moves work forward</p>
+        <h3 className="proof-band-title">
+          One partner. <span className="proof-band-accent">Every stage.</span>
+        </h3>
+      </div>
+      <div className="proof-band-items">
+        <div className="proof-band-item">
+          <span className="proof-band-item-number">01</span>
+          <span className="proof-band-item-label">AI Systems</span>
+        </div>
+        <div className="proof-band-item">
+          <span className="proof-band-item-number">02</span>
+          <span className="proof-band-item-label">Automation</span>
+        </div>
+        <div className="proof-band-item">
+          <span className="proof-band-item-number">03</span>
+          <span className="proof-band-item-label">Custom Software</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* ═══════════════ 4. CLIENT LOGOS ═══════════════ */}
+{clientLogos.length > 0 && (
+  <Reveal className="client-logo-strip theme-dark-section">
+    <div className="max-w-content mx-auto px-6 md:px-12">
+      <h2>Trusted partnerships. Progress that moves business forward.</h2>
+    </div>
+    <LogoRow
+      logos={clientLogos.map((src, i) => ({ src, alt: `Client ${i + 1}` }))}
+      speed={48}
+    />
+  </Reveal>
+)}
+
+      {/* ═══════════════ 4. SERVICES ═══════════════ */}
+<section className="services-section theme-dark-section">
+  <div className="container-pynex">
+    <Reveal>
+      <div className="services-section-header">
+        <div className="services-section-header-left">
+          <p className="section-label">What we do</p>
+          <h2 className="services-section-title">
+            Technology built around{' '}
+            <span className="services-section-accent">real work.</span>
+          </h2>
+        </div>
+        <div className="services-section-header-right">
+  <p className="services-section-description">
+    Four core service areas. One integrated approach.
+  </p>
+  <ServicesArrows targetId="services-scroll" step={360} />
+        </div>
+      </div>
+    </Reveal>
+
+    <div className="services-scroll-wrap">
+      <div className="services-scroll" id="services-scroll">
+        {services.map((s) => (
+          <div className="services-scroll-item" key={s.slug}>
+            <ServiceCard
+              service={s.frontmatter}
+              introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div className="services-section-footer">
+      <Button href="/services" variant="secondary">
+        View all services
+      </Button>
+    </div>
+  </div>
+</section>
 
       {/* ══════════════ 6. FEATURED PROJECT ══════════════ */}
       {featuredProject && (
@@ -224,26 +253,37 @@ export default function HomePage() {
       {/* ══════════════ 7. SLOGAN ══════════════ */}
       <SloganBand />
 
-      {/* ══════════════ 8. PROJECTS ══════════════ */}
-      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
-        <div className="max-w-content mx-auto px-6 md:px-12">
-          <SectionLabel>our work</SectionLabel>
-          <h2 className="section-title mb-10 text-main-text">Define. Automate. Grow.</h2>
-          {projects.length ? (
-            <Carousel>
-              {projects.map((p) => (
-                <div key={p.slug} className="min-w-[280px] md:min-w-[340px]">
-                  <ProjectCard project={p.frontmatter} />
-                </div>
-              ))}
-            </Carousel>
-          ) : (
-            <p className="text-secondary-text">
-              Approved project case studies will appear here.
-            </p>
-          )}
+      {/* ═══════════════ 6. PROJECTS ═══════════════ */}
+<section className="projects-home-section theme-dark-section">
+  <div className="container-pynex">
+    <Reveal>
+      <div className="projects-home-header">
+        <p className="section-label">Our work</p>
+        <h2 className="projects-home-title">
+          Define. <span className="projects-home-accent">Automate.</span> Grow.
+        </h2>
+      </div>
+    </Reveal>
+  </div>
+
+  <div className="projects-scroll-wrap">
+    <div className="projects-scroll">
+      {projects.map((p) => (
+        <div className="projects-scroll-item" key={p.slug}>
+          <ProjectCard project={p.frontmatter} />
         </div>
-      </Reveal>
+      ))}
+    </div>
+  </div>
+
+  <div className="container-pynex">
+    <div className="projects-home-footer">
+      <Button href="/projects" variant="secondary">
+        View all projects
+      </Button>
+    </div>
+  </div>
+</section>
 
       {/* ══════════════ 9. TESTIMONIALS ══════════════ */}
       {showTestimonials && (
@@ -253,19 +293,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">
               Testimonials
             </h2>
-            <Carousel loop label="Client testimonials">
-              {testimonials.map((t: any, i: number) => (
-                <div
-                  key={i}
-                  className="pynex-card p-8 min-w-[280px] md:min-w-[420px]"
-                >
-                  <p className="text-main-text mb-4">&ldquo;{t.quote}&rdquo;</p>
-                  <p className="text-sm text-secondary-text font-medium">
-                    {t.name}, {t.company}
-                  </p>
-                </div>
-              ))}
-            </Carousel>
+            
           </div>
         </section>
       )}

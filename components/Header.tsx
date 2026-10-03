@@ -3,10 +3,10 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu as MenuIcon, ArrowUpRight } from 'lucide-react';
 import MobileMenu from './MobileMenu';
-import PynexLogo from './PynexLogo';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -49,13 +49,23 @@ export default function Header() {
         hidden && !menuOpen ? ' is-hidden' : ''
       }`}
     >
-      <div className="header-glow" aria-hidden="true" />
-      <div className="container-pynex header-inner">
+      <div className="header-inner">
+        {/* LEFT: Logo */}
         <Link href="/" className="header-brand" aria-label="PYNEX home">
-          <PynexLogo size={38} />
+          <span className="header-brand-logo">
+            <Image
+              src="/images/logo/logo.png"
+              alt=""
+              fill
+              priority
+              sizes="88px"
+              className="header-brand-logo-img"
+            />
+          </span>
           <span className="header-brand-text">PYNEX</span>
         </Link>
 
+        {/* CENTER: Nav */}
         <nav className="header-nav" aria-label="Main navigation">
           {NAV_LINKS.map((item) => {
             const active =
@@ -72,12 +82,11 @@ export default function Header() {
           })}
         </nav>
 
+        {/* RIGHT: CTA + menu */}
         <div className="header-actions">
           <Link href="/contact" className="nav-cta">
             Book a Call <ArrowUpRight size={14} />
           </Link>
-
-          {/* Compact menu button — ONLY visible below 900px */}
           <button
             id="pynex-menu-trigger"
             aria-expanded={menuOpen}

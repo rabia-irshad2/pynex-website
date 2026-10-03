@@ -2,23 +2,26 @@
 import Image from 'next/image';
 
 export default function PynexLogo({
-  size = 48,
+  height = 40,
   className = '',
 }: {
-  size?: number;
+  height?: number;
   className?: string;
 }) {
+  // Aspect ratio of logo.png = 1585 / 992 ≈ 1.598
+  const width = Math.round(height * 1.598);
+
   return (
     <span
       className={`pynex-logo ${className}`}
-      style={{ width: size, height: size }}
+      style={{ width, height }}
     >
       <Image
         src="/images/logo/logo.png"
         alt="PYNEX"
-        width={size * 2}
-        height={size * 2}
+        fill
         priority
+        sizes={`${width}px`}
         className="pynex-logo-img"
       />
     </span>
