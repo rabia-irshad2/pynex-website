@@ -61,7 +61,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <p className="text-secondary-text text-sm mb-6">
               Tell us about your business and we&apos;ll map out how it fits.
             </p>
-            <Button href="/contact">Book a consultation</Button>
+            <Button href="/contact">Book a Call</Button>
           </aside>
         </div>
       </Reveal>
@@ -82,7 +82,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         <div className="max-w-content mx-auto px-6 md:px-12"><SectionLabel>related projects</SectionLabel><h2 className="section-title mb-8 text-main-text">Work in this solution area.</h2>{relatedProjects.length ? <div className="grid md:grid-cols-2 gap-6">{relatedProjects.map((project) => <a className="pynex-card p-6" href={`/projects/${project.slug}`} key={project.slug}><h3 className="font-semibold text-main-text">{project.frontmatter.title}</h3><p className="text-secondary-text text-sm mt-2">{project.frontmatter.summary}</p></a>)}</div> : <p className="text-secondary-text">Related projects will appear when approved case studies match this service.</p>}</div>
       </Reveal>
 
-      <Reveal className="py-section-phone md:py-section-desktop">
+      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>how it works</SectionLabel>
           <h2 className="section-title mb-10 text-main-text">A clear four-step process.</h2>
@@ -91,7 +91,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       </Reveal>
 
       <section className="bg-black text-white py-section-phone md:py-section-desktop text-center">
-        <div className="max-w-content mx-auto px-6 md:px-12"><h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to discuss your project?</h2><Button href="/contact">Book a consultation</Button></div>
+        <div className="max-w-content mx-auto px-6 md:px-12"><h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to discuss your project?</h2><Button href="/contact">Book a Call</Button></div>
       </section>
     </>
   );

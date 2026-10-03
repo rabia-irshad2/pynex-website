@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import '@fontsource-variable/inter';
+import '@fontsource/bebas-neue/400.css';
+import '@fontsource-variable/geist-mono';
 import '@/styles/globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: 'PYNEX',
-    images: ['/images/logo.png'],
+    images: ['/images/logo/logo.png'],
   },
   twitter: {
     card: 'summary_large_image',

@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: 'Privacy Policy' };
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="py-section-phone md:py-section-desktop">
+    <section className="legal-page theme-dark-section py-section-phone md:py-section-desktop">
       <div className="max-w-content mx-auto px-6 md:px-12 prose prose-lg max-w-3xl text-main-text">
         <SectionLabel>legal</SectionLabel>
         <h1>Privacy Policy</h1>

@@ -18,7 +18,8 @@ const config: Config = {
         'soft-bg': '#F6F9FF',
       },
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'Arial', 'sans-serif'],
+        sans: ['"Geist Mono Variable"', '"Geist Mono"', 'monospace'],
+        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
       },
       backgroundImage: {
         'pynex-gradient': 'linear-gradient(135deg, #00C6FF, #0057FF)',

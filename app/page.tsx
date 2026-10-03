@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Button from '@/components/Button';
+import HeroVisuals from '@/components/HeroVisuals';
 import SectionLabel from '@/components/SectionLabel';
 import ServiceCard from '@/components/ServiceCard';
 import ProjectCard from '@/components/ProjectCard';
@@ -8,13 +10,13 @@ import SloganBand from '@/components/SloganBand';
 import Reveal from '@/components/Reveal';
 import SafeImage from '@/components/SafeImage';
 import QualityGrid from '@/components/QualityGrid';
-import { BarChart3, BrainCircuit, Cloud, Code2, Globe2, Workflow } from 'lucide-react';
 import {
   getAllServices,
   getAllProjects,
   getFeaturedProject,
   getTeam,
   getTestimonials,
+  getPublicImages,
 } from '@/lib/content';
 
 const qualities: [string, string, string][] = [
@@ -32,6 +34,7 @@ export default function HomePage() {
   const featuredProject = getFeaturedProject();
   const team = getTeam();
   const testimonials = getTestimonials();
+  const clientLogos = getPublicImages('clients');
 
   // Section 3.1: testimonials section only shows once there are 2+ approved testimonials
   const showTestimonials = testimonials.length >= 2;
@@ -41,55 +44,75 @@ export default function HomePage() {
       {/* 1. Hero */}
       <section className="hero-shell bg-black text-white min-h-[90vh] flex items-center overflow-hidden">
         <div className="hero-grid" aria-hidden="true" />
-        <div className="max-w-content mx-auto px-6 md:px-12 py-28 w-full relative">
-          <div className="hero-tech-icon hero-tech-ai" aria-hidden="true"><BrainCircuit size={26} /></div>
-          <div className="hero-tech-icon hero-tech-automation" aria-hidden="true"><Workflow size={26} /></div>
-          <div className="hero-tech-icon hero-tech-code" aria-hidden="true"><Code2 size={26} /></div>
-          <div className="hero-tech-icon hero-tech-cloud" aria-hidden="true"><Cloud size={26} /></div>
-          <div className="hero-tech-icon hero-tech-chart" aria-hidden="true"><BarChart3 size={26} /></div>
-          <div className="hero-tech-icon hero-tech-globe" aria-hidden="true"><Globe2 size={26} /></div>
-          <div className="max-w-5xl mx-auto relative hero-copy text-center">
-            <SectionLabel>AI. Automation. Software.</SectionLabel>
-            <h1 className="hero-title mt-5 mb-7">Built for smarter business</h1>
-            <p className="text-white/65 max-w-2xl mx-auto mb-9 text-lg md:text-xl">
+        <HeroVisuals />
+        <div className="hero-layout max-w-content mx-auto px-6 md:px-12 py-24 w-full relative">
+          <div className="hero-copy relative">
+            <h1 className="hero-title mb-7">
+              <span>Built for</span>
+              <span>smarter</span>
+              <span className="hero-title-accent">business.</span>
+            </h1>
+            <p className="hero-subtitle max-w-2xl">
               Technology that makes your business smarter, faster, and more efficient.
             </p>
-            <Button href="/contact">Book a consultation</Button>
           </div>
         </div>
       </section>
 
       {/* Overview bridge inspired by the reference layout; PYNEX-specific copy and styling. */}
       <Reveal className="overview-band theme-dark-section py-section-phone md:py-section-desktop">
-        <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-[1fr_0.8fr] gap-8 items-center">
+        <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-[1fr_0.8fr] gap-10 items-center">
           <div>
-            <SectionLabel>overview</SectionLabel>
-            <h2 className="section-title mt-3 text-white">Powering your next innovation</h2>
+            <SectionLabel>built around your business</SectionLabel>
+            <h2 className="section-title mt-3 text-white">Make more room for what&apos;s next.</h2>
             <p className="text-white/70 max-w-2xl mt-5">We bring AI, automation, and software together to help solve practical business challenges.</p>
-            <div className="mt-8"><Button href="/contact">Book a consultation</Button></div>
+            <div className="overview-proof" aria-label="More than 150 implementations successfully completed">
+              <strong>150<sup>+</sup></strong>
+              <span>successfully completed by PYNEX<br />for real business needs</span>
+            </div>
+            <div className="mt-8"><Button href="/contact">Book a Call</Button></div>
           </div>
-          <div className="overview-art" aria-hidden="true"><Workflow /><Code2 /><BrainCircuit /></div>
+          <div className="overview-visual-wrap">
+            <div className="overview-visual">
+              <Image src="/images/overview/overview.jpg" alt="Team collaborating around a table in a bright meeting room" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+            </div>
+          </div>
         </div>
       </Reveal>
 
       {/* 2. Proof / trust bar */}
       <Reveal className="proof-strip theme-dark-section py-8">
         <div className="max-w-content mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-6 text-white/70 text-sm font-medium">
-          <span className="proof-number">{projects.length.toString().padStart(2, '0')}<small>+</small></span>
-          <span>Projects shaped around real workflows</span>
+          <span className="proof-statement">Technology that moves work forward.</span>
           <span>AI systems</span><span>Automation</span><span>Custom software</span>
+        </div>
+      </Reveal>
+
+      <Reveal className="client-logo-strip theme-dark-section">
+        <div className="max-w-content mx-auto px-6 md:px-12">
+          <h2>Trusted partnerships. Progress that moves business forward.</h2>
+          {clientLogos.length > 0 && (
+            <div className="client-logo-row" aria-label="PYNEX clients and partners">
+              {clientLogos.map((logo) => (
+                <Image key={logo} src={logo} alt={`${logo.split('/').pop()?.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')} logo`} width={180} height={72} />
+              ))}
+            </div>
+          )}
         </div>
       </Reveal>
 
       {/* 3. Services overview */}
       <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
-          <SectionLabel>services</SectionLabel>
-          <h2 className="section-title mb-12 text-white">Explore our complete technology services</h2>
-          <div className="service-stack">
+          <SectionLabel>what we do</SectionLabel>
+          <h2 className="section-title mb-12 text-white">Technology built around real work.</h2>
+          <div className="service-stack premium-service-stack">
             {services.map((s) => (
-              <ServiceCard key={s.slug} service={s.frontmatter} />
+              <ServiceCard key={s.slug} service={s.frontmatter} introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()} />
             ))}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <Button href="/services">View more</Button>
           </div>
         </div>
       </Reveal>
@@ -146,7 +169,7 @@ export default function HomePage() {
 
       {/* 7. Testimonials — hidden until 2+ approved testimonials exist (Section 3.1) */}
       {showTestimonials && (
-        <section className="bg-soft-bg py-section-phone md:py-section-desktop">
+        <section className="theme-dark-section py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>what clients say</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Testimonials</h2>
@@ -178,17 +201,17 @@ export default function HomePage() {
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>team</SectionLabel>
             <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
-            <Carousel loop label="PYNEX team">
-              {team.map((member: any) => (
-                <div key={member.name} className="text-center min-w-[260px]">
-                  <div className="w-24 h-24 rounded-full bg-soft-bg mx-auto mb-4 overflow-hidden flex items-center justify-center">
-                    {member.photo ? <SafeImage src={member.photo} alt={member.name} width={96} height={96} className="h-full w-full object-cover" fallback={<span className="text-primary-blue font-bold text-xl">{member.name.charAt(0)}</span>} /> : <span className="text-primary-blue font-bold text-xl">{member.name.charAt(0)}</span>}
+            <div className="team-grid">
+              {team.map((member: any, index: number) => (
+                <article key={member.name} className="team-profile-card">
+                  <div className={`team-profile-image team-profile-image-${index + 1}`}>
+                    <SafeImage src={member.photo || `/images/team/leader-${index + 1}.svg`} alt={`${member.name}, PYNEX team member`} width={480} height={520} className="h-full w-full object-cover" fallback={<span>{member.name.split(' ').map((part: string) => part[0]).join('')}</span>} />
                   </div>
-                  <p className="font-semibold text-main-text">{member.name}</p>
-                  <p className="text-sm text-secondary-text">{member.role}</p>
-                </div>
+                  <p className="team-profile-name">{member.name}</p>
+                  <p className="team-profile-role">{member.role}</p>
+                </article>
               ))}
-            </Carousel>
+            </div>
           </div>
         </Reveal>
       )}
@@ -199,8 +222,8 @@ export default function HomePage() {
       {/* 9. Closing CTA */}
       <section className="bg-black text-white py-section-phone md:py-section-desktop text-center">
         <div className="max-w-content mx-auto px-6 md:px-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Let&apos;s build something smarter</h2>
-          <Button href="/contact">Book a consultation</Button>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Let&apos;s build something smarter.</h2>
+          <Button href="/contact">Book a Call</Button>
         </div>
       </section>
 

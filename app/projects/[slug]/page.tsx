@@ -47,7 +47,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
         </div>
       </section>
 
-      <section className="py-section-phone md:py-section-desktop">
+      <section className="project-detail-content theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-12 bg-soft-bg">
             <SafeImage

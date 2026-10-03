@@ -1,32 +1,41 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Bot, Code2, Workflow, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import type { ServiceFrontmatter } from '@/lib/content';
 
-const serviceVisuals = {
-  'ai-solutions': Bot,
-  'business-automation': Workflow,
-  'custom-software': Code2,
-  'digital-products': Sparkles,
-} as const;
+const serviceImages: Record<string, string> = {
+  'ai-solutions': '/images/services/ai-solutions.jpg',
+  'business-automation': '/images/services/business-automation.jpg',
+  'custom-software': '/images/services/custom-software.jpg',
+  'digital-products': '/images/services/digital-products.jpg',
+};
 
-export default function ServiceCard({ service }: { service: ServiceFrontmatter }) {
-  const Visual = serviceVisuals[service.slug as keyof typeof serviceVisuals] || Sparkles;
+export default function ServiceCard({ service, introduction }: { service: ServiceFrontmatter; introduction?: string }) {
+  const imageSrc = serviceImages[service.slug] || '/images/services/ai-solutions.jpg';
+  const serviceIntroduction = introduction || service.shortDescription;
 
   return (
-    <Link
-      href={`/services/${service.slug}`}
-      className={`pynex-card service-card service-card-${service.slug} block p-8 bg-gradient-to-br from-soft-bg to-white`}
-    >
-      <span className="service-card-art" aria-hidden="true">
-        <span className="service-card-art-glow" />
-        <Visual className="service-card-art-icon" size={76} strokeWidth={1.2} />
-      </span>
-      <div className="service-card-copy">
-        <h3 className="text-xl font-semibold mb-2 text-main-text">{service.title}</h3>
-        <p className="text-secondary-text text-sm mb-4">{service.shortDescription}</p>
-        <span className="service-card-link inline-flex items-center gap-1 text-primary-blue font-medium text-sm">
-          Learn more <ArrowRight size={16} />
-        </span>
+    <Link href={`/services/${service.slug}`} aria-label={`Learn more about ${service.title}`} className="premium-service-card service-flip-card">
+      <div className="service-flip-inner">
+        <div className="service-flip-front premium-service-face">
+          <Image src={imageSrc} alt="" fill className="service-face-image" sizes="(max-width: 768px) 100vw, 33vw" />
+          <div className="service-face-shade" aria-hidden="true" />
+          <div className="premium-service-body">
+            <span className="service-chip">PYNEX service</span>
+            <h3>{service.title}</h3>
+            <span className="premium-service-hint">Hover to explore</span>
+          </div>
+        </div>
+        <div className="service-flip-back premium-service-face">
+          <Image src={imageSrc} alt="" fill className="service-face-image" sizes="(max-width: 768px) 100vw, 33vw" />
+          <div className="service-face-shade service-face-shade-back" aria-hidden="true" />
+          <div className="premium-service-body">
+            <span className="service-chip">Service overview</span>
+            <h3>{service.title}</h3>
+            <p>{serviceIntroduction}</p>
+            <span className="premium-service-link">Explore service <ArrowRight size={18} aria-hidden="true" /></span>
+          </div>
+        </div>
       </div>
     </Link>
   );

@@ -51,61 +51,38 @@ export default function ContactForm() {
 
       <h2 className="contact-form-title">SEND US AN EMAIL</h2>
 
-      <div className="contact-field">
-        <label htmlFor="contact-name">YOUR FULL NAME</label>
-        <input
-          id="contact-name"
-          required
-          value={form.name}
-          onChange={(e) => update('name', e.target.value)}
-        />
-      </div>
+      <div className="contact-form-grid">
+        <div className="contact-field">
+          <label htmlFor="contact-name">Your full name <span>*</span></label>
+          <input id="contact-name" required placeholder="Your full name" value={form.name} onChange={(e) => update('name', e.target.value)} />
+        </div>
 
-      <div className="contact-field">
-        <label htmlFor="contact-email">YOUR EMAIL ADDRESS</label>
-        <input
-          id="contact-email"
-          type="email"
-          required
-          value={form.email}
-          onChange={(e) => update('email', e.target.value)}
-        />
-      </div>
+        <div className="contact-field">
+          <label htmlFor="contact-email">Email address <span>*</span></label>
+          <input id="contact-email" type="email" required placeholder="you@company.com" value={form.email} onChange={(e) => update('email', e.target.value)} />
+        </div>
 
-      <div className="contact-field">
-        <label htmlFor="contact-company">YOUR PHONE NUMBER</label>
-        <input
-          id="contact-company"
-          value={form.company}
-          onChange={(e) => update('company', e.target.value)}
-        />
-      </div>
+        <div className="contact-field">
+          <label htmlFor="contact-company">Company</label>
+          <input id="contact-company" placeholder="Your company" value={form.company} onChange={(e) => update('company', e.target.value)} />
+        </div>
 
-      <div className="contact-field">
-        <label htmlFor="service">SERVICE OF INTEREST</label>
-        <select
-          id="service"
-          value={form.service}
-          onChange={(e) => update('service', e.target.value)}
-        >
-          <option value="">Select a service</option>
-          <option value="AI solutions">AI solutions</option>
-          <option value="Business automation">Business automation</option>
-          <option value="Custom software development">Custom software development</option>
-          <option value="Intelligent digital products">Intelligent digital products</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
+        <div className="contact-field">
+          <label htmlFor="service">Service of interest</label>
+          <select id="service" value={form.service} onChange={(e) => update('service', e.target.value)}>
+            <option value="">Choose a service</option>
+            <option value="AI solutions">AI solutions</option>
+            <option value="Business automation">Business automation</option>
+            <option value="Custom software development">Custom software development</option>
+            <option value="Intelligent digital products">Intelligent digital products</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-      <div className="contact-field">
-        <label htmlFor="message">TELL US ABOUT YOUR PROJECT...</label>
-        <textarea
-          id="message"
-          required
-          rows={5}
-          value={form.message}
-          onChange={(e) => update('message', e.target.value)}
-        />
+        <div className="contact-field contact-field-wide">
+          <label htmlFor="message">Project details <span>*</span></label>
+          <textarea id="message" required rows={5} placeholder="Tell us what you are trying to improve or build." value={form.message} onChange={(e) => update('message', e.target.value)} />
+        </div>
       </div>
 
       <div className="contact-form-actions">
@@ -115,7 +92,7 @@ export default function ContactForm() {
       </div>
 
       {status === 'error' && (
-        <p className="contact-error" role="alert">Email delivery is not available yet. Please email info@easterntechno.com or WhatsApp +92 314 1754779 directly.</p>
+        <p className="contact-error" role="alert">Email delivery is not available yet. Please email pynexcompany@gmail.com or WhatsApp +92 314 1754779 directly.</p>
       )}
     </form>
   );
