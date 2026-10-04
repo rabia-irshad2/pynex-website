@@ -1,7 +1,12 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import type { ServiceFrontmatter } from '@/lib/content';
+
+const MotionLink = motion(Link);
 
 const serviceImages: Record<string, string> = {
   'ai-solutions': '/images/services/ai-solutions.jpg',
@@ -10,12 +15,21 @@ const serviceImages: Record<string, string> = {
   'digital-products': '/images/services/digital-products.jpg',
 };
 
-export default function ServiceCard({ service, introduction }: { service: ServiceFrontmatter; introduction?: string }) {
+export default function ServiceCard({ service, introduction, index = 0 }: { service: ServiceFrontmatter; introduction?: string; index?: number }) {
   const imageSrc = serviceImages[service.slug] || '/images/services/ai-solutions.jpg';
   const serviceIntroduction = introduction || service.shortDescription;
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-    <Link href={`/services/${service.slug}`} aria-label={`Learn more about ${service.title}`} className="premium-service-card service-flip-card">
+    <MotionLink
+      href={`/services/${service.slug}`}
+      aria-label={`Learn more about ${service.title}`}
+      className="premium-service-card service-flip-card"
+      initial={prefersReducedMotion ? false : { opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+      whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.7, delay: prefersReducedMotion ? 0 : (index % 3) * 0.12, ease: 'easeOut' }}
+    >
       <div className="service-flip-inner">
         <div className="service-flip-front premium-service-face">
           <Image src={imageSrc} alt="" fill className="service-face-image" sizes="(max-width: 768px) 100vw, 33vw" />
@@ -37,6 +51,6 @@ export default function ServiceCard({ service, introduction }: { service: Servic
           </div>
         </div>
       </div>
-    </Link>
+    </MotionLink>
   );
 }

@@ -30,7 +30,7 @@ export default function UnsubscribePage() {
   }
 
   return (
-    <section className="py-section-phone md:py-section-desktop">
+    <section className="unsubscribe-page theme-dark-section py-section-phone md:py-section-desktop">
       <div className="max-w-content mx-auto px-6 md:px-12 max-w-xl">
         <SectionLabel>newsletter</SectionLabel>
         <h1 className="text-4xl md:text-5xl font-bold text-main-text mb-5">Unsubscribe</h1>

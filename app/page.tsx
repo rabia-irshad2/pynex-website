@@ -46,7 +46,7 @@ export default function HomePage() {
         <div className="hero-grid" aria-hidden="true" />
         <HeroVisuals />
         <div className="hero-layout max-w-content mx-auto px-6 md:px-12 py-24 w-full relative">
-          <div className="hero-copy relative">
+          <Reveal className="hero-copy relative" direction="left">
             <h1 className="hero-title mb-7">
               <span>Built for</span>
               <span>smarter</span>
@@ -55,7 +55,7 @@ export default function HomePage() {
             <p className="hero-subtitle max-w-2xl">
               Technology that makes your business smarter, faster, and more efficient.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -63,20 +63,20 @@ export default function HomePage() {
       <Reveal className="overview-band theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-[1fr_0.8fr] gap-10 items-center">
           <div>
-            <SectionLabel>built around your business</SectionLabel>
-            <h2 className="section-title mt-3 text-white">Make more room for what&apos;s next.</h2>
-            <p className="text-white/70 max-w-2xl mt-5">We bring AI, automation, and software together to help solve practical business challenges.</p>
-            <div className="overview-proof" aria-label="More than 150 implementations successfully completed">
+            <Reveal direction="left"><SectionLabel>built around your business</SectionLabel></Reveal>
+            <Reveal direction="left" delay={0.12}><h2 className="section-title mt-3 text-white">Make more room for what&apos;s next.</h2></Reveal>
+            <Reveal direction="left" delay={0.24}><p className="text-white/70 max-w-2xl mt-5">We bring AI, automation, and software together to help solve practical business challenges.</p></Reveal>
+            <Reveal direction="left" delay={0.36}><div className="overview-proof" aria-label="More than 150 implementations successfully completed">
               <strong>150<sup>+</sup></strong>
               <span>successfully completed by PYNEX<br />for real business needs</span>
-            </div>
-            <div className="mt-8"><Button href="/contact">Book a Call</Button></div>
+            </div></Reveal>
+            <Reveal direction="left" delay={0.48}><div className="mt-8"><Button href="/contact">Book a Call</Button></div></Reveal>
           </div>
-          <div className="overview-visual-wrap">
+          <Reveal className="overview-visual-wrap" direction="right" delay={0.12}>
             <div className="overview-visual">
               <Image src="/images/overview/overview.jpg" alt="Team collaborating around a table in a bright meeting room" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
-          </div>
+          </Reveal>
         </div>
       </Reveal>
 
@@ -107,8 +107,8 @@ export default function HomePage() {
           <SectionLabel>what we do</SectionLabel>
           <h2 className="section-title mb-12 text-white">Technology built around real work.</h2>
           <div className="service-stack premium-service-stack">
-            {services.map((s) => (
-              <ServiceCard key={s.slug} service={s.frontmatter} introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()} />
+            {services.map((s, index) => (
+              <ServiceCard key={s.slug} service={s.frontmatter} index={index} introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()} />
             ))}
           </div>
           <div className="mt-10 flex justify-center">
@@ -122,16 +122,16 @@ export default function HomePage() {
         <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <SectionLabel>featured project</SectionLabel>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              <Reveal direction="left"><SectionLabel>featured project</SectionLabel></Reveal>
+              <Reveal direction="left" delay={0.12}><h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 {featuredProject.frontmatter.title}
-              </h2>
-              <p className="text-white/70 mb-6">{featuredProject.frontmatter.summary}</p>
-              <Link href={`/projects/${featuredProject.slug}`} className="btn-secondary">
+              </h2></Reveal>
+              <Reveal direction="left" delay={0.24}><p className="text-white/70 mb-6">{featuredProject.frontmatter.summary}</p></Reveal>
+              <Reveal direction="left" delay={0.36}><Link href={`/projects/${featuredProject.slug}`} className="btn-secondary">
                 View case study
-              </Link>
+              </Link></Reveal>
             </div>
-            <div className="project-visual" aria-label={`${featuredProject.frontmatter.title} project preview`}>
+            <Reveal className="project-visual" direction="right" delay={0.12}>
               <SafeImage
                 src={featuredProject.frontmatter.image}
                 alt={`Preview of ${featuredProject.frontmatter.title}`}
@@ -139,7 +139,7 @@ export default function HomePage() {
                 className="object-cover project-image"
                 fallback={<div className="project-placeholder project-placeholder-large"><span>{featuredProject.frontmatter.category}</span><strong>{featuredProject.frontmatter.title}</strong></div>}
               />
-            </div>
+            </Reveal>
             <div className="md:col-span-2 grid sm:grid-cols-2 gap-4 mt-8">
               {featuredProject.frontmatter.features?.length ? featuredProject.frontmatter.features.slice(0, 2).map((feature) => (
                 <div className="pynex-card p-5" key={feature}><p className="text-white">{feature}</p></div>
@@ -160,7 +160,7 @@ export default function HomePage() {
           {projects.length ? <Carousel>
             {projects.map((p) => (
               <div key={p.slug} className="min-w-[280px] md:min-w-[340px]">
-                <ProjectCard project={p.frontmatter} />
+                <ProjectCard project={p.frontmatter} index={projects.indexOf(p)} />
               </div>
             ))}
           </Carousel> : <p className="text-secondary-text">Approved project case studies will appear here when available.</p>}
@@ -169,7 +169,7 @@ export default function HomePage() {
 
       {/* 7. Testimonials — hidden until 2+ approved testimonials exist (Section 3.1) */}
       {showTestimonials && (
-        <section className="theme-dark-section py-section-phone md:py-section-desktop">
+        <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>what clients say</SectionLabel>
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Testimonials</h2>
@@ -184,7 +184,7 @@ export default function HomePage() {
               ))}
             </Carousel>
           </div>
-        </section>
+        </Reveal>
       )}
 
       <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
@@ -203,13 +203,15 @@ export default function HomePage() {
             <h2 className="section-title mb-10 text-main-text">The people behind the intelligence</h2>
             <div className="team-grid">
               {team.map((member: any, index: number) => (
-                <article key={member.name} className="team-profile-card">
+                  <Reveal key={member.name} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 0.12}>
+                  <article className="team-profile-card">
                   <div className={`team-profile-image team-profile-image-${index + 1}`}>
                     <SafeImage src={member.photo || `/images/team/leader-${index + 1}.svg`} alt={`${member.name}, PYNEX team member`} width={480} height={520} className="h-full w-full object-cover" fallback={<span>{member.name.split(' ').map((part: string) => part[0]).join('')}</span>} />
                   </div>
                   <p className="team-profile-name">{member.name}</p>
                   <p className="team-profile-role">{member.role}</p>
                 </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -220,12 +222,12 @@ export default function HomePage() {
       <SloganBand />
 
       {/* 9. Closing CTA */}
-      <section className="bg-black text-white py-section-phone md:py-section-desktop text-center">
+      <Reveal className="bg-black text-white py-section-phone md:py-section-desktop text-center">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Let&apos;s build something smarter.</h2>
           <Button href="/contact">Book a Call</Button>
         </div>
-      </section>
+      </Reveal>
 
       {/* 10. Footer is rendered globally in app/layout.tsx */}
     </>

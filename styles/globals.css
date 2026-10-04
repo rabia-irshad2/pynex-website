@@ -511,8 +511,14 @@ header.site-header {
 
 /* PYNEX editorial design system */
 :root {
-  --color-accent-cyan: #4fa9ff;
-  --gradient-pynex: #101820;
+  --color-primary-blue: #398dff;
+  --color-accent-cyan: #63d9f2;
+  --color-bg-dark: #07111f;
+  --color-main-text: #f2f7ff;
+  --color-secondary-text: #aab8ca;
+  --color-soft-bg: #0c1b2d;
+  --color-surface: #0b1a2c;
+  --gradient-pynex: #111f31;
 }
 
 html,
@@ -527,6 +533,8 @@ select,
 textarea {
   font-family: 'Geist Mono Variable', 'Geist Mono', monospace;
 }
+
+body { color: var(--color-main-text); background: var(--color-bg-dark); }
 
 h1, h2, h3, h4, h5, h6,
 .section-title,
@@ -747,7 +755,7 @@ h1, h2, h3, h4, h5, h6,
 .service-chip { border-color: rgba(255,255,255,.48); background: rgba(4,10,18,.38); }
 .service-link { color: #a9d9ff; }
 .services-page { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
-.services-page .section-title { color: #111b29; }
+.services-page .section-title { color: #fff; }
 .services-page .service-flip-card { height: 390px; }
 .service-directory-grid { align-items: stretch; }
 
@@ -1327,7 +1335,7 @@ h2.text-2xl, h2.text-3xl, h2.text-4xl, h2.text-5xl { font-size: clamp(2.5rem, 5v
 .project-card-link { font-size: .72rem; }
 
 /* Reference-inspired contact-page hierarchy in PYNEX navy and cyan. */
-.contact-page { padding: 1rem 0 clamp(4rem, 8vw, 6rem); background: #07182a; }
+.contact-page { position: relative; padding: 1rem 0 clamp(4rem, 8vw, 6rem); background: #0a0c0f; }
 .contact-intro { padding: 1.5rem 0 2.4rem; border-bottom: 1px solid rgba(160,198,232,.12); }
 .contact-overline { margin: 0 0 .55rem; color: #59d5f2; font: 600 .62rem/1.5 'Geist Mono Variable','Geist Mono',monospace; letter-spacing: .12em; text-transform: uppercase; }
 .contact-intro h1 { margin: 0; color: #fff; font: 400 clamp(3.7rem, 7.5vw, 6rem)/.86 'Bebas Neue',Impact,sans-serif; text-transform: uppercase; }
@@ -1384,4 +1392,199 @@ h2.text-2xl, h2.text-3xl, h2.text-4xl, h2.text-5xl { font-size: clamp(2.5rem, 5v
   .contact-meta-grid { grid-template-columns: 1fr; }
   .contact-form-grid { grid-template-columns: minmax(0,1fr); }
   .contact-field-wide { grid-column: auto; }
+}
+
+/* Give the hero photo a visible PYNEX blue grade without changing the dark site palette. */
+.hero-photo {
+  opacity: .96;
+  filter: saturate(1.14) brightness(1.22) contrast(1.04);
+}
+.hero-photo-layer::after {
+  background:
+    linear-gradient(90deg, rgba(5,19,43,.9) 0%, rgba(6,31,65,.72) 31%, rgba(8,47,91,.38) 57%, rgba(8,53,101,.16) 100%),
+    linear-gradient(135deg, rgba(0,102,194,.13), rgba(0,182,220,.05) 54%, rgba(3,20,43,.08)),
+    linear-gradient(0deg, rgba(4,15,30,.5), transparent 48%, rgba(4,15,30,.04));
+}
+
+/* A subtle, tactile team-card response when visitors hover or keyboard-focus a profile. */
+.team-profile-card {
+  border-radius: 1rem;
+  transition: transform .32s cubic-bezier(.2,.8,.2,1);
+}
+.team-profile-image {
+  border: 1px solid rgba(130,181,224,.16);
+  box-shadow: 0 14px 38px rgba(0,0,0,.18);
+  transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.team-profile-image::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,103,194,.04), transparent 48%, rgba(2,21,43,.28));
+  content: '';
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.team-profile-card:hover,
+.team-profile-card:focus-within { transform: translateY(-6px); }
+.team-profile-card:hover .team-profile-image,
+.team-profile-card:focus-within .team-profile-image {
+  border-color: rgba(76,185,255,.62);
+  box-shadow: 0 22px 52px rgba(0,90,180,.22);
+}
+.team-profile-card:hover .team-profile-image::after,
+.team-profile-card:focus-within .team-profile-image::after { opacity: .55; }
+.team-profile-card:hover .team-profile-image img,
+.team-profile-card:focus-within .team-profile-image img { transform: scale(1.055); }
+.team-profile-role { transition: color .25s ease; }
+.team-profile-card:hover .team-profile-role,
+.team-profile-card:focus-within .team-profile-role { color: #8fcfff; }
+
+@media (max-width: 640px) {
+  .hero-photo-layer::after {
+    background:
+      linear-gradient(90deg, rgba(5,19,43,.87), rgba(5,29,60,.64) 58%, rgba(5,31,64,.34)),
+      linear-gradient(135deg, rgba(0,102,194,.11), rgba(0,182,220,.04)),
+      linear-gradient(0deg, rgba(4,15,30,.62), transparent 68%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-profile-card,
+  .team-profile-image,
+  .team-profile-image img,
+  .team-profile-role { transition-duration: .01ms !important; }
+}
+
+/* Let the home hero continue behind the fixed navigation; avoid the spacer seam. */
+main.pt-20:has(> .hero-shell) { padding-top: 0; }
+header.site-header {
+  border: 0 !important;
+  background: rgba(5,19,43,.88) !important;
+  backdrop-filter: blur(14px) !important;
+  box-shadow: none !important;
+}
+
+/* Continue the hero's deep-blue palette into the overview and its photo. */
+.overview-band {
+  background: linear-gradient(135deg, #071426 0%, #081b30 58%, #06111f 100%);
+}
+.overview-visual { isolation: isolate; }
+.overview-visual img {
+  filter: saturate(.82) brightness(.82) contrast(1.04);
+  transition: filter .45s ease, transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.overview-visual::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(5,31,61,.38), rgba(0,94,150,.17) 58%, rgba(4,18,39,.28));
+  content: '';
+  pointer-events: none;
+}
+.overview-visual:hover img { filter: saturate(.96) brightness(.9) contrast(1.04); }
+
+@media (prefers-reduced-motion: reduce) {
+  .overview-visual img { transition-duration: .01ms !important; }
+}
+
+/* Final route-wide theme normalization: deep navy surfaces with PYNEX blue accents. */
+html,
+body { background-color: var(--color-bg-dark); color: var(--color-main-text); }
+main { background-color: var(--color-bg-dark); color: var(--color-main-text); }
+main .bg-black,
+.pynex-footer.bg-black { background-color: #071426 !important; }
+.theme-dark-section,
+.blog-theme,
+.projects-page,
+.services-page,
+.contact-page,
+.legal-page,
+.not-found-page,
+.unsubscribe-page { background-color: var(--color-bg-dark); color: var(--color-main-text); }
+.theme-dark-section { background-image: linear-gradient(180deg, rgba(13,31,52,.24), transparent 32%); }
+.blog-theme { background-image: none; }
+.services-page .section-title,
+.services-page .text-main-text,
+.projects-page .text-main-text,
+.blog-theme .text-main-text,
+.unsubscribe-page .text-main-text { color: var(--color-main-text); }
+.section-label,
+.theme-dark-section .section-label,
+.blog-theme .section-label,
+.services-page .section-label,
+.projects-page .section-label,
+.unsubscribe-page .section-label { color: var(--color-accent-cyan); }
+
+.theme-dark-section .pynex-card,
+.blog-theme .pynex-card,
+.unsubscribe-page .pynex-card,
+.project-detail-content .pynex-card {
+  border-color: rgba(140,177,219,.18);
+  background: linear-gradient(145deg, #102139, #0a1728);
+  color: var(--color-main-text);
+}
+.theme-dark-section .pynex-card:hover,
+.blog-theme .pynex-card:hover,
+.unsubscribe-page .pynex-card:hover { border-color: rgba(99,217,242,.38); }
+.services-page .featured-article,
+.blog-theme .featured-article { border-color: rgba(140,177,219,.18); background: linear-gradient(125deg,#102139,#0a1728); }
+.blog-theme .filter-button,
+.projects-page .filter-button {
+  border-color: rgba(160,190,224,.22);
+  color: rgba(235,243,255,.8);
+  background: #0b1a2c;
+}
+.blog-theme .filter-button:hover,
+.blog-theme .filter-button:focus-visible,
+.projects-page .filter-button:hover,
+.projects-page .filter-button:focus-visible { border-color: var(--color-primary-blue); color: #fff; background: #122b46; }
+.blog-theme .filter-button-active,
+.projects-page .filter-button-active { border-color: var(--color-primary-blue); color: #fff; background: #1769bb; }
+.theme-dark-section .scope-chip.light,
+.project-detail-content .scope-chip.light {
+  border-color: rgba(140,190,230,.24);
+  color: #d9eaff;
+  background: #102139;
+}
+.theme-dark-section .btn-secondary,
+.blog-theme .btn-secondary,
+.services-page .btn-secondary,
+.projects-page .btn-secondary,
+.project-detail-content .btn-secondary {
+  border-color: rgba(99,217,242,.52);
+  color: #a7eaff;
+  background: rgba(9,28,48,.68);
+}
+.theme-dark-section .btn-secondary:hover,
+.blog-theme .btn-secondary:hover,
+.services-page .btn-secondary:hover,
+.projects-page .btn-secondary:hover,
+.project-detail-content .btn-secondary:hover { border-color: #63d9f2; color: #fff; background: #123657; }
+.theme-dark-section .btn-secondary .arrow-disc-front,
+.blog-theme .btn-secondary .arrow-disc-front,
+.services-page .btn-secondary .arrow-disc-front,
+.projects-page .btn-secondary .arrow-disc-front,
+.project-detail-content .btn-secondary .arrow-disc-front { color: #a7eaff; background: rgba(99,217,242,.12); }
+.theme-dark-section .btn-secondary .arrow-disc-back,
+.blog-theme .btn-secondary .arrow-disc-back,
+.services-page .btn-secondary .arrow-disc-back,
+.projects-page .btn-secondary .arrow-disc-back,
+.project-detail-content .btn-secondary .arrow-disc-back { color: #07111f; background: #63d9f2; }
+.contact-page { background: linear-gradient(145deg,#071426,#081b30 58%,#07111f); }
+.legal-page .prose a,
+.blog-theme a:not(.btn-primary):not(.btn-secondary) { color: #8fdcff; }
+.footer-reviews-panel,
+.footer-locations { border-color: rgba(140,177,219,.16); background-color: #0a192b; }
+.footer-map-visual { background-color: #071426; }
+.footer-link-column a:hover,
+.footer-contact-column > a:hover,
+.footer-legal-links a:hover,
+.footer-meeting-link:hover { color: #63d9f2 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-dark-section,
+  .blog-theme,
+  .projects-page,
+  .services-page,
+  .contact-page { scroll-behavior: auto; }
 }

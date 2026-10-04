@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ArrowUpRight, MapPin, Star } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
 import SocialLinks from './SocialLinks';
+import Reveal from './Reveal';
 
 const SERVICES = [
   { href: '/services/ai-solutions', label: 'AI solutions' },
@@ -35,7 +36,7 @@ export default function Footer({
   return (
     <footer className="pynex-footer bg-black text-white">
       <div className="max-w-content mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-10">
-        <div className="footer-main-grid">
+        <Reveal className="footer-main-grid" direction="up">
           <div className="footer-brand-column">
             <span className="logo-lockup logo-lockup-footer">
               <Image src="/images/logo/logo.png" alt="PYNEX" fill sizes="108px" className="logo-image" />
@@ -91,19 +92,19 @@ export default function Footer({
               <a className="footer-uae-phone" href="tel:+971508124362">+971 50 812 4362</a>
             </div>
           </section>
-        </div>
+        </Reveal>
 
-        <section className="footer-reviews-panel" aria-label="Google Reviews">
+        <Reveal className="footer-reviews-panel" ariaLabel="Google Reviews">
           <div className="footer-reviews-icon"><Star size={20} aria-hidden="true" /></div>
           <div><p className="footer-eyebrow">GOOGLE REVIEWS</p><strong>See what clients are saying.</strong><p>Open Google to view the latest reviews and ratings.</p></div>
           <a href="https://www.google.com/search?q=PYNEX+company+reviews" target="_blank" rel="noopener noreferrer">View Google reviews <ArrowUpRight size={16} aria-hidden="true" /></a>
-        </section>
+        </Reveal>
 
-        <div className="footer-newsletter-panel">
+        <Reveal className="footer-newsletter-panel" direction="right">
           {showGoogleRating && <div className="footer-rating-summary"><span className="footer-eyebrow">Google average rating</span><strong>{googleRating.toFixed(1)} <span>/ 5</span></strong></div>}
           <div className="footer-newsletter-copy">Subscribe to our newsletter and receive the latest updates from PYNEX.</div>
           <div className="footer-newsletter-form"><NewsletterForm /></div>
-        </div>
+        </Reveal>
 
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>

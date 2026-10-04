@@ -1,13 +1,26 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion, useReducedMotion } from 'framer-motion';
 import SafeImage from './SafeImage';
 import type { ProjectFrontmatter } from '@/lib/content';
 
-export default function ProjectCard({ project }: { project: ProjectFrontmatter }) {
+const MotionLink = motion(Link);
+
+export default function ProjectCard({ project, index = 0 }: { project: ProjectFrontmatter; index?: number }) {
   const representativeImage = '/images/projects/project.jpg';
+  const prefersReducedMotion = useReducedMotion();
 
   return (
-      <Link href={`/projects/${project.slug}`} className="pynex-card project-flip-card block overflow-hidden">
+      <MotionLink
+        href={`/projects/${project.slug}`}
+        className="pynex-card project-flip-card block overflow-hidden"
+        initial={prefersReducedMotion ? false : { opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+        whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.7, delay: prefersReducedMotion ? 0 : (index % 3) * 0.12, ease: 'easeOut' }}
+      >
         <div className="project-flip-inner">
           <div className="project-card-face project-card-front">
             <div className="project-card-image project-card-image-full">
@@ -32,6 +45,6 @@ export default function ProjectCard({ project }: { project: ProjectFrontmatter }
             </div>
           </div>
       </div>
-    </Link>
+      </MotionLink>
   );
 }

@@ -28,7 +28,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="bg-black text-white py-20">
+      <Reveal className="bg-black text-white py-20">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <SectionLabel>about pynex</SectionLabel>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 max-w-2xl">
@@ -39,7 +39,7 @@ export default function AboutPage() {
             software, and intelligent digital products.
           </p>
         </div>
-      </section>
+      </Reveal>
 
       <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
         <div className="max-w-content mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-12">
@@ -89,13 +89,15 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-10 text-main-text">Meet the people behind PYNEX</h2>
             <div className="team-grid">
               {team.map((member: any, index: number) => (
-                <article key={member.name} className="team-profile-card">
+                <Reveal key={member.name} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 0.12}>
+                <article className="team-profile-card">
                   <div className={`team-profile-image team-profile-image-${index + 1}`}>
                     <SafeImage src={member.photo || `/images/team/leader-${index + 1}.svg`} alt={`${member.name}, PYNEX team member`} width={480} height={520} className="h-full w-full object-cover" fallback={<span>{member.name.split(' ').map((part: string) => part[0]).join('')}</span>} />
                   </div>
                   <p className="team-profile-name">{member.name}</p>
                   <p className="team-profile-role">{member.role}</p>
                 </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -103,25 +105,27 @@ export default function AboutPage() {
       )}
 
       {insidePhotos.length > 0 && (
-        <Reveal className="py-section-phone md:py-section-desktop">
+        <Reveal className="theme-dark-section py-section-phone md:py-section-desktop">
           <div className="max-w-content mx-auto px-6 md:px-12">
             <SectionLabel>inside pynex</SectionLabel>
             <h2 className="section-title mb-10 text-main-text">The people and place behind the work.</h2>
             <div className="inside-gallery">
-              {insidePhotos.map((photo) => (
-                <SafeImage key={photo} src={photo} alt="PYNEX team and workspace" width={500} height={320} className="h-56 w-full object-cover" fallback={null} />
+              {insidePhotos.map((photo, index) => (
+                <Reveal key={photo} direction={index % 2 === 0 ? 'left' : 'right'} delay={index * 0.12}>
+                  <SafeImage src={photo} alt="PYNEX team and workspace" width={500} height={320} className="h-56 w-full object-cover" fallback={null} />
+                </Reveal>
               ))}
             </div>
           </div>
         </Reveal>
       )}
 
-      <section className="theme-dark-section py-section-phone md:py-section-desktop text-center">
+      <Reveal className="theme-dark-section py-section-phone md:py-section-desktop text-center">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Want to work with us?</h2>
           <Button href="/contact">Book a Call</Button>
         </div>
-      </section>
+      </Reveal>
     </>
   );
 }

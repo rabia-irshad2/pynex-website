@@ -19,7 +19,7 @@ export default function ProjectFilters({ projects }: { projects: Project[] }) {
     <>
       <FilterBar options={options} onChange={setFilter} />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visibleProjects.map((project) => <ProjectCard key={project.slug} project={project.frontmatter} />)}
+        {visibleProjects.map((project, index) => <ProjectCard key={project.slug} project={project.frontmatter} index={index} />)}
       </div>
       {visibleProjects.length === 0 && <p className="text-secondary-text py-10">No projects are available in this category yet.</p>}
     </>
