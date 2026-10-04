@@ -8,7 +8,8 @@ import SloganBand from '@/components/SloganBand';
 import Reveal from '@/components/Reveal';
 import QualityGrid from '@/components/QualityGrid';
 import ScrollRevealText from '@/components/ScrollRevealText';
-import ServicesArrows from '@/components/ServicesArrows';
+import ServicesArrows from '@/components/ServicesArrows';      
+import HeroIcons from '@/components/HeroIcons';
 import {
   getAllServices,
   getAllProjects,
@@ -34,103 +35,128 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ═══════════════ 1. HERO ═══════════════ */}
+      {/* ═══════════ 1. HERO ═══════════ */}
       <section className="hero-shell">
-        <HeroVisuals />
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-layout container-pynex">
-          <div className="hero-copy">
-            <p className="section-label">Technology. Automation. Software.</p>
-            <h1 className="hero-title">
-              <span>Built for</span>
-              <span className="hero-title-accent">smarter business.</span>
-            </h1>
-            <p className="hero-subtitle">
-              We design AI, automation, and software systems that turn repetitive work into measurable business results.
-            </p>
-          </div>
-        </div>
-      </section>
+  <HeroVisuals />
+  <div className="hero-grid" aria-hidden="true" />
+  <HeroIcons />
+  <div className="hero-layout container-pynex">
+          <div className="hero-copy-center">
+            <Reveal direction="up" distance={12}>
+              <p className="section-label hero-eyebrow">
+                Technology. Automation. Software.
+              </p>
+            </Reveal>
 
-      {/* ═══════════════ 2. OVERVIEW ═══════════════ */}
-      <section className="overview-section theme-dark-section">
-        <div className="container-pynex">
-          <div className="overview-grid">
-            {/* TEXT SIDE */}
-            <div className="overview-text">
-              <Reveal>
-                <p className="section-label">Built around your business</p>
-              </Reveal>
+            <Reveal direction="up" distance={20} delay={0.1}>
+              <h1 className="hero-title-center">
+                <span>Built for</span>
+                <span className="hero-title-accent">smarter business.</span>
+              </h1>
+            </Reveal>
 
-              <ScrollRevealText
-                as="h2"
-                text="Make more room for what's next."
-                className="overview-title-wrap"
-              />
+            <Reveal direction="up" distance={14} delay={0.25}>
+              <p className="hero-subtitle-center">
+                We design AI, automation, and software systems that turn
+                repetitive work into measurable business results.
+              </p>
+            </Reveal>
 
-              <Reveal delay={0.2}>
-                <p className="overview-subtitle">
-                  We bring AI, automation, and software together to help solve
-                  practical business challenges.
-                </p>
-              </Reveal>
-
-              <Reveal delay={0.3}>
-                <div className="overview-stats">
-                  <div className="overview-stat">
-                    <strong>150+</strong>
-                    <span>Successful implementations</span>
-                  </div>
-                  <div className="overview-stat">
-                    <strong>12</strong>
-                    <span>Industries served</span>
-                  </div>
-                </div>
-              </Reveal>
-
-              <Reveal delay={0.4}>
-                <div className="overview-actions">
-                  <Button href="/contact">Book a Call</Button>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* IMAGE SIDE */}
-            <Reveal delay={0.15}>
-              <div className="overview-visual-wrap">
-                <div className="overview-visual">
-                  <Image
-                    src="/images/overview/overview.jpg"
-                    alt="Team collaborating around a table"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 560px"
-                    className="object-cover"
-                  />
-                  <div className="overview-visual-badge">
-                    <span className="overview-visual-badge-dot" />
-                    <span>Live workspace</span>
-                  </div>
-                </div>
+            <Reveal direction="up" distance={14} delay={0.4}>
+              <div className="hero-actions-center">
+                <Button href="/contact">Book a Call</Button>
+                <Button href="/services" variant="secondary">
+                  Explore services
+                </Button>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════ 3. PROOF BAND ═══════════════ */}
-      <section className="proof-band theme-dark-section">
+      {/* ═══════════ 2. OVERVIEW ═══════════ */}
+      <section className="section-centered theme-dark-section">
         <div className="container-pynex">
-          <div className="proof-band-header">
+          <div className="centered-header">
             <Reveal>
-              <p className="section-label proof-band-eyebrow">
-                Technology that moves work forward
+              <p className="section-label">Built around your business</p>
+            </Reveal>
+
+            <ScrollRevealText
+              as="h2"
+              text="Make more room for what's next."
+              className="centered-title-wrap"
+              variant="focus"
+            />
+
+            <Reveal delay={0.2}>
+              <p className="centered-subtitle">
+                We bring AI, automation, and software together to help solve
+                practical business challenges.
               </p>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.15}>
+            <div className="overview-stats-centered">
+              <div className="overview-stat">
+                <strong>150+</strong>
+                <span>Implementations</span>
+              </div>
+              <div className="overview-stat-divider" />
+              <div className="overview-stat">
+                <strong>12</strong>
+                <span>Industries served</span>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Side-by-side: text left, image right */}
+          <Reveal delay={0.3}>
+            <div className="overview-split">
+              <div className="overview-description">
+                <p>
+                  We&apos;ve spent years helping businesses replace manual
+                  processes with intelligent systems. Every engagement starts
+                  with the problem — not the technology.
+                </p>
+                <p>
+                  From small automation projects to full AI platforms, we build
+                  software that fits how your team actually works.
+                </p>
+              </div>
+
+              <div className="overview-visual-aside">
+                <Image
+                  src="/images/overview/overview.jpg"
+                  alt="Team collaborating around a table"
+                  fill
+                  sizes="(max-width: 900px) 100vw, 550px"
+                  className="object-cover"
+                />
+                <div className="overview-visual-badge">
+                  <span className="overview-visual-badge-dot" />
+                  <span>Live workspace</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════ 3. PROOF BAND ═══════════ */}
+      <section className="section-centered theme-dark-section">
+        <div className="container-pynex">
+          <div className="centered-header">
+            <Reveal>
+              <p className="section-label">Technology that moves work forward</p>
             </Reveal>
 
             <ScrollRevealText
               as="h2"
               text="One partner. Every stage."
-              className="proof-band-title-wrap"
+              className="centered-title-wrap"
+              variant="expand"
             />
           </div>
 
@@ -149,77 +175,79 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════ 4. SERVICES ═══════════════ */}
-      <section className="services-section theme-dark-section">
+      {/* ═══════════ 4. SERVICES ═══════════ */}
+      <section className="section-centered theme-dark-section">
         <div className="container-pynex">
-          <Reveal>
-            <div className="services-section-header">
-              <div className="services-section-header-left">
-                <p className="section-label">What we do</p>
+          <div className="centered-header">
+            <Reveal>
+              <p className="section-label">What we do</p>
+            </Reveal>
+
+            <ScrollRevealText
+              as="h2"
+              text="Technology built around real work."
+              className="centered-title-wrap"
+              variant="focus"
+            />
+
+            <Reveal delay={0.2}>
+              <p className="centered-subtitle">
+                Four core service areas. One integrated approach.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+
+        <div className="services-scroll-wrap">
+          <div className="services-scroll" id="services-scroll">
+            {services.map((s) => (
+              <div className="services-scroll-item" key={s.slug}>
+                <ServiceCard
+                  service={s.frontmatter}
+                  introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()}
+                />
               </div>
-              <div className="services-section-header-right">
-                <ServicesArrows targetId="services-scroll" step={360} />
-              </div>
-            </div>
-          </Reveal>
-
-          <ScrollRevealText
-            as="h2"
-            text="Technology built around real work."
-            className="services-section-title-wrap"
-          />
-
-          <Reveal delay={0.15}>
-            <p className="services-section-description">
-              Four core service areas. One integrated approach to solving
-              business problems with technology.
-            </p>
-          </Reveal>
-
-          <div className="services-scroll-wrap">
-            <div className="services-scroll" id="services-scroll">
-              {services.map((s) => (
-                <div className="services-scroll-item" key={s.slug}>
-                  <ServiceCard
-                    service={s.frontmatter}
-                    introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()}
-                  />
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
 
-          <Reveal delay={0.2}>
-            <div className="services-section-footer">
-              <Button href="/services" variant="secondary">
-                View all services
-              </Button>
-            </div>
-          </Reveal>
+          <div className="services-arrows-center">
+            <ServicesArrows targetId="services-scroll" step={400} />
+          </div>
+        </div>
+
+        <div className="container-pynex">
+          <div className="centered-actions">
+            <Button href="/services" variant="secondary">
+              View all services
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* ═══════════════ 5. SLOGAN ═══════════════ */}
+      {/* ═══════════ 5. SLOGAN ═══════════ */}
       <SloganBand />
 
-      {/* ═══════════════ 6. PROJECTS ═══════════════ */}
-      <section className="projects-home-section theme-dark-section">
+      {/* ═══════════ 6. PROJECTS ═══════════ */}
+      <section className="section-centered theme-dark-section">
         <div className="container-pynex">
-          <Reveal>
-            <p className="section-label">Our work</p>
-          </Reveal>
+          <div className="centered-header">
+            <Reveal>
+              <p className="section-label">Our work</p>
+            </Reveal>
 
-          <ScrollRevealText
-            as="h2"
-            text="Define. Automate. Grow."
-            className="projects-home-title-wrap"
-          />
+            <ScrollRevealText
+              as="h2"
+              text="Define. Automate. Grow."
+              className="centered-title-wrap"
+              variant="expand"
+            />
 
-          <Reveal delay={0.15}>
-            <p className="projects-home-description">
-              Real systems built for real business problems.
-            </p>
-          </Reveal>
+            <Reveal delay={0.2}>
+              <p className="centered-subtitle">
+                Real systems built for real business problems.
+              </p>
+            </Reveal>
+          </div>
         </div>
 
         <div className="projects-scroll-wrap">
@@ -233,56 +261,56 @@ export default function HomePage() {
         </div>
 
         <div className="container-pynex">
-          <Reveal delay={0.2}>
-            <div className="projects-home-footer">
-              <Button href="/projects" variant="secondary">
-                View all projects
-              </Button>
-            </div>
-          </Reveal>
+          <div className="centered-actions">
+            <Button href="/projects" variant="secondary">
+              View all projects
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* ═══════════════ 7. QUALITIES ═══════════════ */}
-      <section className="qualities-section theme-dark-section alt-bg">
+      {/* ═══════════ 7. QUALITIES ═══════════ */}
+      <section className="section-centered theme-dark-section alt-bg">
         <div className="container-pynex">
-          <div className="qualities-header">
+          <div className="centered-header">
             <Reveal>
-              <p className="section-label qualities-eyebrow">Qualities</p>
+              <p className="section-label">Qualities</p>
             </Reveal>
 
             <ScrollRevealText
               as="h2"
               text="Why work with PYNEX."
-              className="qualities-title-wrap"
+              className="centered-title-wrap"
+              variant="focus"
             />
 
             <Reveal delay={0.2}>
-              <p className="qualities-subtitle">
+              <p className="centered-subtitle">
                 What separates us from a typical software vendor.
               </p>
             </Reveal>
           </div>
 
-          <QualityGrid qualities={qualities} />
+          <div className="qualities-content">
+            <QualityGrid qualities={qualities} />
+          </div>
         </div>
       </section>
 
-      {/* ═══════════════ 8. TESTIMONIALS ═══════════════ */}
+      {/* ═══════════ 8. TESTIMONIALS ═══════════ */}
       {showTestimonials && (
-        <section className="testimonials-section theme-dark-section">
+        <section className="section-centered theme-dark-section">
           <div className="container-pynex">
-            <div className="testimonials-header">
+            <div className="centered-header">
               <Reveal>
-                <p className="section-label testimonials-eyebrow">
-                  What clients say
-                </p>
+                <p className="section-label">What clients say</p>
               </Reveal>
 
               <ScrollRevealText
                 as="h2"
                 text="Trusted by teams who need results."
-                className="testimonials-title-wrap"
+                className="centered-title-wrap"
+                variant="focus"
               />
             </div>
 
@@ -302,19 +330,20 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ═══════════════ 9. TEAM ═══════════════ */}
+      {/* ═══════════ 9. TEAM ═══════════ */}
       {team.length > 0 && (
-        <section className="team-section theme-dark-section alt-bg">
+        <section className="section-centered theme-dark-section alt-bg">
           <div className="container-pynex">
-            <div className="team-header">
+            <div className="centered-header">
               <Reveal>
-                <p className="section-label team-eyebrow">Team</p>
+                <p className="section-label">Team</p>
               </Reveal>
 
               <ScrollRevealText
                 as="h2"
                 text="The people behind the intelligence."
-                className="team-title-wrap"
+                className="centered-title-wrap"
+                variant="focus"
               />
             </div>
 
@@ -343,29 +372,30 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ═══════════════ 10. CLOSING CTA ═══════════════ */}
-      <section className="closing-cta theme-dark-section">
+      {/* ═══════════ 10. CLOSING CTA ═══════════ */}
+      <section className="section-centered theme-dark-section">
         <div className="container-pynex">
           <div className="closing-cta-inner">
             <Reveal>
-              <p className="section-label closing-cta-eyebrow">Let&apos;s talk</p>
+              <p className="section-label">Let&apos;s talk</p>
             </Reveal>
 
             <ScrollRevealText
               as="h2"
               text="Let's build something smarter."
               className="closing-cta-title-wrap"
+              variant="expand"
             />
 
             <Reveal delay={0.2}>
-              <p className="closing-cta-subtitle">
+              <p className="centered-subtitle">
                 Tell us about the problem you&apos;re trying to solve.
                 We&apos;ll reply within one business day.
               </p>
             </Reveal>
 
             <Reveal delay={0.3}>
-              <div className="closing-cta-actions">
+              <div className="centered-actions">
                 <Button href="/contact">Book a Call</Button>
                 <Button href="/services" variant="secondary">
                   Explore services
