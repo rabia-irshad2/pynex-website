@@ -356,3 +356,25 @@ section:hover .contact-page-title::after {
     animation: none !important;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL TEXT — word-by-word
+   ═══════════════════════════════════════════════ */
+.sr-text {
+  display: block;
+}
+
+.sr-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.sr-word-inner {
+  display: inline-block;
+  will-change: opacity, filter;
+}
+
+.sr-word-space {
+  display: inline-block;
+  width: 0.25em;
+}
