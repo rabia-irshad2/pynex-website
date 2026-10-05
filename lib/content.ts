@@ -40,6 +40,25 @@ export type BlogFrontmatter = {
   readingTime?: string;
 };
 
+export type Testimonial = {
+  name: string;
+  role?: string;
+  company?: string;
+  quote: string;
+  image?: string;
+  rating?: number;
+  // allows any extra fields your testimonials.json may have
+  [key: string]: any;
+};
+
+export type TeamMember = {
+  name: string;
+  role?: string;
+  image?: string;
+  bio?: string;
+  [key: string]: any;
+};
+
 function readAll<T>(subfolder: string): { frontmatter: T; content: string; slug: string }[] {
   const dir = path.join(CONTENT_DIR, subfolder);
   if (!fs.existsSync(dir)) return [];
@@ -98,13 +117,13 @@ export function getBlogPostBySlug(slug: string) {
   return getAllBlogPosts().find((p) => p.slug === slug) || null;
 }
 
-export function getTeam() {
+export function getTeam(): TeamMember[] {
   const file = path.join(CONTENT_DIR, 'team.json');
   if (!fs.existsSync(file)) return [];
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
-export function getTestimonials() {
+export function getTestimonials(): Testimonial[] {
   const file = path.join(CONTENT_DIR, 'testimonials.json');
   if (!fs.existsSync(file)) return [];
   return JSON.parse(fs.readFileSync(file, 'utf8'));

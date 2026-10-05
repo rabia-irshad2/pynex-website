@@ -4,16 +4,18 @@
 import { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 
+type Variant = 'rise' | 'focus' | 'expand' | 'slideUp' | 'slideDown';
+
 export default function ScrollRevealText({
   text,
   className = '',
   as: Tag = 'h2',
-  stagger = 0.04,
+  variant = 'focus',
 }: {
   text: string;
   className?: string;
   as?: 'h1' | 'h2' | 'h3' | 'p';
-  stagger?: number;
+  variant?: Variant;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
@@ -22,15 +24,16 @@ export default function ScrollRevealText({
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start 0.9', 'start 0.4'],
+    offset: ['start 0.95', 'start 0.35'],
   });
 
   return (
     <div ref={ref} className={className}>
-      <Tag className="sr-text">
+      <Tag className={`sr-text sr-variant-${variant}`}>
         {words.map((word, i) => {
-          const start = (i / words.length) * 0.7;
-          const end = start + (1 / words.length) * 0.9;
+          const total = words.length;
+          const start = (i / total) * 0.65;
+          const end = start + (1 / total) * 0.9;
 
           return (
             <ScrollWord
@@ -39,6 +42,7 @@ export default function ScrollRevealText({
               start={start}
               end={end}
               reduced={!!reduce}
+              variant={variant}
             >
               {word}
             </ScrollWord>
@@ -55,20 +59,67 @@ function ScrollWord({
   start,
   end,
   reduced,
+  variant,
 }: {
   children: React.ReactNode;
   progress: any;
   start: number;
   end: number;
   reduced: boolean;
+  variant: Variant;
 }) {
-  const opacity = useTransform(progress, [start, end], reduced ? [1, 1] : [0.15, 1]);
-  const blur = useTransform(progress, [start, end], reduced ? [0, 0] : [4, 0]);
-  const filter = useTransform(blur, (b) => `blur(${b}px)`);
+  // Base transforms
+  const opacity = useTransform(progress, [start, end], reduced ? [1, 1] : [0, 1]);
+
+  // Variant-specific transforms
+  const y = useTransform(
+    progress,
+    [start, end],
+    reduced
+      ? [0, 0]
+      : variant === 'rise'
+      ? [24, 0]
+      : variant === 'slideUp'
+      ? [40, 0]
+      : variant === 'slideDown'
+      ? [-40, 0]
+      : [0, 0]
+  );
+
+  const blurPx = useTransform(
+    progress,
+    [start, end],
+    reduced ? [0, 0] : variant === 'focus' ? [6, 0] : [0, 0]
+  );
+  const filter = useTransform(blurPx, (b) => `blur(${b}px)`);
+
+  const scale = useTransform(
+    progress,
+    [start, end],
+    reduced ? [1, 1] : variant === 'expand' ? [0.94, 1] : [1, 1]
+  );
+
+  const rotateX = useTransform(
+    progress,
+    [start, end],
+    reduced ? [0, 0] : variant === 'expand' ? [18, 0] : [0, 0]
+  );
 
   return (
     <span className="sr-word">
-      <motion.span className="sr-word-inner" style={{ opacity, filter }}>
+      <motion.span
+        className="sr-word-inner"
+        style={{
+          opacity,
+          y,
+          filter,
+          scale,
+          rotateX,
+          transformOrigin: 'center bottom',
+          display: 'inline-block',
+          willChange: 'opacity, transform, filter',
+        }}
+      >
         {children}
       </motion.span>
       <span className="sr-word-space"> </span>

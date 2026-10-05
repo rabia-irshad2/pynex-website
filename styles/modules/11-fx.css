@@ -378,3 +378,95 @@ section:hover .contact-page-title::after {
   display: inline-block;
   width: 0.25em;
 }
+
+
+/* ═══════════════════════════════════════════════
+   FOOTER LEGAL LINKS — highlighted on hover
+   ═══════════════════════════════════════════════ */
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.footer-legal-links a {
+  position: relative;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 0;
+  transition: color 0.25s var(--ease-out);
+}
+
+.footer-legal-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background: #4fa9ff;
+  transition: width 0.3s var(--ease-out);
+  box-shadow: 0 0 8px rgba(79, 169, 255, 0.8);
+}
+
+.footer-legal-links a:hover {
+  color: #4fa9ff;
+}
+
+.footer-legal-links a:hover::after {
+  width: 100%;
+}
+
+/* Cookie banner — more prominent */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  max-width: 560px;
+  width: calc(100% - 48px);
+  padding: 20px 24px 20px 76px;
+  border-radius: 20px;
+  background: rgba(5, 12, 24, 0.96);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid rgba(79, 169, 255, 0.35);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(79, 169, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  animation: cookie-slide-up 0.6s var(--ease-spring);
+}
+
+.cookie-banner::before {
+  content: '🍪';
+  position: absolute;
+  left: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(79, 169, 255, 0.4));
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    transform: none;
+    width: auto;
+    padding: 16px 16px 16px 60px;
+  }
+  .cookie-banner::before {
+    left: 16px;
+    font-size: 24px;
+  }
+}
