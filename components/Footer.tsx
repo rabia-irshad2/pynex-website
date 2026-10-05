@@ -41,6 +41,7 @@ export default function Footer({
     AI.<br />AUTOMATION.<br />SOFTWARE.
   </h2>
 
+  {/* Animated visual below the heading */}
   <div className="footer-visual" aria-hidden="true">
     <div className="footer-visual-grid" />
     <div className="footer-visual-node footer-visual-node-1" />
@@ -89,88 +90,90 @@ export default function Footer({
 
   <div className="footer-locations-body">
     <div className="footer-map-visual">
-      <svg viewBox="0 0 900 500" role="img" aria-label="PYNEX office locations">
+      <svg viewBox="0 0 800 400" role="img" aria-label="PYNEX office locations">
         <defs>
-          <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.4" fill="#1e3a5f" />
+          <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.3" fill="#1e3a5f" />
           </pattern>
           <radialGradient id="marker-glow" cx="50%" cy="50%">
-            <stop offset="0%" stopColor="#4fa9ff" stopOpacity="0.65" />
+            <stop offset="0%" stopColor="#4fa9ff" stopOpacity="0.6" />
             <stop offset="100%" stopColor="#4fa9ff" stopOpacity="0" />
           </radialGradient>
+          <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#4fa9ff" stopOpacity="0" />
+            <stop offset="50%" stopColor="#7de5ff" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#4fa9ff" stopOpacity="0" />
+          </linearGradient>
         </defs>
 
-        <rect width="900" height="500" fill="url(#dots)" opacity="0.4" />
+        <rect width="800" height="400" fill="url(#dots)" opacity="0.35" />
 
-        {/* Continents */}
+        {/* Simplified continent shapes */}
         <path
-          d="M100 200 Q200 140 320 160 L420 190 L440 260 L350 340 L220 350 L130 300 Z"
+          d="M80 160 Q160 120 260 130 L360 150 L380 200 L300 260 L200 270 L120 240 Z"
           fill="#0a1830"
-          opacity="0.85"
-          stroke="#1e3a5f"
-          strokeWidth="1"
-        />
-        <path
-          d="M480 240 Q580 220 700 250 L800 300 L780 380 L640 400 L500 380 Z"
-          fill="#0a1830"
-          opacity="0.85"
-          stroke="#1e3a5f"
-          strokeWidth="1"
-        />
-
-        {/* Connection line */}
-        <line
-          x1="510"
-          y1="290"
-          x2="570"
-          y2="340"
-          stroke="#7de5ff"
-          strokeWidth="2"
-          strokeDasharray="8 8"
           opacity="0.7"
-        >
-          <animate attributeName="stroke-dashoffset" values="0;-32" dur="2s" repeatCount="indefinite" />
-        </line>
+          stroke="#1e3a5f"
+          strokeWidth="1"
+        />
+        <path
+          d="M400 200 Q500 180 600 200 L700 240 L680 300 L560 320 L440 300 Z"
+          fill="#0a1830"
+          opacity="0.7"
+          stroke="#1e3a5f"
+          strokeWidth="1"
+        />
 
-        {/* Pakistan marker — BIGGER */}
+        {/* Connection arc */}
+        <path
+          d="M430 225 Q455 195 480 265"
+          fill="none"
+          stroke="url(#arc-gradient)"
+          strokeWidth="2"
+          strokeDasharray="6 6"
+        >
+          <animate attributeName="stroke-dashoffset" values="0;-24" dur="2s" repeatCount="indefinite" />
+        </path>
+
+        {/* Pakistan marker */}
         <g>
-          <circle cx="510" cy="290" r="55" fill="url(#marker-glow)">
-            <animate attributeName="r" values="35;70;35" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.95;0.2;0.95" dur="3s" repeatCount="indefinite" />
+          <circle cx="430" cy="225" r="40" fill="url(#marker-glow)">
+            <animate attributeName="r" values="25;50;25" dur="3s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.9;0.2;0.9" dur="3s" repeatCount="indefinite" />
           </circle>
-          <circle cx="510" cy="290" r="16" fill="#4fa9ff" />
-          <circle cx="510" cy="290" r="6.5" fill="#fff" />
+          <circle cx="430" cy="225" r="11" fill="#4fa9ff" />
+          <circle cx="430" cy="225" r="4.5" fill="#fff" />
           <text
-            x="510"
-            y="248"
+            x="430"
+            y="192"
             textAnchor="middle"
             fill="#7de5ff"
-            fontSize="16"
+            fontSize="12"
             fontFamily="var(--font-mono)"
-            letterSpacing="4"
-            fontWeight="700"
+            letterSpacing="3"
+            fontWeight="600"
           >
             PAKISTAN
           </text>
         </g>
 
-        {/* UAE marker — BIGGER */}
+        {/* UAE marker */}
         <g>
-          <circle cx="570" cy="340" r="45" fill="url(#marker-glow)">
-            <animate attributeName="r" values="28;56;28" dur="3s" begin="0.5s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.95;0.2;0.95" dur="3s" begin="0.5s" repeatCount="indefinite" />
+          <circle cx="480" cy="265" r="32" fill="url(#marker-glow)">
+            <animate attributeName="r" values="20;40;20" dur="3s" begin="0.5s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.9;0.2;0.9" dur="3s" begin="0.5s" repeatCount="indefinite" />
           </circle>
-          <circle cx="570" cy="340" r="13" fill="#0057ff" />
-          <circle cx="570" cy="340" r="5" fill="#fff" />
+          <circle cx="480" cy="265" r="9" fill="#0057ff" />
+          <circle cx="480" cy="265" r="3.5" fill="#fff" />
           <text
-            x="570"
-            y="395"
+            x="480"
+            y="300"
             textAnchor="middle"
             fill="#7de5ff"
-            fontSize="16"
+            fontSize="12"
             fontFamily="var(--font-mono)"
-            letterSpacing="4"
-            fontWeight="700"
+            letterSpacing="3"
+            fontWeight="600"
           >
             UAE
           </text>
@@ -190,7 +193,7 @@ export default function Footer({
           <strong>Pakistan Office</strong>
           <small>Islamabad, Pakistan</small>
         </span>
-        <ArrowUpRight size={16} aria-hidden="true" />
+        <ArrowUpRight size={15} aria-hidden="true" />
       </a>
 
       <a
@@ -205,59 +208,24 @@ export default function Footer({
           <small>United Arab Emirates</small>
           <small className="footer-office-phone">+971 50 812 4362</small>
         </span>
-        <ArrowUpRight size={16} aria-hidden="true" />
+        <ArrowUpRight size={15} aria-hidden="true" />
       </a>
     </div>
   </div>
 </section>
-
         </div>
 
         <section className="footer-reviews-panel" aria-label="Google Reviews">
-  <div className="footer-reviews-left">
-    <div className="footer-reviews-icon-wrap">
-      <Star size={24} aria-hidden="true" />
-      <div className="footer-reviews-icon-glow" />
-    </div>
-    <div>
-      <p className="footer-eyebrow">Google reviews</p>
-      <strong>See what clients are saying.</strong>
-      <p>Open Google to view the latest reviews and ratings.</p>
-    </div>
-  </div>
-
-  <a
-    href="https://www.google.com/search?q=PYNEX+company+reviews"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    View Google reviews <ArrowUpRight size={16} aria-hidden="true" />
-  </a>
-</section>
+          <div className="footer-reviews-icon"><Star size={20} aria-hidden="true" /></div>
+          <div><p className="footer-eyebrow">GOOGLE REVIEWS</p><strong>See what clients are saying.</strong><p>Open Google to view the latest reviews and ratings.</p></div>
+          <a href="https://www.google.com/search?q=PYNEX+company+reviews" target="_blank" rel="noopener noreferrer">View Google reviews <ArrowUpRight size={16} aria-hidden="true" /></a>
+        </section>
 
         <div className="footer-newsletter-panel">
-  <div className="footer-newsletter-visual" aria-hidden="true">
-    <div className="footer-newsletter-visual-glow" />
-    <svg viewBox="0 0 100 100" className="footer-newsletter-visual-svg">
-      <circle cx="50" cy="50" r="30" fill="none" stroke="#4fa9ff" strokeOpacity="0.3" strokeWidth="1" />
-      <circle cx="50" cy="50" r="20" fill="none" stroke="#4fa9ff" strokeOpacity="0.5" strokeWidth="1" />
-      <circle cx="50" cy="50" r="10" fill="#4fa9ff" opacity="0.8" />
-      <circle cx="50" cy="50" r="4" fill="#fff" />
-    </svg>
-  </div>
-
-  <div className="footer-newsletter-copy">
-    <p className="footer-eyebrow">Stay in the loop</p>
-    <h4 className="footer-newsletter-title">Subscribe to our newsletter.</h4>
-    <p className="footer-newsletter-text">
-      Latest updates from PYNEX — projects, insights, and product news.
-    </p>
-  </div>
-
-  <div className="footer-newsletter-form">
-    <NewsletterForm />
-  </div>
-</div>
+          {showGoogleRating && <div className="footer-rating-summary"><span className="footer-eyebrow">Google average rating</span><strong>{googleRating.toFixed(1)} <span>/ 5</span></strong></div>}
+          <div className="footer-newsletter-copy">Subscribe to our newsletter and receive the latest updates from PYNEX.</div>
+          <div className="footer-newsletter-form"><NewsletterForm /></div>
+        </div>
 
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>

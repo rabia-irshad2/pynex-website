@@ -3,20 +3,20 @@ import Link from 'next/link';
 import SafeImage from './SafeImage';
 import type { ProjectFrontmatter } from '@/lib/content';
 
-// Map slug → specific project image
+// Map each project slug → its specific image
 const PROJECT_IMAGES: Record<string, string> = {
   'ai-support-assistant': '/images/projects/ai-support-assistant.jpg',
-  'client-portal-platform': '/images/projects/ai-solutions.jpg',
-  'smart-inventory-system': '/images/projects/custom-software.jpg',
+  'client-portal-platform': '/images/projects/client-portal-platform.jpg',
+  'smart-inventory-system': '/images/projects/smart-inventory-system.jpg',
 };
 
-// Category fallback if specific image missing
+// Fallback per category if the slug image doesn't exist
 const CATEGORY_FALLBACKS: Record<string, string> = {
-  'AI Solutions': '/images/projects/ai-solutions.jpg',
-  'Automation': '/images/projects/business-automation.jpg',
-  'Business Automation': '/images/projects/business-automation.jpg',
-  'Custom Software': '/images/projects/custom-software.jpg',
-  'Digital Products': '/images/projects/ai-solutions.jpg',
+  'AI Solutions': '/images/services/ai-solutions.jpg',
+  'Automation': '/images/services/business-automation.jpg',
+  'Business Automation': '/images/services/business-automation.jpg',
+  'Custom Software': '/images/services/custom-software.jpg',
+  'Digital Products': '/images/services/digital-products.jpg',
 };
 
 export default function ProjectCard({ project }: { project: ProjectFrontmatter }) {
@@ -24,7 +24,7 @@ export default function ProjectCard({ project }: { project: ProjectFrontmatter }
     project.image ||
     PROJECT_IMAGES[project.slug] ||
     CATEGORY_FALLBACKS[project.category] ||
-    '/images/projects/ai-solutions.jpg';
+    '/images/services/custom-software.jpg';
 
   return (
     <Link href={`/projects/${project.slug}`} className="project-flip-card">
