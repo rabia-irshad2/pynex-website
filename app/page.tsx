@@ -2,17 +2,17 @@
 import Image from 'next/image';
 import Button from '@/components/Button';
 import HeroVisuals from '@/components/HeroVisuals';
-import ServiceCard from '@/components/ServiceCard';
+import ServiceFlipCard from '@/components/ServiceFlipCard';
 import ProjectCard from '@/components/ProjectCard';
 import SloganBand from '@/components/SloganBand';
 import Reveal from '@/components/Reveal';
 import QualityGrid from '@/components/QualityGrid';
 import ScrollRevealText from '@/components/ScrollRevealText';
-import ServicesArrows from '@/components/ServicesArrows';      
 import HeroIcons from '@/components/HeroIcons';
 import {
   getAllServices,
   getAllProjects,
+  getMarkdownBullets,
   getTeam,
   getTestimonials,
 } from '@/lib/content';
@@ -176,11 +176,11 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ 4. SERVICES ═══════════ */}
-      <section className="section-centered theme-dark-section">
+      <section className="section-centered theme-dark-section home-services-section">
         <div className="container-pynex">
           <div className="centered-header">
             <Reveal>
-              <p className="section-label">What we do</p>
+              <p className="section-label">Services</p>
             </Reveal>
 
             <ScrollRevealText
@@ -198,21 +198,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="services-scroll-wrap">
-          <div className="services-scroll" id="services-scroll">
-            {services.map((s) => (
-              <div className="services-scroll-item" key={s.slug}>
-                <ServiceCard
-                  service={s.frontmatter}
-                  introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="services-arrows-center">
-            <ServicesArrows targetId="services-scroll" step={400} />
-          </div>
+        <div className="home-services-grid container-pynex">
+          {services.slice(0, 3).map((s, index) => (
+            <Reveal key={s.slug} delay={index * 0.1}>
+              <ServiceFlipCard
+                service={s.frontmatter}
+                order={index + 1}
+                introduction={s.content.split(/\n\s*##\s+/)[0]?.trim() || s.frontmatter.shortDescription}
+                details={getMarkdownBullets(s.content, "What's included")}
+              />
+            </Reveal>
+          ))}
         </div>
 
         <div className="container-pynex">

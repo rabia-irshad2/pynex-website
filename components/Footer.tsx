@@ -37,6 +37,9 @@ export default function Footer({
       <div className="max-w-content mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-10">
         <div className="footer-main-grid">
           <div className="footer-brand-column">
+  <Link href="/" className="footer-brand-mark" aria-label="PYNEX home">
+    <Image src="/images/logo/logo.png" alt="PYNEX" width={76} height={76} />
+  </Link>
   <h2 className="footer-brand-heading">
     AI.<br />AUTOMATION.<br />SOFTWARE.
   </h2>
@@ -213,51 +216,26 @@ export default function Footer({
 
         </div>
 
-        <section className="footer-reviews-panel" aria-label="Google Reviews">
-  <div className="footer-reviews-left">
-    <div className="footer-reviews-icon-wrap">
-      <Star size={24} aria-hidden="true" />
-      <div className="footer-reviews-icon-glow" />
-    </div>
-    <div>
-      <p className="footer-eyebrow">Google reviews</p>
-      <strong>See what clients are saying.</strong>
-      <p>Open Google to view the latest reviews and ratings.</p>
-    </div>
-  </div>
-
-  <a
-    href="https://www.google.com/search?q=PYNEX+company+reviews"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    View Google reviews <ArrowUpRight size={16} aria-hidden="true" />
-  </a>
-</section>
-
-        <div className="footer-newsletter-panel">
-  <div className="footer-newsletter-visual" aria-hidden="true">
-    <div className="footer-newsletter-visual-glow" />
-    <svg viewBox="0 0 100 100" className="footer-newsletter-visual-svg">
-      <circle cx="50" cy="50" r="30" fill="none" stroke="#4fa9ff" strokeOpacity="0.3" strokeWidth="1" />
-      <circle cx="50" cy="50" r="20" fill="none" stroke="#4fa9ff" strokeOpacity="0.5" strokeWidth="1" />
-      <circle cx="50" cy="50" r="10" fill="#4fa9ff" opacity="0.8" />
-      <circle cx="50" cy="50" r="4" fill="#fff" />
-    </svg>
-  </div>
-
-  <div className="footer-newsletter-copy">
-    <p className="footer-eyebrow">Stay in the loop</p>
-    <h4 className="footer-newsletter-title">Subscribe to our newsletter.</h4>
-    <p className="footer-newsletter-text">
-      Latest updates from PYNEX — projects, insights, and product news.
-    </p>
-  </div>
-
-  <div className="footer-newsletter-form">
-    <NewsletterForm />
-  </div>
-</div>
+        <section className="footer-signup-strip" aria-label="Reviews and newsletter">
+          <a
+            href="https://www.google.com/search?q=PYNEX+company+reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-signup-rating"
+          >
+            <Star size={21} aria-hidden="true" />
+            <span>
+              <strong>{showGoogleRating ? `${googleRating.toFixed(1)} / 5` : 'Google reviews'}</strong>
+              <small>{showGoogleRating ? `${googleReviewCount} verified reviews` : 'Read client feedback'}</small>
+            </span>
+          </a>
+          <div className="footer-signup-copy">
+            <p className="footer-eyebrow">Stay in the loop</p>
+            <h4>Useful ideas, occasionally.</h4>
+            <p>Project notes and practical updates from PYNEX.</p>
+          </div>
+          <div className="footer-signup-form"><NewsletterForm /></div>
+        </section>
 
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>

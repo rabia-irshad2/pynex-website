@@ -1,10 +1,13 @@
 //app/services/page.tsx
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import SectionLabel from '@/components/SectionLabel';
-import ServiceCard from '@/components/ServiceCard';
-import ProjectCard from '@/components/ProjectCard';
+import ServicesFeatureCard from '@/components/ServicesFeatureCard';
+import CaseStudyRow from '@/components/CaseStudyRow';
+import Marquee from '@/components/Marquee';
 import Button from '@/components/Button';
+import { ArrowUpRight } from 'lucide-react';
 import { getAllServices, getAllProjects } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -15,94 +18,73 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   const services = getAllServices();
-  const projects = getAllProjects().slice(0, 2);
-
-  const stats = [
-    { value: '04', label: 'Core services' },
-    { value: '150+', label: 'Deliveries' },
-    { value: '12', label: 'Industries served' },
-  ];
+  const projects = getAllProjects();
+  const featuredSlugs = ['ai-solutions', 'business-automation', 'custom-software'];
+  const featuredServices = featuredSlugs
+    .map((slug) => services.find((service) => service.slug === slug))
+    .filter((service): service is (typeof services)[number] => Boolean(service));
+  const additionalService = services.find((service) => !featuredSlugs.includes(service.slug));
 
   return (
-    <>
-      {/* HERO */}
-      <section className="services-page-hero theme-dark-section">
-        <div className="max-w-content mx-auto px-6 md:px-12 relative z-10">
+    <div className="services-route">
+      <section className="services-route-hero theme-dark-section">
+        <div className="services-route-container">
           <Reveal>
             <SectionLabel>Services</SectionLabel>
-            <h1 className="services-page-title">
-              Services built around real business problems.
-            </h1>
-            <p className="services-page-intro">
-              From strategy and AI to automation and custom software, we build
-              digital products that solve real business problems and create
-              lasting advantages.
+            <h1 className="services-route-title"><span>Make work</span><span>work better.</span></h1>
+            <p className="services-route-intro">
+              AI, automation, and software shaped around the work your team needs to move forward.
             </p>
+          </Reveal>
+          <div className="services-feature-grid">
+            {featuredServices.map((service, index) => (
+              <Reveal key={service.slug} delay={index * 0.1}>
+                <ServicesFeatureCard
+                  service={service.frontmatter}
+                  order={index + 1}
+                  introduction={service.content.split(/\n\s*##\s+/)[0]?.trim() || service.frontmatter.shortDescription}
+                />
+              </Reveal>
+            ))}
+          </div>
+          {additionalService && (
+            <Reveal>
+              <Link href={`/services/${additionalService.slug}`} className="services-additional-link">
+                <span>ALSO IN OUR TOOLKIT</span>
+                <strong>{additionalService.frontmatter.title}</strong>
+                <span>{additionalService.frontmatter.shortDescription}</span>
+                <ArrowUpRight size={19} aria-hidden="true" />
+              </Link>
+            </Reveal>
+          )}
+        </div>
+      </section>
 
-            <div className="services-meta-row">
-              {stats.map((s) => (
-                <div key={s.label} className="services-meta-item">
-                  <span className="services-meta-value">{s.value}</span>
-                  <span className="services-meta-label">{s.label}</span>
-                </div>
-              ))}
+      <section className="services-work-section theme-dark-section">
+        <div className="services-route-container">
+          <Reveal>
+            <div className="services-work-heading">
+              <SectionLabel>Our work</SectionLabel>
+              <h2>Built to move business forward.</h2>
+              <p>Selected systems designed around real teams, processes, and customer needs.</p>
+            </div>
+          </Reveal>
+          <div className="case-study-list">
+            {projects.map((project, index) => (
+              <Reveal key={project.slug} delay={index * 0.08}>
+                <CaseStudyRow project={project.frontmatter} />
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <div className="services-work-action">
+              <Button href="/projects" variant="secondary">Explore all case studies</Button>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* SERVICE GRID */}
-      <section className="theme-dark-section pb-16 md:pb-24">
-        <div className="max-w-content mx-auto px-6 md:px-12">
-          <div className="service-directory-grid grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 0.08}>
-                <ServiceCard
-                  service={s.frontmatter}
-                  introduction={s.content.split(/\n\s*##\s+/)[0]?.trim()}
-                />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* RECENT WORK */}
-      <section className="theme-dark-section pt-16 md:pt-24 pb-16 md:pb-24 border-t border-white/5">
-        <div className="max-w-content mx-auto px-6 md:px-12">
-          <Reveal>
-            <SectionLabel>Our work</SectionLabel>
-            <h2 className="section-title mb-10">Recent work shaped around real workflows.</h2>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            {projects.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 0.1}>
-                <ProjectCard project={p.frontmatter} />
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <Button href="/projects" variant="secondary">
-              Explore all projects
-            </Button>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="theme-dark-section py-20 md:py-28 text-center border-t border-white/5">
-        <div className="max-w-content mx-auto px-6 md:px-12">
-          <Reveal>
-            <h2 className="section-title mb-6">Ready to build something?</h2>
-            <p className="text-secondary-text mb-8 max-w-xl mx-auto">
-              Tell us about the problem you&apos;re trying to solve. We&apos;ll reply within one business day.
-            </p>
-            <Button href="/contact">Book a Call</Button>
-          </Reveal>
-        </div>
-      </section>
-    </>
+      <Marquee />
+    </div>
   );
 }
