@@ -1,10 +1,11 @@
-//app/components/ServiceCard.tsx
+//components/ServiceCard.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { ServiceFrontmatter } from '@/lib/content';
 
-const serviceImages: Record<string, string> = {
+// ── Exported so other components (like ServiceFlipCard) can use the same map ──
+export const SERVICE_IMAGES: Record<string, string> = {
   'ai-solutions': '/images/services/ai-solutions.jpg',
   'business-automation': '/images/services/business-automation.jpg',
   'custom-software': '/images/services/custom-software.jpg',
@@ -18,25 +19,25 @@ export default function ServiceCard({
   service: ServiceFrontmatter;
   introduction?: string;
 }) {
-  const imageSrc = serviceImages[service.slug] || serviceImages['ai-solutions'];
+  const imageSrc =
+    SERVICE_IMAGES[service.slug] || SERVICE_IMAGES['ai-solutions'];
   const description = introduction || service.shortDescription;
 
   return (
     <Link
       href={`/services/${service.slug}`}
       aria-label={`Learn more about ${service.title}`}
-      className="service-flip-card"
+      className="premium-service-card service-flip-card"
     >
       <div className="service-flip-inner">
-        {/* FRONT FACE */}
-        <div className="service-flip-front">
+        {/* FRONT */}
+        <div className="service-flip-front premium-service-face">
           <Image
             src={imageSrc}
             alt=""
             fill
-            sizes="(max-width: 768px) 100vw, 25vw"
             className="service-face-image"
-            priority={false}
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           <div className="service-face-shade" aria-hidden="true" />
           <div className="premium-service-body">
@@ -46,16 +47,19 @@ export default function ServiceCard({
           </div>
         </div>
 
-        {/* BACK FACE — separate image element */}
-        <div className="service-flip-back">
+        {/* BACK */}
+        <div className="service-flip-back premium-service-face">
           <Image
             src={imageSrc}
             alt=""
             fill
-            sizes="(max-width: 768px) 100vw, 25vw"
-            className="service-back-image"
+            className="service-face-image"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
-          <div className="service-face-shade service-face-shade-back" aria-hidden="true" />
+          <div
+            className="service-face-shade service-face-shade-back"
+            aria-hidden="true"
+          />
           <div className="premium-service-body">
             <span className="service-chip">Overview</span>
             <h3>{service.title}</h3>
