@@ -141,3 +141,20 @@ export function getPublicImages(subfolder: string) {
     .filter((file) => /\.(avif|jpg|jpeg|png|webp)$/i.test(file))
     .map((file) => `/images/${subfolder}/${file}`);
 }
+// ── Product data (for the Home page AI Products section) ──
+export type Product = {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  image: string;
+  link: string;
+  linkLabel: string;
+  stats: { value: string; label: string }[];
+};
+
+export function getProducts(): Product[] {
+  const file = path.join(CONTENT_DIR, 'products.json');
+  if (!fs.existsSync(file)) return [];
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
+}

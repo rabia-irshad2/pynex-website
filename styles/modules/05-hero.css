@@ -1,10 +1,7 @@
 /* styles/modules/05-hero.css
- * Hero — clean, professional, business-first.
+ * Hero — matches Eastern Techno's minimal, cinematic layout.
  */
 
-/* ═══════════════════════════════════════════════
-   HERO SHELL
-   ═══════════════════════════════════════════════ */
 .hero-shell {
   position: relative;
   width: 100%;
@@ -17,7 +14,7 @@
   padding-top: 68px;
 }
 
-/* Cursor-reactive spotlight (fed by HeroVisuals) */
+/* Cursor spotlight (subtle) */
 .hero-shell::before {
   content: '';
   position: absolute;
@@ -26,29 +23,25 @@
   pointer-events: none;
   background: radial-gradient(
     ellipse 500px 400px at var(--spot-x, 70%) var(--spot-y, 50%),
-    rgba(79, 169, 255, 0.14),
+    rgba(79, 169, 255, 0.12),
     transparent 65%
   );
-  transition: background 0.3s ease-out;
+  transition: background 0.4s ease-out;
 }
 
-/* Subtle grid texture */
 .hero-grid {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.22;
   background-image:
-    linear-gradient(rgba(79, 169, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(79, 169, 255, 0.06) 1px, transparent 1px);
-  background-size: 84px 84px;
+    linear-gradient(rgba(79, 169, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 169, 255, 0.05) 1px, transparent 1px);
+  background-size: 96px 96px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 15%, transparent 75%);
 }
 
-/* ═══════════════════════════════════════════════
-   HERO PHOTO
-   ═══════════════════════════════════════════════ */
 .hero-photo-wrap {
   position: absolute;
   inset: 0;
@@ -68,7 +61,6 @@
   opacity: 0.85;
 }
 
-/* Dark gradient overlay — makes text readable */
 .hero-photo-container::after {
   content: '';
   position: absolute;
@@ -76,21 +68,20 @@
   background:
     linear-gradient(
       180deg,
-      rgba(5, 8, 15, 0.75) 0%,
-      rgba(5, 8, 15, 0.6) 30%,
-      rgba(5, 8, 15, 0.8) 70%,
+      rgba(5, 8, 15, 0.85) 0%,
+      rgba(5, 8, 15, 0.65) 30%,
+      rgba(5, 8, 15, 0.85) 70%,
       #05080f 100%
     ),
     linear-gradient(
       90deg,
-      rgba(5, 8, 15, 0.85) 0%,
-      rgba(5, 8, 15, 0.3) 40%,
+      rgba(5, 8, 15, 0.9) 0%,
+      rgba(5, 8, 15, 0.4) 40%,
       transparent 70%
     );
   pointer-events: none;
 }
 
-/* Cursor spotlight on image */
 .hero-photo-spotlight {
   position: absolute;
   inset: 0;
@@ -98,15 +89,13 @@
   pointer-events: none;
   background: radial-gradient(
     circle at var(--spot-x, 70%) var(--spot-y, 50%),
-    rgba(79, 169, 255, 0.12) 0%,
+    rgba(79, 169, 255, 0.1) 0%,
     transparent 45%
   );
   transition: background 0.4s ease-out;
 }
 
-/* ═══════════════════════════════════════════════
-   HERO LAYOUT & CONTENT
-   ═══════════════════════════════════════════════ */
+/* ═══ Layout ═══ */
 .hero-layout {
   position: relative;
   z-index: 3;
@@ -123,85 +112,53 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1.75rem;
-  max-width: 900px;
+  gap: 2rem;
+  max-width: 1000px;
   margin-inline: auto;
 }
 
-/* Eyebrow */
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(79, 169, 255, 0.08);
-  border: 1px solid rgba(79, 169, 255, 0.22);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #7de5ff;
-}
-
-.hero-eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4fa9ff;
-  box-shadow: 0 0 12px #4fa9ff;
-  animation: hero-eyebrow-pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes hero-eyebrow-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
-}
-
-/* Headline */
+/* ═══ Headline — HUGE ═══ */
 .hero-headline {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.1em;
+  gap: 0.05em;
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 7rem);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.84;
+  letter-spacing: -0.035em;
   color: #fff;
   text-transform: uppercase;
-  text-shadow: 0 4px 60px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 6px 60px rgba(0, 0, 0, 0.9);
 }
 
 .hero-headline-line {
   display: block;
+  color: #fff;
 }
 
 .hero-headline-accent {
   display: block;
   color: #55dcf5;
   text-shadow:
-    0 4px 60px rgba(0, 0, 0, 0.9),
-    0 0 80px rgba(85, 220, 245, 0.4);
+    0 6px 60px rgba(0, 0, 0, 0.9),
+    0 0 100px rgba(85, 220, 245, 0.4);
 }
 
-/* Subheadline */
+/* ═══ Subheadline ═══ */
 .hero-subheadline {
   margin: 0;
-  max-width: 620px;
+  max-width: 640px;
   font-family: var(--font-mono);
-  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-  line-height: 1.75;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
   color: rgba(221, 235, 247, 0.85);
+  text-align: center;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.9);
 }
 
-/* CTA row */
+/* ═══ CTAs — rounded rectangles (12px, not pills) ═══ */
 .hero-cta-row {
   display: flex;
   align-items: center;
@@ -216,260 +173,148 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 1rem 1.9rem;
-  border-radius: 999px;
+  padding: 1.05rem 2rem;
+  border-radius: 12px;
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
 }
 
 .hero-cta-primary {
-  background: linear-gradient(135deg, #4fa9ff, #0057ff);
-  color: #fff;
-  box-shadow:
-    0 12px 32px rgba(79, 169, 255, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: #ffffff;
+  color: #05080f;
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.12);
 }
 
 .hero-cta-primary:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 20px 44px rgba(79, 169, 255, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: #55dcf5;
+  box-shadow: 0 20px 44px rgba(85, 220, 245, 0.4);
 }
 
 .hero-cta-secondary {
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
 }
 
 .hero-cta-secondary:hover {
-  background: rgba(79, 169, 255, 0.1);
-  border-color: rgba(79, 169, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.6);
   transform: translateY(-3px);
 }
 
-.hero-cta-arrow {
-  display: inline-block;
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.hero-cta-secondary:hover .hero-cta-arrow {
-  transform: translateX(4px);
-}
-
-/* Trust strip */
-.hero-trust {
+/* ═══ Tech Strip below CTAs ═══ */
+.hero-tech-strip {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-top: 1.5rem;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 720px;
 }
 
-.hero-trust-label {
+.hero-tech-strip-label {
+  margin: 0;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
   color: rgba(255, 255, 255, 0.4);
 }
 
-.hero-trust-logos {
+.hero-tech-strip-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   flex-wrap: wrap;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.55);
-  text-transform: uppercase;
 }
 
-.hero-trust-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(79, 169, 255, 0.5);
+.hero-tech-strip-item {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.55;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-spring);
 }
 
-/* ═══════════════════════════════════════════════
-   HERO MESH — abstract gradient background
-   Replaces the scattered tech icons.
-   ═══════════════════════════════════════════════ */
-
-.hero-mesh {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  overflow: hidden;
+.hero-tech-strip-item:hover {
+  opacity: 1;
+  transform: translateY(-4px);
 }
 
-/* Soft blurred orbs drifting slowly */
-.hero-mesh-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.5;
-  will-change: transform;
+.hero-tech-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.5);
+  transition: filter 0.4s var(--ease-out);
 }
 
-.hero-mesh-blob-1 {
-  width: 500px;
-  height: 500px;
-  top: -120px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(79, 169, 255, 0.55), transparent 70%);
-  animation: mesh-drift-1 22s ease-in-out infinite;
+.hero-tech-strip-item:hover img {
+  filter: grayscale(0) brightness(1);
 }
 
-.hero-mesh-blob-2 {
-  width: 420px;
-  height: 420px;
-  bottom: -100px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(0, 87, 255, 0.45), transparent 70%);
-  animation: mesh-drift-2 26s ease-in-out infinite;
-}
-
-.hero-mesh-blob-3 {
-  width: 340px;
-  height: 340px;
-  top: 30%;
-  left: 40%;
-  background: radial-gradient(circle, rgba(85, 220, 245, 0.35), transparent 70%);
-  animation: mesh-drift-3 30s ease-in-out infinite;
-  opacity: 0.35;
-}
-
-@keyframes mesh-drift-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-60px, 40px) scale(1.15); }
-}
-
-@keyframes mesh-drift-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(50px, -50px) scale(1.1); }
-}
-
-@keyframes mesh-drift-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-40px, -30px) scale(1.08); }
-  66% { transform: translate(40px, 30px) scale(0.95); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-mesh-blob {
-    animation: none !important;
-  }
-}
-
-/* Hide mesh on small screens (keeps performance) */
-@media (max-width: 640px) {
-  .hero-mesh-blob-1,
-  .hero-mesh-blob-3 {
-    display: none;
-  }
-  .hero-mesh-blob-2 {
-    opacity: 0.3;
-  }
-}
-
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .hero-tech-chip {
-    opacity: 0.75;
-    transform: scale(0.85);
-  }
-}
-
+/* ═══ Responsive ═══ */
 @media (max-width: 768px) {
   .hero-shell {
     min-height: auto;
     padding-block: 5rem;
   }
-
   .hero-layout {
     min-height: auto;
     padding-block: 3rem;
   }
-
-  .hero-content {
-    gap: 1.25rem;
-  }
-
   .hero-headline {
-    font-size: clamp(2.5rem, 12vw, 4rem);
+    font-size: clamp(3rem, 15vw, 5rem);
+    line-height: 0.88;
   }
-
   .hero-subheadline {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
   }
-
   .hero-cta-row {
     flex-direction: column;
     width: 100%;
     max-width: 320px;
   }
-
   .hero-cta {
     width: 100%;
   }
-
-  .hero-tech-chip {
-    opacity: 0.4;
-    transform: scale(0.65);
+  .hero-tech-strip-row {
+    gap: 1.25rem;
   }
-
-  .hero-trust-logos {
-    font-size: 1rem;
-    gap: 1rem;
+  .hero-tech-strip-item {
+    width: 32px;
+    height: 32px;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-tech-chip {
-    display: none;
-  }
-
   .hero-photo-spotlight {
     display: none;
   }
-
-  .hero-trust {
+  .hero-tech-strip {
+    padding-top: 2rem;
     margin-top: 1rem;
   }
 }
-/* ═══════════════════════════════════════════════
-   HERO TECH CHIPS — HOVER GLOW
-   ═══════════════════════════════════════════════ */
 
-.hero-tech-chip-icon {
-  transition: filter 0.3s ease;
-}
-
-.hero-tech-chip-icon.is-hovered img {
-  filter:
-    drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7))
-    drop-shadow(0 0 24px rgba(79, 169, 255, 0.7));
-}
-
-/* Ensure tech chips can be hovered (parent layer has pointer-events: none) */
-.hero-tech-chip {
-  pointer-events: auto;
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta,
+  .hero-tech-strip-item {
+    transition: none !important;
+  }
 }

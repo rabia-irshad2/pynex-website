@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "quote": "PYNEX allowed us to accelerate our AI rollout with confidence. Their structured approach, technical capability, and commitment to quality ensured a platform that supports our long-term vision.",
+    "name": "Jack Peploe",
+    "role": "Founder",
+    "company": "Veterinary IT Services",
+    "photo": "",
+    "logo": "",
+    "caseStudyHref": "/projects/ai-support-assistant"
+  },
+  {
+    "quote": "Working with PYNEX has been a pleasure. Their expertise transformed our internal systems and fueled our growth. Their professionalism and attention to detail ensured seamless project delivery.",
+    "name": "Bahria Agro Farms",
+    "role": "Project Director",
+    "company": "",
+    "photo": "",
+    "logo": "",
+    "caseStudyHref": ""
+  },
+  {
+    "quote": "PYNEX helped us build a modern, seamless client experience. The platform's performance, scalability, and user experience reflect their strong engineering capabilities.",
+    "name": "Matthew Jensen",
+    "role": "Founder",
+    "company": "Mythasci",
+    "photo": "",
+    "logo": "",
+    "caseStudyHref": "/projects/client-portal-platform"
+  },
+  {
+    "quote": "Partnering with PYNEX enabled us to build a robust digital platform tailored to our needs. Their ability to combine functionality, performance, and user experience helped us deliver a complete solution.",
+    "name": "Anthony Jackson",
+    "role": "Founder",
+    "company": "HealthRoutes",
+    "photo": "",
+    "logo": "",
+    "caseStudyHref": ""
+  }
+]

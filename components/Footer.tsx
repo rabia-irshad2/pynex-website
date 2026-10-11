@@ -1,14 +1,38 @@
+//components/Footer.tsx
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, MapPin, Star } from 'lucide-react';
+import {
+  ArrowUpRight,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Youtube,
+  Star,
+  MapPin,
+  MessageCircle,
+} from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
-import SocialLinks from './SocialLinks';
+
+/* ═══════════════════════════════════════════════
+   CONFIG
+   ═══════════════════════════════════════════════ */
+
+const SOCIALS = [
+  { label: 'Facebook', href: 'https://www.facebook.com/share/1KLfm9ApiW/', Icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/pynex.tech', Icon: Instagram },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/pynex.pk/', Icon: Linkedin },
+  // Add your X/Twitter URL when ready:
+  { label: 'X', href: '#', Icon: Twitter },
+  // Add your YouTube URL when ready:
+  { label: 'YouTube', href: '#', Icon: Youtube },
+];
 
 const SERVICES = [
   { href: '/services/ai-solutions', label: 'AI solutions' },
   { href: '/services/business-automation', label: 'Business automation' },
-  { href: '/services/custom-software', label: 'Custom software development' },
-  { href: '/services/digital-products', label: 'Intelligent digital products' },
+  { href: '/services/custom-software', label: 'Custom software' },
+  { href: '/services/digital-products', label: 'Digital products' },
 ];
 
 const QUICK_LINKS = [
@@ -19,10 +43,14 @@ const QUICK_LINKS = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const MAPS_URL = 'https://maps.app.goo.gl/rfMw8sbvLK6Aumag9?g_st=ic';
-const UAE_MAPS_URL = 'https://maps.app.goo.gl/y1pZg8aT7BXb1vx17?g_st=ipc';
+const PK_MAPS = 'https://maps.app.goo.gl/rfMw8sbvLK6Aumag9?g_st=ic';
+const UAE_MAPS = 'https://maps.app.goo.gl/y1pZg8aT7BXb1vx17?g_st=ipc';
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923141754779';
 
-// Only provide both values after confirming at least five real public Google reviews.
+/* ═══════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════ */
+
 export default function Footer({
   googleRating,
   googleReviewCount = 0,
@@ -30,220 +58,320 @@ export default function Footer({
   googleRating?: number;
   googleReviewCount?: number;
 }) {
-  const showGoogleRating = googleReviewCount >= 5 && typeof googleRating === 'number' && googleRating >= 0 && googleRating <= 5;
+  const showGoogleRating =
+    googleReviewCount >= 5 &&
+    typeof googleRating === 'number' &&
+    googleRating >= 0 &&
+    googleRating <= 5;
 
   return (
-    <footer className="pynex-footer bg-black text-white">
-      <div className="max-w-content mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-10">
-        <div className="footer-main-grid">
-          <div className="footer-brand-column">
-  <Link href="/" className="footer-brand-mark" aria-label="PYNEX home">
-    <Image src="/images/logo/logo.png" alt="PYNEX" width={76} height={76} />
-  </Link>
-  <h2 className="footer-brand-heading">
-    AI.<br />AUTOMATION.<br />SOFTWARE.
-  </h2>
-
-  <div className="footer-visual" aria-hidden="true">
-    <div className="footer-visual-grid" />
-    <div className="footer-visual-node footer-visual-node-1" />
-    <div className="footer-visual-node footer-visual-node-2" />
-    <div className="footer-visual-node footer-visual-node-3" />
-    <div className="footer-visual-lines" />
-  </div>
-
-  <Link href="/contact" className="footer-meeting-link">
-    Arrange a Meeting <ArrowUpRight size={18} aria-hidden="true" />
-  </Link>
-</div>
-
-          <nav className="footer-link-column" aria-label="Quick links">
-            <p className="footer-eyebrow">PYNEX</p>
-            <ul>
-              {QUICK_LINKS.map((link) => <li key={link.href}><Link href={link.href}>{link.label}</Link></li>)}
-            </ul>
-          </nav>
-
-          <nav className="footer-link-column" aria-label="Services">
-            <p className="footer-eyebrow">Services</p>
-            <ul>
-              {SERVICES.map((service) => <li key={service.href}><Link href={service.href}>{service.label}</Link></li>)}
-            </ul>
-          </nav>
-
-          <div className="footer-contact-column">
-            <p className="footer-eyebrow">Contact us</p>
-            <a href="mailto:pynexcompany@gmail.com">pynexcompany@gmail.com</a>
-            <a href="tel:+923141754779">+92 314 1754779</a>
-            <SocialLinks />
-            {showGoogleRating && <a className="footer-rating" href="https://www.google.com/search?q=PYNEX+Islamabad+reviews" target="_blank" rel="noreferrer">Google average rating <strong>{googleRating.toFixed(1)} / 5</strong></a>}
+    <footer className="pynex-footer">
+      <div className="container-pynex">
+        {/* ═══ TOP: Socials + Free Support ═══ */}
+        <div className="footer-top-strip">
+          <div className="footer-socials">
+            {SOCIALS.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href === '#' ? undefined : '_blank'}
+                rel={href === '#' ? undefined : 'noopener noreferrer'}
+                aria-label={label}
+                className="footer-social-icon"
+              >
+                <Icon size={16} />
+              </a>
+            ))}
           </div>
 
-          <section className="footer-locations">
-  <div className="footer-locations-header">
-    <p className="footer-eyebrow">Our locations</p>
-    <h3 className="footer-locations-title">
-      Two offices. <span className="footer-locations-title-accent">One team.</span>
-    </h3>
-    <p className="footer-locations-subtitle">
-      Serving clients across Asia, the Middle East, and beyond.
-    </p>
-  </div>
-
-  <div className="footer-locations-body">
-    <div className="footer-map-visual">
-      <svg viewBox="0 0 900 500" role="img" aria-label="PYNEX office locations">
-        <defs>
-          <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.4" fill="#1e3a5f" />
-          </pattern>
-          <radialGradient id="marker-glow" cx="50%" cy="50%">
-            <stop offset="0%" stopColor="#4fa9ff" stopOpacity="0.65" />
-            <stop offset="100%" stopColor="#4fa9ff" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        <rect width="900" height="500" fill="url(#dots)" opacity="0.4" />
-
-        {/* Continents */}
-        <path
-          d="M100 200 Q200 140 320 160 L420 190 L440 260 L350 340 L220 350 L130 300 Z"
-          fill="#0a1830"
-          opacity="0.85"
-          stroke="#1e3a5f"
-          strokeWidth="1"
-        />
-        <path
-          d="M480 240 Q580 220 700 250 L800 300 L780 380 L640 400 L500 380 Z"
-          fill="#0a1830"
-          opacity="0.85"
-          stroke="#1e3a5f"
-          strokeWidth="1"
-        />
-
-        {/* Connection line */}
-        <line
-          x1="510"
-          y1="290"
-          x2="570"
-          y2="340"
-          stroke="#7de5ff"
-          strokeWidth="2"
-          strokeDasharray="8 8"
-          opacity="0.7"
-        >
-          <animate attributeName="stroke-dashoffset" values="0;-32" dur="2s" repeatCount="indefinite" />
-        </line>
-
-        {/* Pakistan marker — BIGGER */}
-        <g>
-          <circle cx="510" cy="290" r="55" fill="url(#marker-glow)">
-            <animate attributeName="r" values="35;70;35" dur="3s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.95;0.2;0.95" dur="3s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="510" cy="290" r="16" fill="#4fa9ff" />
-          <circle cx="510" cy="290" r="6.5" fill="#fff" />
-          <text
-            x="510"
-            y="248"
-            textAnchor="middle"
-            fill="#7de5ff"
-            fontSize="16"
-            fontFamily="var(--font-mono)"
-            letterSpacing="4"
-            fontWeight="700"
+          <a
+            href={`https://wa.me/${WHATSAPP}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-support-link"
           >
-            PAKISTAN
-          </text>
-        </g>
-
-        {/* UAE marker — BIGGER */}
-        <g>
-          <circle cx="570" cy="340" r="45" fill="url(#marker-glow)">
-            <animate attributeName="r" values="28;56;28" dur="3s" begin="0.5s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.95;0.2;0.95" dur="3s" begin="0.5s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="570" cy="340" r="13" fill="#0057ff" />
-          <circle cx="570" cy="340" r="5" fill="#fff" />
-          <text
-            x="570"
-            y="395"
-            textAnchor="middle"
-            fill="#7de5ff"
-            fontSize="16"
-            fontFamily="var(--font-mono)"
-            letterSpacing="4"
-            fontWeight="700"
-          >
-            UAE
-          </text>
-        </g>
-      </svg>
-    </div>
-
-    <div className="footer-office-list">
-      <a
-        href={MAPS_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="footer-office-link"
-      >
-        <span className="footer-office-flag">🇵🇰</span>
-        <span>
-          <strong>Pakistan Office</strong>
-          <small>Islamabad, Pakistan</small>
-        </span>
-        <ArrowUpRight size={16} aria-hidden="true" />
-      </a>
-
-      <a
-        href={UAE_MAPS_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="footer-office-link"
-      >
-        <span className="footer-office-flag">🇦🇪</span>
-        <span>
-          <strong>UAE Office</strong>
-          <small>United Arab Emirates</small>
-          <small className="footer-office-phone">+971 50 812 4362</small>
-        </span>
-        <ArrowUpRight size={16} aria-hidden="true" />
-      </a>
-    </div>
-  </div>
-</section>
-
+            <MessageCircle size={14} aria-hidden="true" />
+            <span>Free support</span>
+          </a>
         </div>
 
-        <section className="footer-signup-strip" aria-label="Reviews and newsletter">
+        {/* ═══ HERO: Big headline + CTA ═══ */}
+        <div className="footer-hero">
+          <h2 className="footer-hero-title">
+            Product. Design.
+            <br />
+            <span className="footer-hero-accent">Technology.</span>
+          </h2>
+
+          <Link href="/contact" className="footer-hero-cta">
+            Arrange a Meeting
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+
+        {/* ═══ MIDDLE: Brand + Links ═══ */}
+        <div className="footer-middle">
+          {/* Brand column */}
+          <div className="footer-brand-col">
+            <Link href="/" className="footer-brand-mark" aria-label="PYNEX home">
+              <Image
+                src="/images/logo/logo.png"
+                alt="PYNEX"
+                width={110}
+                height={68}
+                priority
+              />
+            </Link>
+
+            <p className="footer-brand-text">
+              AI. Automation. Software.
+            </p>
+          </div>
+
+          {/* Quick links */}
+          <nav className="footer-link-col" aria-label="Quick links">
+            <p className="footer-col-title">Quick Links</p>
+            <ul>
+              {QUICK_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Services */}
+          <nav className="footer-link-col" aria-label="Services">
+            <p className="footer-col-title">Services</p>
+            <ul>
+              {SERVICES.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href}>{s.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Contact */}
+          <div className="footer-contact-col">
+            <p className="footer-col-title">Contact Us</p>
+            <a href="mailto:pynexcompany@gmail.com" className="footer-contact-line">
+              pynexcompany@gmail.com
+            </a>
+            <a href="tel:+923141754779" className="footer-contact-line">
+              +92 314 1754779
+            </a>
+            <a href="tel:+971508124362" className="footer-contact-line">
+              +971 50 812 4362
+            </a>
+          </div>
+        </div>
+
+        {/* ═══ LOCATIONS: Map + offices ═══ */}
+        <div className="footer-locations">
+          <p className="footer-col-title">Our Locations</p>
+
+          <div className="footer-locations-body">
+            {/* Map visual */}
+            <div className="footer-map-visual">
+              <svg viewBox="0 0 900 500" role="img" aria-label="PYNEX office locations">
+                <defs>
+                  <pattern id="footer-dots" width="14" height="14" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1.4" fill="#1e3a5f" />
+                  </pattern>
+                  <radialGradient id="footer-marker-glow" cx="50%" cy="50%">
+                    <stop offset="0%" stopColor="#4fa9ff" stopOpacity="0.65" />
+                    <stop offset="100%" stopColor="#4fa9ff" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <rect width="900" height="500" fill="url(#footer-dots)" opacity="0.4" />
+
+                {/* Continents */}
+                <path
+                  d="M100 200 Q200 140 320 160 L420 190 L440 260 L350 340 L220 350 L130 300 Z"
+                  fill="#0a1830"
+                  opacity="0.85"
+                  stroke="#1e3a5f"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M480 240 Q580 220 700 250 L800 300 L780 380 L640 400 L500 380 Z"
+                  fill="#0a1830"
+                  opacity="0.85"
+                  stroke="#1e3a5f"
+                  strokeWidth="1"
+                />
+
+                {/* Connection line */}
+                <line
+                  x1="510"
+                  y1="290"
+                  x2="570"
+                  y2="340"
+                  stroke="#7de5ff"
+                  strokeWidth="2"
+                  strokeDasharray="8 8"
+                  opacity="0.7"
+                >
+                  <animate
+                    attributeName="stroke-dashoffset"
+                    values="0;-32"
+                    dur="2s"
+                    repeatCount="indefinite"
+                  />
+                </line>
+
+                {/* Pakistan marker */}
+                <g>
+                  <circle cx="510" cy="290" r="55" fill="url(#footer-marker-glow)">
+                    <animate
+                      attributeName="r"
+                      values="35;70;35"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      values="0.95;0.2;0.95"
+                      dur="3s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle cx="510" cy="290" r="16" fill="#4fa9ff" />
+                  <circle cx="510" cy="290" r="6.5" fill="#fff" />
+                  <text
+                    x="510"
+                    y="248"
+                    textAnchor="middle"
+                    fill="#7de5ff"
+                    fontSize="16"
+                    fontFamily="var(--font-mono)"
+                    letterSpacing="4"
+                    fontWeight="700"
+                  >
+                    PAKISTAN
+                  </text>
+                </g>
+
+                {/* UAE marker */}
+                <g>
+                  <circle cx="570" cy="340" r="45" fill="url(#footer-marker-glow)">
+                    <animate
+                      attributeName="r"
+                      values="28;56;28"
+                      dur="3s"
+                      begin="0.5s"
+                      repeatCount="indefinite"
+                    />
+                    <animate
+                      attributeName="opacity"
+                      values="0.95;0.2;0.95"
+                      dur="3s"
+                      begin="0.5s"
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                  <circle cx="570" cy="340" r="13" fill="#0057ff" />
+                  <circle cx="570" cy="340" r="5" fill="#fff" />
+                  <text
+                    x="570"
+                    y="395"
+                    textAnchor="middle"
+                    fill="#7de5ff"
+                    fontSize="16"
+                    fontFamily="var(--font-mono)"
+                    letterSpacing="4"
+                    fontWeight="700"
+                  >
+                    UAE
+                  </text>
+                </g>
+              </svg>
+            </div>
+
+            {/* Office cards */}
+            <div className="footer-office-list">
+              <a
+                href={PK_MAPS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-office-link"
+              >
+                <span className="footer-office-flag" aria-hidden="true">🇵🇰</span>
+                <div className="footer-office-text">
+                  <strong>Pakistan Office</strong>
+                  <span>Islamabad, Pakistan</span>
+                </div>
+                <MapPin size={16} aria-hidden="true" className="footer-office-arrow" />
+              </a>
+
+              <a
+                href={UAE_MAPS}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-office-link"
+              >
+                <span className="footer-office-flag" aria-hidden="true">🇦🇪</span>
+                <div className="footer-office-text">
+                  <strong>UAE Office</strong>
+                  <span>United Arab Emirates</span>
+                  <span className="footer-office-phone">+971 50 812 4362</span>
+                </div>
+                <MapPin size={16} aria-hidden="true" className="footer-office-arrow" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* ═══ BOTTOM PANELS: Reviews + Newsletter ═══ */}
+        <div className="footer-bottom-panels">
+          {/* Reviews */}
           <a
             href="https://www.google.com/search?q=PYNEX+company+reviews"
             target="_blank"
             rel="noopener noreferrer"
-            className="footer-signup-rating"
+            className="footer-reviews-panel"
           >
-            <Star size={21} aria-hidden="true" />
-            <span>
-              <strong>{showGoogleRating ? `${googleRating.toFixed(1)} / 5` : 'Google reviews'}</strong>
-              <small>{showGoogleRating ? `${googleReviewCount} verified reviews` : 'Read client feedback'}</small>
-            </span>
+            <div className="footer-reviews-icon">
+              <Star size={20} aria-hidden="true" />
+            </div>
+            <div className="footer-reviews-text">
+              <p className="footer-col-title">Google Reviews</p>
+              <strong>
+                {showGoogleRating
+                  ? `${googleRating!.toFixed(1)} / 5`
+                  : 'See what clients say'}
+              </strong>
+              <span>
+                {showGoogleRating
+                  ? `${googleReviewCount} verified reviews`
+                  : 'Read the latest feedback'}
+              </span>
+            </div>
+            <ArrowUpRight size={16} aria-hidden="true" className="footer-panel-arrow" />
           </a>
-          <div className="footer-signup-copy">
-            <p className="footer-eyebrow">Stay in the loop</p>
-            <h4>Useful ideas, occasionally.</h4>
-            <p>Project notes and practical updates from PYNEX.</p>
-          </div>
-          <div className="footer-signup-form"><NewsletterForm /></div>
-        </section>
 
+          {/* Newsletter */}
+          <div className="footer-newsletter-panel">
+            <div className="footer-newsletter-text">
+              <p className="footer-col-title">Stay in the loop</p>
+              <strong>Useful ideas, occasionally.</strong>
+              <span>Project notes and practical updates from PYNEX.</span>
+            </div>
+            <div className="footer-newsletter-form">
+              <NewsletterForm />
+            </div>
+          </div>
+        </div>
+
+        {/* ═══ BOTTOM BAR ═══ */}
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>
           <div className="footer-legal-links">
             <Link href="/cookies">Cookies</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms">Terms</Link>
-            <Link href="/unsubscribe">Unsubscribe</Link>
+            <Link href="/terms">Terms & Services</Link>
           </div>
         </div>
       </div>

@@ -9,7 +9,6 @@ export default function HeroVisuals() {
   const shellRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
-  // Cursor-reactive spotlight
   useEffect(() => {
     const shell = shellRef.current?.closest<HTMLElement>('.hero-shell');
     if (!shell || reduceMotion) return;
@@ -38,13 +37,6 @@ export default function HeroVisuals() {
           className="hero-photo"
         />
         <div className="hero-photo-spotlight" aria-hidden="true" />
-      </div>
-
-      {/* Abstract gradient mesh — replaces tech icons */}
-      <div className="hero-mesh" aria-hidden="true">
-        <div className="hero-mesh-blob hero-mesh-blob-1" />
-        <div className="hero-mesh-blob hero-mesh-blob-2" />
-        <div className="hero-mesh-blob hero-mesh-blob-3" />
       </div>
     </div>
   );

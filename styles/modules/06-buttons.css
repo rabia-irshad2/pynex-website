@@ -1,5 +1,5 @@
 /* styles/modules/06-buttons.css
- * Buttons, arrows, chips.
+ * Buttons — rounded rectangles (12px), matches Eastern Techno.
  */
 
 .btn-primary,
@@ -8,13 +8,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
-  padding: 0.95rem 1.75rem;
-  border-radius: 9999px;
+  gap: 0.6rem;
+  padding: 1.05rem 2rem;
+  border-radius: 12px;
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
@@ -22,142 +22,40 @@
   white-space: nowrap;
   text-decoration: none;
   transition:
-    transform 0.24s var(--ease-out),
-    background 0.24s var(--ease-out),
-    border-color 0.24s var(--ease-out),
-    box-shadow 0.24s var(--ease-out),
-    color 0.24s var(--ease-out);
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .btn-large {
-  padding: 1.1rem 2.1rem;
+  padding: 1.2rem 2.25rem;
   font-size: 0.9rem;
 }
 
 .btn-primary {
-  color: #fff;
-  background: #111b29;
-  border-color: rgba(79, 169, 255, 0.18);
-}
-/* ═══════════════════════════════════════════════
-   BUTTON — ADVANCED POLISH
-   ═══════════════════════════════════════════════ */
-
-.btn-primary {
-  position: relative;
-  overflow: visible;
-}
-
-/* Glow ring that appears on hover */
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, #4fa9ff, #0057ff);
-  opacity: 0;
-  filter: blur(14px);
-  z-index: -1;
-  transition: opacity 0.35s var(--ease-out);
-}
-
-.btn-primary:hover::after {
-  opacity: 0.6;
-}
-
-/* Secondary button — animated border */
-.btn-secondary {
-  position: relative;
-  background-image:
-    linear-gradient(#05080f, #05080f),
-    linear-gradient(135deg, #4fa9ff, transparent 50%);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  border: 1px solid transparent;
-  transition: all 0.3s var(--ease-spring);
-}
-
-.btn-secondary:hover {
-  background-image:
-    linear-gradient(rgba(79, 169, 255, 0.06), rgba(0, 87, 255, 0.06)),
-    linear-gradient(135deg, #4fa9ff, #7de5ff);
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 12px 40px rgba(79, 169, 255, 0.25);
-}
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #4fa9ff, #0057ff);
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-out);
-  z-index: 0;
-}
-
-.btn-primary > * {
-  position: relative;
-  z-index: 1;
+  color: #05080f;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.12);
 }
 
 .btn-primary:hover {
-  border-color: transparent;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(79, 169, 255, 0.35);
-  animation: btn-pulse 0.6s var(--ease-out);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-@keyframes btn-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(79, 169, 255, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 0 12px rgba(79, 169, 255, 0);
-  }
+  background: #55dcf5;
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(85, 220, 245, 0.4);
 }
 
 .btn-secondary {
   color: #fff;
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(255, 255, 255, 0.22);
-}
-
-.btn-secondary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(79, 169, 255, 0.15), rgba(0, 87, 255, 0.1));
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-out);
-  z-index: 0;
-}
-
-.btn-secondary > * {
-  position: relative;
-  z-index: 1;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .btn-secondary:hover {
-  border-color: #4fa9ff;
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(79, 169, 255, 0.18);
-}
-
-.btn-secondary:hover::before {
-  opacity: 1;
-}
-
-.btn-label {
-  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-3px);
 }
 
 /* Arrow disc */
@@ -166,9 +64,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  flex: 0 0 26px;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
 }
 
 .arrow-disc {
@@ -179,17 +77,22 @@
   justify-content: center;
   border-radius: 999px;
   transition:
-    opacity 0.24s var(--ease-out),
-    transform 0.28s var(--ease-out),
-    background-color 0.24s var(--ease-out),
-    color 0.24s var(--ease-out);
+    opacity 0.3s var(--ease-out),
+    transform 0.35s var(--ease-out),
+    background-color 0.3s var(--ease-out),
+    color 0.3s var(--ease-out);
 }
 
 .arrow-disc-front {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.15);
+  color: currentColor;
+  background: rgba(0, 0, 0, 0.08);
   opacity: 1;
   transform: translateX(0);
+}
+
+.btn-secondary .arrow-disc-front {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .arrow-disc-back {
@@ -211,44 +114,9 @@
   transform: translateX(0);
 }
 
+/* Focus states */
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible {
   outline: 2px solid #4fa9ff;
   outline-offset: 3px;
-}
-
-/* Scope chips */
-.scope-chip {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-  padding: 0.35rem 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-}
-
-.scope-chip.light {
-  color: var(--color-primary-blue);
-  border-color: #cddaf2;
-  background: #fff;
-}
-
-/* Spinner */
-.spinner {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 999px;
-  animation: spin 0.7s linear infinite;
-  margin-right: 0.45rem;
-  vertical-align: -2px;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }

@@ -1,11 +1,14 @@
+//components/NewsletterForm.tsx
 'use client';
 
 import { useState } from 'react';
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState('');
-  const [website, setWebsite] = useState(''); // hidden spam-trap field, real visitors never fill this
-  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  const [website, setWebsite] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>(
+    'idle'
+  );
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -25,12 +28,16 @@ export default function NewsletterForm() {
   }
 
   if (status === 'done') {
-    return <p className="text-accent-cyan text-sm">Thanks — you&apos;re subscribed.</p>;
+    return (
+      <p className="footer-newsletter-success">
+        Thanks — you&apos;re subscribed.
+      </p>
+    );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      {/* Honeypot field — hidden from real visitors via CSS, catches basic bots */}
+    <form onSubmit={handleSubmit} className="footer-newsletter-form-inner">
+      {/* Honeypot */}
       <input
         type="text"
         value={website}
@@ -40,24 +47,29 @@ export default function NewsletterForm() {
         autoComplete="off"
         aria-hidden="true"
       />
-      <div className="flex gap-2">
-        <input
-          type="email"
-          required
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 px-3 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm placeholder-white/40 focus:outline-none focus:border-accent-cyan"
-        />
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="px-4 py-2 rounded-full bg-pynex-gradient text-white text-sm font-semibold disabled:opacity-60"
-        >
-          {status === 'loading' ? <span className="spinner" aria-label="Submitting" /> : 'Submit'}
-        </button>
-      </div>
-      {status === 'error' && <p className="text-red-400 text-xs" role="alert">Newsletter delivery is not configured yet. Please try again later.</p>}
+
+      <input
+        type="email"
+        required
+        placeholder="Your email address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="footer-newsletter-input"
+      />
+
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="footer-newsletter-submit"
+      >
+        {status === 'loading' ? 'Sending...' : 'Subscribe'}
+      </button>
+
+      {status === 'error' && (
+        <p className="footer-newsletter-error" role="alert">
+          Delivery unavailable — try again later.
+        </p>
+      )}
     </form>
   );
 }

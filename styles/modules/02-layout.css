@@ -1,133 +1,101 @@
 /* styles/modules/02-layout.css
- * Layout primitives: container, sections, labels, headings.
+ * Layout primitives — matches Eastern Techno's rhythm.
  */
 
 .max-w-content {
-  max-width: 1200px;
+  max-width: 1240px;
   margin-inline: auto;
 }
 
-.py-section-phone {
-  padding-block: 4rem;
+/* Section padding — Eastern Techno uses bigger vertical spacing */
+.section-pynex,
+.section-centered {
+  padding-block: clamp(6rem, 10vw, 10rem);
 }
 
-.py-section-desktop {
-  padding-block: 6rem;
+.section-dark {
+  background: #05080f;
+  color: #fff;
 }
 
-@media (min-width: 768px) {
-  .py-section-desktop {
-    padding-block: 7.5rem;
-  }
+.section-soft {
+  background: #070d18;
+  color: #fff;
 }
 
-.section-pynex {
+.section-grid {
   position: relative;
+  isolation: isolate;
 }
 
-.section-pynex + .section-pynex::before {
+.section-grid::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 1200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(79, 169, 255, 0.15), transparent);
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(79, 169, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 169, 255, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  pointer-events: none;
 }
 
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(79, 169, 255, 0.15), transparent);
-  margin-block: 4rem;
-}
-
-.theme-dark-section {
-  position: relative;
-  color: #fff;
-  background:
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79, 169, 255, 0.05), transparent 60%),
-    #05080f;
-}
-
-.theme-dark-section .text-main-text { color: #fff; }
-.theme-dark-section .text-secondary-text { color: rgba(255, 255, 255, 0.68); }
-
-/* Section label */
+/* ═══ Section labels — match Eastern Techno's small lowercase style ═══ */
 .section-label {
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--color-accent-cyan);
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+  color: #4fa9ff;
   margin-bottom: 1rem;
 }
 
-/* Section title with animated underline */
-.section-title,
-.services-page-title,
-.projects-page-title,
-.about-hero-title,
-.blog-page-title {
-  position: relative;
-  display: inline-block;
+/* ═══ Section headings — LEFT-ALIGNED to match Eastern Techno ═══ */
+.section-heading,
+.home-services-title .sr-text,
+.home-products-title .sr-text,
+.case-studies-title .sr-text,
+.testimonials-title .sr-text,
+.hq-strip-title .sr-text,
+.team-title .sr-text {
+  display: block;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-size: clamp(2.75rem, 6vw, 5.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
-}
-
-.section-title {
-  font-size: clamp(3.1rem, 6vw, 6rem);
-  line-height: 0.88;
-  letter-spacing: 0.02em;
-}
-
-.section-title::after,
-.services-page-title::after,
-.projects-page-title::after,
-.about-hero-title::after,
-.blog-page-title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -14px;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #4fa9ff, transparent);
-  border-radius: 2px;
-  transition: width 0.6s var(--ease-spring);
-}
-
-section:hover .section-title::after,
-section:hover .services-page-title::after,
-section:hover .projects-page-title::after,
-section:hover .about-hero-title::after,
-section:hover .blog-page-title::after {
-  width: 120px;
-}
-/* ═══════════════════════════════════════════════
-   ALTERNATING SECTION BACKGROUNDS
-   ═══════════════════════════════════════════════ */
-
-/* Every other section gets a subtle lighter background */
-.theme-dark-section.alt-bg {
-  background:
-    linear-gradient(
-      180deg,
-      rgba(79, 169, 255, 0.02) 0%,
-      rgba(79, 169, 255, 0.04) 50%,
-      rgba(79, 169, 255, 0.02) 100%
-    ),
-    #070d18;
-}
-
-/* Soft background variant for light-ish sections */
-.section-soft {
-  background:
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79, 169, 255, 0.06), transparent 60%),
-    #05080f;
   color: #fff;
+  text-align: left;
+  max-width: 100%;
+  margin-inline: 0;
+}
+
+/* ═══ Section dividers ═══ */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 169, 255, 0.12),
+    transparent
+  );
+  margin-block: 5rem;
+}
+
+/* ═══ Dark sections ═══ */
+.theme-dark-section {
+  position: relative;
+  color: #fff;
+  background: #05080f;
+}
+
+.theme-dark-section .text-main-text {
+  color: #fff;
+}
+
+.theme-dark-section .text-secondary-text {
+  color: rgba(255, 255, 255, 0.6);
 }

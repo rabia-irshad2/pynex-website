@@ -1,0 +1,41 @@
+[
+  {
+    "id": "01",
+    "name": "AI Support Assistant",
+    "tagline": "AI that answers every customer question",
+    "description": "Trained on your support transcripts and knowledge base, our AI assistant answers common questions instantly, escalates edge cases to humans, and learns from every interaction.",
+    "image": "/images/projects/ai-support-assistant.jpg",
+    "link": "/projects/ai-support-assistant",
+    "linkLabel": "Explore case study",
+    "stats": [
+      { "value": "10,000+", "label": "Conversations handled" },
+      { "value": "0.6s", "label": "Average reply time" }
+    ]
+  },
+  {
+    "id": "02",
+    "name": "Smart Inventory System",
+    "tagline": "Warehouse intelligence without the spreadsheets",
+    "description": "Real-time inventory tracking that syncs across warehouse and sales channels, predicts stockouts before they happen, and cuts manual stock checks to zero.",
+    "image": "/images/projects/smart-inventory-system.jpg",
+    "link": "/projects/smart-inventory-system",
+    "linkLabel": "Explore case study",
+    "stats": [
+      { "value": "80%", "label": "Fewer manual stock checks" },
+      { "value": "24/7", "label": "Live inventory sync" }
+    ]
+  },
+  {
+    "id": "03",
+    "name": "Client Portal Platform",
+    "tagline": "One place for every client relationship",
+    "description": "Give clients a single dashboard for project updates, files, and messages. Automatic notifications keep everyone aligned — no email threads, no missed deadlines.",
+    "image": "/images/projects/client-portal-platform.jpg",
+    "link": "/projects/client-portal-platform",
+    "linkLabel": "Explore case study",
+    "stats": [
+      { "value": "100%", "label": "Client visibility" },
+      { "value": "3×", "label": "Faster project updates" }
+    ]
+  }
+]
