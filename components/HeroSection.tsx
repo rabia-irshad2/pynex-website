@@ -1,9 +1,9 @@
 //components/HeroSection.tsx
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import Button from '@/components/Button';
 import HeroVisuals from './HeroVisuals';
 import HeroTechStrip from './HeroTechStrip';
 
@@ -40,14 +40,12 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Link href="/contact" className="hero-cta hero-cta-primary">
-              Book a Call
-              <ArrowUpRight size={18} aria-hidden="true" />
-            </Link>
-            <Link href="/services" className="hero-cta hero-cta-secondary">
-              Explore Services
-              <ArrowUpRight size={18} aria-hidden="true" />
-            </Link>
+            <Button href="/contact" className="hero-cta hero-cta-primary">
+              <>Book a Call <ArrowUpRight size={18} aria-hidden="true" /></>
+            </Button>
+            <Button href="/services" variant="outline" className="hero-cta hero-cta-secondary">
+              <>Explore Services <ArrowUpRight size={18} aria-hidden="true" /></>
+            </Button>
           </motion.div>
 
           <motion.div

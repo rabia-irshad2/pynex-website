@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { ButtonLabel } from '@/components/Button';
 import type { ProjectFrontmatter } from '@/lib/content';
 
 const PROJECT_IMAGES: Record<string, string> = {
@@ -31,11 +32,9 @@ export default function CaseStudyRow({ project }: { project: ProjectFrontmatter 
           <div><strong>{project.category}</strong><span>SOLUTION</span></div>
           <div className="case-study-scope"><strong>{project.scope.slice(0, 3).join(' / ')}</strong><span>SCOPE OF WORK</span></div>
         </div>
-        <span className="case-study-read-more">Read more <ArrowUpRight size={16} aria-hidden="true" /></span>
+        <span className="case-study-read-more"><ButtonLabel>Read more <ArrowUpRight size={16} aria-hidden="true" /></ButtonLabel></span>
       </div>
-      <span className="case-study-slide-panel" aria-hidden="true">
-        <span>READ MORE</span><ArrowUpRight size={24} />
-      </span>
+      <span className="case-study-slide-panel" aria-hidden="true"><span>READ MORE</span><ArrowUpRight size={24} /></span>
     </Link>
   );
 }

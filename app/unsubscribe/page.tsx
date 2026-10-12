@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import SectionLabel from '@/components/SectionLabel';
+import Button from '@/components/Button';
 
 export default function UnsubscribePage() {
   const [email, setEmail] = useState('');
@@ -84,10 +85,10 @@ export default function UnsubscribePage() {
             </div>
 
             <div className="contact-form-actions">
-              <button
+              <Button
                 type="submit"
                 disabled={loading}
-                className="btn-primary disabled:opacity-60"
+                className="unsubscribe-submit"
               >
                 {loading ? (
                   <>
@@ -97,7 +98,7 @@ export default function UnsubscribePage() {
                 ) : (
                   'Unsubscribe'
                 )}
-              </button>
+              </Button>
             </div>
 
             {message && (

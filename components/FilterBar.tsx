@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { ButtonLabel } from '@/components/Button';
 
-export default function FilterBar({ options, onChange }: { options: string[]; onChange: (value: string) => void }) {
+export default function Tabs({ options, onChange }: { options: string[]; onChange: (value: string) => void }) {
   const [selected, setSelected] = useState(options[0]);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   function select(value: string) {
     setSelected(value);
@@ -11,16 +13,27 @@ export default function FilterBar({ options, onChange }: { options: string[]; on
   }
 
   return (
-    <div className="filter-bar" aria-label="Filter content">
+    <div className="filter-bar" role="tablist" aria-label="Filter content">
       {options.map((option) => (
         <button
           key={option}
           type="button"
+          role="tab"
           onClick={() => select(option)}
-          aria-pressed={selected === option}
+          aria-selected={selected === option}
+          tabIndex={selected === option ? 0 : -1}
+          ref={(node) => { tabRefs.current[options.indexOf(option)] = node; }}
+          onKeyDown={(event) => {
+            if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+            event.preventDefault();
+            const step = event.key === 'ArrowRight' ? 1 : -1;
+            const next = (options.indexOf(option) + step + options.length) % options.length;
+            select(options[next]);
+            tabRefs.current[next]?.focus();
+          }}
           className={selected === option ? 'filter-button filter-button-active' : 'filter-button'}
         >
-          {option}
+          <ButtonLabel>{option}</ButtonLabel>
         </button>
       ))}
     </div>

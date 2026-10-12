@@ -50,3 +50,5 @@ export default function Reveal({
     </motion.div>
   );
 }
+
+export { Reveal as RevealOnScroll };

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import Reveal from '@/components/Reveal';
 import ScrollRevealText from '@/components/ScrollRevealText';
+import { ButtonLabel } from '@/components/Button';
 import type { Product } from '@/lib/content';
 
 export default function HomeProducts({ products }: { products: Product[] }) {
@@ -59,8 +60,7 @@ export default function HomeProducts({ products }: { products: Product[] }) {
                   </div>
 
                   <span className="home-product-link">
-                    {product.linkLabel}
-                    <ArrowUpRight size={16} aria-hidden="true" />
+                    <ButtonLabel>{product.linkLabel} <ArrowUpRight size={16} aria-hidden="true" /></ButtonLabel>
                   </span>
                 </div>
 

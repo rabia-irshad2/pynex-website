@@ -3,8 +3,8 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import Link from 'next/link';
 import Reveal from '@/components/Reveal';
+import Button from '@/components/Button';
 import ScrollRevealText from '@/components/ScrollRevealText';
 import type { Testimonial } from '@/lib/content';
 
@@ -82,12 +82,9 @@ export default function TestimonialsCarousel({
                   </div>
 
                   {t.caseStudyHref && (
-                    <Link
-                      href={t.caseStudyHref}
-                      className="testimonial-case-link"
-                    >
+                    <Button href={t.caseStudyHref} className="testimonial-case-link" variant="outline">
                       View case study
-                    </Link>
+                    </Button>
                   )}
                 </footer>
               </article>

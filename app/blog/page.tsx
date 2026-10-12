@@ -1,11 +1,13 @@
 //app/blog/page.tsx
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import SectionLabel from '@/components/SectionLabel';
 import SafeImage from '@/components/SafeImage';
 import BlogFilters from '@/components/BlogFilters';
 import Reveal from '@/components/Reveal';
 import { getAllBlogPosts } from '@/lib/content';
+import SectionHeading from '@/components/SectionHeading';
+import SectionLabel from '@/components/SectionLabel';
+import { ButtonLabel } from '@/components/Button';
 
 export const metadata: Metadata = {
   title: 'Insights',
@@ -23,14 +25,13 @@ export default function BlogPage() {
       <section className="blog-page-hero theme-dark-section">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <Reveal>
-            <SectionLabel>Insights</SectionLabel>
-            <h1 className="blog-page-title">
-              Thinking on AI, automation, and business software.
-            </h1>
-            <p className="blog-page-intro">
-              Practical thinking on AI, automation, and software for people
-              building better businesses.
-            </p>
+            <SectionHeading
+              label="Insights"
+              title="Thinking on AI, automation, and business software."
+              description="Practical thinking on AI, automation, and software for people building better businesses."
+              as="h1"
+              titleClassName="blog-page-title"
+            />
           </Reveal>
         </div>
       </section>
@@ -73,7 +74,7 @@ export default function BlogPage() {
                     {featured.frontmatter.readingTime || 'Read'}
                   </p>
                   <span className="btn-secondary self-start mt-4">
-                    Read article
+                    <ButtonLabel>Read article</ButtonLabel>
                   </span>
                 </div>
               </Link>

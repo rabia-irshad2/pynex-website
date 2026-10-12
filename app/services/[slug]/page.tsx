@@ -72,9 +72,6 @@ export default function ServiceDetailPage({
         <div className="max-w-content mx-auto px-6 md:px-12 relative z-10">
           <Reveal>
             <SectionLabel>Service</SectionLabel>
-            {service.frontmatter.icon && (
-              <p className="text-5xl mb-4">{service.frontmatter.icon}</p>
-            )}
             <h1 className="services-page-title">{service.frontmatter.title}</h1>
             <p className="services-page-intro">
               {service.frontmatter.shortDescription}

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { ButtonLabel } from '@/components/Button';
 import { SERVICE_IMAGES } from './ServiceCard';
 import type { ServiceFrontmatter } from '@/lib/content';
 
@@ -27,10 +28,9 @@ export default function ServicesFeatureCard({
           fill
           sizes="(max-width: 700px) 100vw, 33vw"
         />
-        <span className="services-feature-icon" aria-hidden="true">{service.icon}</span>
       </div>
-      <span className="services-feature-action" aria-hidden="true">
-        <ArrowUpRight size={20} />
+      <span className="services-feature-action">
+        <ButtonLabel>More information <ArrowUpRight size={20} aria-hidden="true" /></ButtonLabel>
       </span>
     </Link>
   );

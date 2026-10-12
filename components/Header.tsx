@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu as MenuIcon, ArrowUpRight } from 'lucide-react';
 import MobileMenu from './MobileMenu';
+import Button from '@/components/Button';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -84,9 +85,9 @@ export default function Header() {
 
         {/* RIGHT: CTA + menu */}
         <div className="header-actions">
-          <Link href="/contact" className="nav-cta">
-            Book a Call <ArrowUpRight size={14} />
-          </Link>
+          <Button href="/contact" className="nav-cta" variant="outline">
+            <>Book a Call <ArrowUpRight size={14} aria-hidden="true" /></>
+          </Button>
           <button
             id="pynex-menu-trigger"
             aria-expanded={menuOpen}

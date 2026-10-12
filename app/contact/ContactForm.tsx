@@ -2,6 +2,8 @@
 'use client';
 
 import { useState } from 'react';
+import { Send } from 'lucide-react';
+import Button from '@/components/Button';
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -131,11 +133,11 @@ export default function ContactForm() {
       </div>
 
       <div className="contact-form-actions">
-        <button
+        <Button
           type="submit"
           disabled={status === 'loading'}
           aria-busy={status === 'loading'}
-          className="btn-primary disabled:opacity-60"
+          className="contact-submit"
         >
           {status === 'loading' ? (
             <>
@@ -143,9 +145,9 @@ export default function ContactForm() {
               Sending...
             </>
           ) : (
-            'Send message'
+            <>Send message <Send size={16} aria-hidden="true" /></>
           )}
-        </button>
+        </Button>
       </div>
 
       {status === 'error' && (

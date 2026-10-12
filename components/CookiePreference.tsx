@@ -1,6 +1,8 @@
 //app/components/CookiePreference.tsx
 'use client';
 
+import Button from '@/components/Button';
+
 export default function CookiePreference() {
   function changePreference() {
     localStorage.removeItem('pynex-cookie-consent');
@@ -9,12 +11,12 @@ export default function CookiePreference() {
   }
 
   return (
-    <button
-      type="button"
+    <Button
       onClick={changePreference}
       className="btn-secondary mt-4"
+      variant="outline"
     >
       Change cookie preference
-    </button>
+    </Button>
   );
 }

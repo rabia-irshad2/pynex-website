@@ -5,6 +5,7 @@ import SocialLinks from '@/components/SocialLinks';
 import SectionLabel from '@/components/SectionLabel';
 import Reveal from '@/components/Reveal';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -121,6 +122,9 @@ export default function ContactPage() {
           {/* Form column */}
           <Reveal delay={0.1}>
             <div className="contact-form-panel">
+              <div className="contact-form-decoration" aria-hidden="true">
+                <Image src="/images/overview/overview.jpg" alt="" fill sizes="180px" />
+              </div>
               <ContactForm />
             </div>
           </Reveal>

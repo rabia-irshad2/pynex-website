@@ -6,6 +6,7 @@ import SafeImage from '@/components/SafeImage';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import SectionLabel from '@/components/SectionLabel';
 import Reveal from '@/components/Reveal';
+import Button from '@/components/Button';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/content';
 
 export function generateStaticParams() {
@@ -48,7 +49,7 @@ export default function BlogPostPage({
         <div className="max-w-content mx-auto px-6 md:px-12">
           <Reveal>
             <SectionLabel>{post.frontmatter.category}</SectionLabel>
-            <h1 className="blog-page-title" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)' }}>
+            <h1 className="blog-page-title">
               {post.frontmatter.title}
             </h1>
             <p className="blog-page-intro">
@@ -93,9 +94,7 @@ export default function BlogPostPage({
             <p className="mission-card-text mb-6">
               Tell us about it — we&apos;ll reply within one business day.
             </p>
-            <Link href="/contact" className="btn-primary">
-              Talk to PYNEX
-            </Link>
+            <Button href="/contact">Talk to PYNEX</Button>
           </div>
         </Reveal>
 

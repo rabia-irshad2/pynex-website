@@ -1,8 +1,8 @@
 //components/HomeFeaturedProduct.tsx
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import Reveal from '@/components/Reveal';
+import Button from '@/components/Button';
 
 export default function HomeFeaturedProduct() {
   return (
@@ -25,7 +25,7 @@ export default function HomeFeaturedProduct() {
 
             <Reveal delay={0.15}>
               <p className="home-featured-product-lede">
-                A configurable platform that adapts to each client's workflow,
+                A configurable platform that adapts to each client&apos;s workflow,
                 branding, and data — instead of forcing everyone into the same
                 rigid template.
               </p>
@@ -49,10 +49,9 @@ export default function HomeFeaturedProduct() {
             </Reveal>
 
             <Reveal delay={0.35}>
-              <Link href="/contact" className="home-featured-product-cta">
-                Test Live
-                <ArrowUpRight size={18} aria-hidden="true" />
-              </Link>
+              <Button href="/contact" className="home-featured-product-cta" variant="outline">
+                <>Test Live <ArrowUpRight size={18} aria-hidden="true" /></>
+              </Button>
             </Reveal>
           </div>
 

@@ -3,11 +3,22 @@
  */
 
 :root {
-  --color-primary-blue: #0057ff;
-  --color-accent-cyan: #4fa9ff;
-  --color-bg-dark: #05080f;
-  --gradient-pynex: linear-gradient(135deg, #4fa9ff, #0057ff);
-  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --color-primary-blue: #0b1f44;
+  --color-accent-cyan: #00c6ff;
+  --color-bg-dark: #0b1f44;
+  --color-surface: #0b1f44;
+  --color-secondary: #5b6577;
+  --color-white: #ffffff;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --gradient-pynex: linear-gradient(135deg, #00c6ff, #0b1f44);
+  --font-display: var(--font-bebas-neue), 'Bebas Neue', Impact, sans-serif;
+  --font-body: 'Inter Variable', Inter, Arial, sans-serif;
   --font-mono: 'Geist Mono Variable', 'Geist Mono', monospace;
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
@@ -32,9 +43,9 @@ body {
   margin: 0;
   color: #fff;
   background: var(--color-bg-dark);
-  font-family: var(--font-mono);
-  font-size: 17px;
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -52,7 +63,8 @@ h6,
   font-family: var(--font-display);
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.005em;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
   margin: 0;
 }
 
@@ -74,9 +86,9 @@ svg {
 }
 
 ::selection {
-  background: rgba(79, 169, 255, 0.35);
+  background: rgba(0, 198, 255, 0.35);
   color: #fff;
-  text-shadow: 0 0 8px rgba(79, 169, 255, 0.6);
+  text-shadow: 0 0 8px rgba(0, 198, 255, 0.6);
 }
 
 /* Custom scrollbar */
@@ -85,17 +97,17 @@ svg {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #05080f;
+  background: #0b1f44;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #4fa9ff, #0057ff);
+  background: linear-gradient(180deg, #00c6ff, #0b1f44);
   border-radius: 6px;
-  border: 2px solid #05080f;
+  border: 2px solid #0a0e11;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #7de5ff, #4fa9ff);
+  background: linear-gradient(180deg, #6fe0ff, #00c6ff);
 }
 * {
   scrollbar-width: thin;
-  scrollbar-color: #4fa9ff #05080f;
+  scrollbar-color: #00c6ff #0b1f44;
 }

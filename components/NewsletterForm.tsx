@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import Button from '@/components/Button';
 
 export default function NewsletterForm() {
   const [email, setEmail] = useState('');
@@ -57,13 +58,14 @@ export default function NewsletterForm() {
         className="footer-newsletter-input"
       />
 
-      <button
+      <Button
         type="submit"
         disabled={status === 'loading'}
+        variant="secondary"
         className="footer-newsletter-submit"
       >
         {status === 'loading' ? 'Sending...' : 'Subscribe'}
-      </button>
+      </Button>
 
       {status === 'error' && (
         <p className="footer-newsletter-error" role="alert">

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Button from '@/components/Button';
 
 export default function NotFound() {
   return (
@@ -6,9 +6,7 @@ export default function NotFound() {
       <p className="section-label mb-3">404</p>
       <h1 className="text-4xl font-bold mb-4 text-white">Page not found</h1>
       <p className="text-white/65 mb-8">The page you&apos;re looking for doesn&apos;t exist.</p>
-      <Link href="/" className="btn-primary">
-        Back to home
-      </Link>
+      <Button href="/">Back to home</Button>
     </section>
   );
 }

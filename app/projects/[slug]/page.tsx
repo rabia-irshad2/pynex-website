@@ -199,23 +199,15 @@ export default function ProjectDetailPage({
 
                   {project.frontmatter.website &&
                     !project.frontmatter.website.includes('example.com') && (
-                      <a
-                        href={project.frontmatter.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary w-full justify-center mb-3"
-                      >
+                      <Button href={project.frontmatter.website} target="_blank" rel="noopener noreferrer" variant="outline" className="w-full justify-center mb-3">
                         Visit live site
-                      </a>
+                      </Button>
                     )}
 
                   {relatedService && (
-                    <a
-                      href={`/services/${relatedService}`}
-                      className="btn-secondary w-full justify-center mb-3"
-                    >
+                    <Button href={`/services/${relatedService}`} variant="outline" className="w-full justify-center mb-3">
                       View related service
-                    </a>
+                    </Button>
                   )}
 
                   <Button href="/contact">Start a similar project</Button>

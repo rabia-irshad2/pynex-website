@@ -6,6 +6,8 @@ import Link from 'next/link';
 import FilterBar from './FilterBar';
 import type { BlogFrontmatter } from '@/lib/content';
 import SafeImage from './SafeImage';
+import Card from './Card';
+import Reveal from './Reveal';
 
 type Post = { slug: string; frontmatter: BlogFrontmatter };
 
@@ -29,12 +31,13 @@ export default function BlogFilters({ posts }: { posts: Post[] }) {
     <>
       <FilterBar options={options} onChange={setFilter} />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visiblePosts.map((post) => (
+        {visiblePosts.map((post, index) => (
+          <Reveal key={post.slug} delay={index * 0.06}>
           <Link
-            key={post.slug}
             href={`/blog/${post.slug}`}
-            className="pynex-card block overflow-hidden"
+            className="block"
           >
+            <Card className="h-full overflow-hidden">
             <div className="relative aspect-[16/10] bg-soft-bg">
               <SafeImage
                 src={post.frontmatter.image}
@@ -61,7 +64,9 @@ export default function BlogFilters({ posts }: { posts: Post[] }) {
                 {post.frontmatter.author} &middot; {post.frontmatter.readingTime || 'Read'}
               </p>
             </div>
+            </Card>
           </Link>
+          </Reveal>
         ))}
       </div>
       {visiblePosts.length === 0 && (

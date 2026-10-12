@@ -10,19 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'primary-blue': '#0057FF',
+        'primary-blue': '#0B1F44',
         'accent-cyan': '#00C6FF',
-        'bg-dark': '#000000',
-        'main-text': '#0B1F44',
+        'bg-dark': '#0B1F44',
+        'main-text': '#ffffff',
         'secondary-text': '#5B6577',
-        'soft-bg': '#F6F9FF',
+        'soft-bg': '#0B1F44',
       },
       fontFamily: {
-        sans: ['"Geist Mono Variable"', '"Geist Mono"', 'monospace'],
-        display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+        sans: ['Inter Variable', 'Inter', 'Arial', 'sans-serif'],
+        display: ['var(--font-bebas-neue)', 'Impact', 'sans-serif'],
       },
       backgroundImage: {
-        'pynex-gradient': 'linear-gradient(135deg, #00C6FF, #0057FF)',
+        'pynex-gradient': 'linear-gradient(135deg, #00C6FF, #0B1F44)',
       },
       maxWidth: {
         content: '1200px',

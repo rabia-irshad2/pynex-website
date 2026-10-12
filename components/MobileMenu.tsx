@@ -9,6 +9,7 @@ import { X, ArrowUpRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import SocialLinks from './SocialLinks';
 import PynexLogo from './PynexLogo';
+import Button from '@/components/Button';
 
 const LINKS = [
   { href: '/', label: 'Home' },
@@ -119,13 +120,9 @@ export default function MobileMenu({
             </div>
 
             {/* CTA */}
-            <Link
-              href="/contact"
-              onClick={onClose}
-              className="drawer-cta"
-            >
-              Book a Call <ArrowUpRight size={16} />
-            </Link>
+            <Button href="/contact" onClick={onClose} className="drawer-cta" variant="outline">
+              <>Book a Call <ArrowUpRight size={16} aria-hidden="true" /></>
+            </Button>
 
             {/* Links — no scrollbar, fits viewport */}
             <nav className="drawer-links">

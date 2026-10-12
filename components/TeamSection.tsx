@@ -5,7 +5,7 @@ import SafeImage from '@/components/SafeImage';
 
 type Member = {
   name: string;
-  role: string;
+  role?: string;
   bio?: string;
   photo?: string;
 };
@@ -49,7 +49,7 @@ export default function TeamSection({ team }: { team: Member[] }) {
                     {member.photo ? (
                       <SafeImage
                         src={member.photo}
-                        alt={`${member.name}, ${member.role}`}
+                        alt={member.role ? `${member.name}, ${member.role}` : member.name}
                         fill
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover"

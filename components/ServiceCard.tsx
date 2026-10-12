@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { ButtonLabel } from '@/components/Button';
 import type { ServiceFrontmatter } from '@/lib/content';
 
 // ── Exported so other components (like ServiceFlipCard) can use the same map ──
@@ -65,7 +66,7 @@ export default function ServiceCard({
             <h3>{service.title}</h3>
             <p>{description}</p>
             <span className="premium-service-link">
-              Explore service <ArrowRight size={16} aria-hidden="true" />
+              <ButtonLabel>Explore service <ArrowRight size={16} aria-hidden="true" /></ButtonLabel>
             </span>
           </div>
         </div>

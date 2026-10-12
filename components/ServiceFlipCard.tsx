@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowUpRight, RotateCcw } from 'lucide-react';
 import { useState } from 'react';
+import Button from '@/components/Button';
 import { SERVICE_IMAGES } from './ServiceCard';
 import type { ServiceFrontmatter } from '@/lib/content';
 
@@ -33,9 +33,6 @@ export default function ServiceFlipCard({
             className="home-service-image"
           />
           <div className="home-service-shade" aria-hidden="true" />
-          <div className="home-service-illustration" aria-hidden="true">
-            <span>{service.icon}</span>
-          </div>
           <div className="home-service-front-copy">
             <span className="home-service-eyebrow">SERVICE / {String(order).padStart(2, '0')}</span>
             <h3>{service.title}</h3>
@@ -53,7 +50,7 @@ export default function ServiceFlipCard({
 
         <div className="home-service-face home-service-back">
           <div className="home-service-back-top">
-            <span className="home-service-eyebrow">WHAT WE DO / {String(order).padStart(2, '0')}</span>
+          <span className="home-service-eyebrow">SERVICE / {String(order).padStart(2, '0')}</span>
             <button
               type="button"
               className="home-service-flip-button home-service-flip-button-dark"
@@ -69,9 +66,9 @@ export default function ServiceFlipCard({
           <ul>
             {details.slice(0, 4).map((detail) => <li key={detail}>{detail}</li>)}
           </ul>
-          <Link href={`/services/${service.slug}`} className="home-service-learn-link">
-            Learn more <ArrowUpRight size={17} aria-hidden="true" />
-          </Link>
+          <Button href={`/services/${service.slug}`} variant="outline" className="home-service-learn-link">
+            <>Learn more <ArrowUpRight size={17} aria-hidden="true" /></>
+          </Button>
         </div>
       </div>
     </article>

@@ -1,78 +1,88 @@
-//app/components/ProjectCard.tsx
+'use client';
+
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
 import SafeImage from './SafeImage';
+import Button from './Button';
 import type { ProjectFrontmatter } from '@/lib/content';
 
-// Map slug → specific project image
 const PROJECT_IMAGES: Record<string, string> = {
-  'ai-support-assistant': '/images/projects/ai-support-assistant.jpg',
-  'client-portal-platform': '/images/projects/ai-solutions.jpg',
-  'smart-inventory-system': '/images/projects/custom-software.jpg',
+  'ai-support-assistant': '/images/projects/ai-support-assistant.JPG',
+  'client-portal-platform': '/images/projects/custom-software.jpg',
+  'smart-inventory-system': '/images/projects/business-automation.jpg',
 };
 
-// Category fallback if specific image missing
 const CATEGORY_FALLBACKS: Record<string, string> = {
   'AI Solutions': '/images/projects/ai-solutions.jpg',
-  'Automation': '/images/projects/business-automation.jpg',
+  Automation: '/images/projects/business-automation.jpg',
   'Business Automation': '/images/projects/business-automation.jpg',
   'Custom Software': '/images/projects/custom-software.jpg',
   'Digital Products': '/images/projects/ai-solutions.jpg',
 };
 
-export default function ProjectCard({ project }: { project: ProjectFrontmatter }) {
-  const image =
-    project.image ||
-    PROJECT_IMAGES[project.slug] ||
-    CATEGORY_FALLBACKS[project.category] ||
-    '/images/projects/ai-solutions.jpg';
+export default function ProjectCard({
+  project,
+  expanded: controlledExpanded,
+  onExpand,
+}: {
+  project: ProjectFrontmatter;
+  expanded?: boolean;
+  onExpand?: () => void;
+}) {
+  const [localExpanded, setLocalExpanded] = useState(false);
+  const image = project.image || PROJECT_IMAGES[project.slug] || CATEGORY_FALLBACKS[project.category] || '/images/projects/ai-solutions.jpg';
+  const expanded = controlledExpanded ?? localExpanded;
+  const toggleExpanded = onExpand || (() => setLocalExpanded((value) => !value));
 
   return (
-    <Link href={`/projects/${project.slug}`} className="project-flip-card">
-      <div className="project-flip-inner">
-        {/* FRONT */}
-        <div className="project-card-face project-card-front">
-          <div className="project-card-image-full">
-            <SafeImage
-              src={image}
-              alt={`${project.title} preview`}
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
-              className="project-front-image"
-              fallback={
-                <div className="project-placeholder">
-                  <span>{project.category}</span>
-                </div>
-              }
-            />
-            <div className="project-card-shade" aria-hidden="true" />
-            <span className="project-image-category">{project.category}</span>
-            <div className="project-card-front-content">
-              <p className="section-label">{project.location}</p>
-              <h3>{project.title}</h3>
-              <span className="project-card-hint">Hover to explore ↻</span>
-            </div>
-          </div>
-        </div>
+    <article className={`project-flip-card project-expand-card${expanded ? ' is-expanded' : ''}`}>
+      <Link href={`/projects/${project.slug}`} className="project-expand-link">
+        <SafeImage
+          src={image}
+          alt={`${project.title} preview`}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="project-expand-image"
+          fallback={<div className="project-placeholder"><span>{project.category}</span></div>}
+        />
+        <span className="project-card-shade" aria-hidden="true" />
+        <span className="project-image-category">{project.category}</span>
+        <span className="project-expand-front-copy">
+          <span className="section-label">{project.location}</span>
+          <span className="project-expand-title">{project.title}</span>
+          <span className="project-card-hint">Hover to explore <ArrowUpRight size={15} aria-hidden="true" /></span>
+        </span>
+      </Link>
 
-        {/* BACK */}
-        <div className="project-card-face project-card-back">
-          <SafeImage
-            src={image}
-            alt=""
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            className="project-back-image"
-            fallback={<div className="project-placeholder" />}
-          />
-          <div className="project-card-shade" aria-hidden="true" />
-          <div className="project-card-back-content">
-            <span className="section-label">Case Study · {project.category}</span>
-            <h3>{project.title}</h3>
-            <p>{project.summary}</p>
-            <span className="project-card-link">Explore case study ↗</span>
-          </div>
-        </div>
+      <button
+        type="button"
+        className="project-expand-toggle"
+        aria-label={`${expanded ? 'Collapse' : 'Expand'} ${project.title}`}
+        aria-expanded={expanded}
+        onClick={toggleExpanded}
+      >
+        <span aria-hidden="true">{expanded ? '−' : '+'}</span>
+      </button>
+
+      <div className="project-expand-panel">
+        <span className="section-label">Case Study · {project.category}</span>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+        {project.features?.length ? (
+          <ul className="project-expand-features">
+            {project.features.map((feature) => <li key={feature}>{feature}</li>)}
+          </ul>
+        ) : null}
+        {project.scope.length > 0 && (
+          <ul className="project-expand-tags">
+            {project.scope.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        )}
+        <Button href={`/projects/${project.slug}`} variant="outline" className="project-expand-cta">
+          <>Explore case study <ArrowUpRight size={16} aria-hidden="true" /></>
+        </Button>
       </div>
-    </Link>
+    </article>
   );
 }

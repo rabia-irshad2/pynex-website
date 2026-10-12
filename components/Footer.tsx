@@ -13,6 +13,7 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
+import Button from '@/components/Button';
 
 /* ═══════════════════════════════════════════════
    CONFIG
@@ -84,15 +85,9 @@ export default function Footer({
             ))}
           </div>
 
-          <a
-            href={`https://wa.me/${WHATSAPP}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-support-link"
-          >
-            <MessageCircle size={14} aria-hidden="true" />
-            <span>Free support</span>
-          </a>
+          <Button href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="footer-support-link" variant="outline">
+            <><MessageCircle size={14} aria-hidden="true" /> Free support</>
+          </Button>
         </div>
 
         {/* ═══ HERO: Big headline + CTA ═══ */}
@@ -103,10 +98,9 @@ export default function Footer({
             <span className="footer-hero-accent">Technology.</span>
           </h2>
 
-          <Link href="/contact" className="footer-hero-cta">
-            Arrange a Meeting
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
+          <Button href="/contact" className="footer-hero-cta" variant="outline">
+            <>Arrange a Meeting <ArrowUpRight size={18} aria-hidden="true" /></>
+          </Button>
         </div>
 
         {/* ═══ MIDDLE: Brand + Links ═══ */}

@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Button from '@/components/Button';
 
 const STORAGE_KEY = 'pynex-cookie-consent';
 
@@ -31,18 +32,20 @@ export default function CookieBanner() {
         <Link href="/cookies">Cookies policy</Link>.
       </p>
       <div className="cookie-actions">
-        <button
+        <Button
           onClick={() => choose('declined')}
           className="cookie-decline"
+          variant="outline"
         >
           Decline
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => choose('accepted')}
           className="cookie-accept"
+          variant="secondary"
         >
           Accept
-        </button>
+        </Button>
       </div>
     </div>
   );

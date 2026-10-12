@@ -1,6 +1,6 @@
 //components/HomeStats.tsx
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import Button from '@/components/Button';
 
 export default function HomeStats() {
   return (
@@ -10,10 +10,9 @@ export default function HomeStats() {
           <p className="home-stats-lede">
             <strong>150+</strong> successful implementations.
           </p>
-          <Link href="/projects" className="home-stats-link">
-            View more
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
+          <Button href="/projects" className="home-stats-link" variant="outline">
+            <>View more <ArrowUpRight size={16} aria-hidden="true" /></>
+          </Button>
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 //components/FeaturedProject.tsx
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import Reveal from '@/components/Reveal';
+import Button from '@/components/Button';
 import type { ProjectFrontmatter } from '@/lib/content';
 
 export default function FeaturedProject({
@@ -53,13 +53,9 @@ export default function FeaturedProject({
                 </div>
               </div>
 
-              <Link
-                href={`/projects/${project.slug}`}
-                className="featured-project-cta"
-              >
-                View case study
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
+              <Button href={`/projects/${project.slug}`} className="featured-project-cta" variant="outline">
+                <>View case study <ArrowUpRight size={16} aria-hidden="true" /></>
+              </Button>
             </div>
           </Reveal>
         </div>
