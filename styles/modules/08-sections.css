@@ -708,3 +708,75 @@
   font-size: 0.72rem;
   color: #ff8a8a;
 }
+.footer-contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-contact-label {
+  margin: 0 0 0.35rem;
+  font: 700 0.62rem/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4fa9ff;
+}
+
+.footer-contact-block a {
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-contact-block a:hover { color: #7de5ff; }
+
+.footer-contact-block span {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+/* Append to styles/modules/08-sections.css */
+
+.footer-locations-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.footer-locations-lede {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 46ch;
+}
+
+.footer-map-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(5, 12, 24, 0.85);
+  border: 1px solid rgba(79, 169, 255, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7de5ff;
+}
+
+.footer-map-badge svg {
+  color: #4fa9ff;
+}

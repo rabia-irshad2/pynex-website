@@ -1,6 +1,6 @@
 //app/page.tsx
 import Button from '@/components/Button';
-import HeroSection from '@/components/HeroSection';
+import Hero from '@/components/Hero';
 import HomeStats from '@/components/HomeStats';
 import HomeServices from '@/components/HomeServices';
 import HomeProducts from '@/components/HomeProducts';
@@ -13,6 +13,7 @@ import QualitiesSection from '@/components/QualitiesSection';
 import TeamSection from '@/components/TeamSection';
 import Reveal from '@/components/Reveal';
 import ScrollRevealText from '@/components/ScrollRevealText';
+import HomeOverview from '@/components/HomeOverview';
 import {
   getAllServices,
   getAllProjects,
@@ -39,7 +40,8 @@ export default function HomePage() {
   return (
     <>
       {/* ═══ 1. HERO ═══ */}
-      <HeroSection />
+      <Hero />
+      <HomeOverview />
 
       {/* ═══ 2. STATS ═══ */}
       <HomeStats />

@@ -1,21 +1,20 @@
-//app/components/Header.tsx
+//components/Header.tsx — Eastern Tech: wider nav, phone CTA
 'use client';
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu as MenuIcon, ArrowUpRight } from 'lucide-react';
+import { Menu, Phone } from 'lucide-react';
 import MobileMenu from './MobileMenu';
-import Button from '@/components/Button';
 
 const NAV_LINKS = [
-  { href: '/', label: 'Home' },
+  { href: '/',         label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Work' },
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Insights' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/about',    label: 'About' },
+  { href: '/blog',     label: 'Insights' },
+  { href: '/contact',  label: 'Contact' },
 ];
 
 export default function Header() {
@@ -51,7 +50,6 @@ export default function Header() {
       }`}
     >
       <div className="header-inner">
-        {/* LEFT: Logo */}
         <Link href="/" className="header-brand" aria-label="PYNEX home">
           <span className="header-brand-logo">
             <Image
@@ -59,18 +57,19 @@ export default function Header() {
               alt=""
               fill
               priority
-              sizes="88px"
+              sizes="40px"
               className="header-brand-logo-img"
             />
           </span>
           <span className="header-brand-text">PYNEX</span>
         </Link>
 
-        {/* CENTER: Nav */}
         <nav className="header-nav" aria-label="Main navigation">
           {NAV_LINKS.map((item) => {
             const active =
-              item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+              item.href === '/'
+                ? pathname === '/'
+                : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -83,11 +82,12 @@ export default function Header() {
           })}
         </nav>
 
-        {/* RIGHT: CTA + menu */}
         <div className="header-actions">
-          <Button href="/contact" className="nav-cta" variant="outline">
-            <>Book a Call <ArrowUpRight size={14} aria-hidden="true" /></>
-          </Button>
+          <Link href="/contact" className="nav-cta">
+            <Phone size={14} aria-hidden="true" />
+            Book a Call
+          </Link>
+
           <button
             id="pynex-menu-trigger"
             aria-expanded={menuOpen}
@@ -95,7 +95,7 @@ export default function Header() {
             onClick={() => setMenuOpen(true)}
             className="header-menu-trigger"
           >
-            <MenuIcon size={22} />
+            <Menu size={22} strokeWidth={1.75} />
           </button>
         </div>
       </div>

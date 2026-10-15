@@ -1,19 +1,12 @@
 //components/QualitiesSection.tsx
 'use client';
 
-import {
-  Users,
-  Zap,
-  Sparkles,
-  TrendingUp,
-  Target,
-  ShieldCheck,
-} from 'lucide-react';
+import { Users, Zap, Award, TrendingUp, Target, ShieldCheck } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Reveal from '@/components/Reveal';
 import ScrollRevealText from '@/components/ScrollRevealText';
 
-const ICONS = [Users, Zap, Sparkles, TrendingUp, Target, ShieldCheck];
+const ICONS = [Users, Zap, Award, TrendingUp, Target, ShieldCheck];
 
 const QUALITIES = [
   {
@@ -44,26 +37,25 @@ const QUALITIES = [
 
 export default function QualitiesSection() {
   return (
-    <section className="section-centered theme-dark-section alt-bg qualities-v2">
+    <section className="qualities-v2 theme-dark-section">
       <div className="container-pynex">
-        <div className="centered-header">
+        <div className="qualities-v2-header">
           <Reveal>
-            <p className="section-label">Qualities</p>
+            <p className="section-label">qualities</p>
           </Reveal>
-
           <ScrollRevealText
             as="h2"
             text="Why work with us"
-            className="centered-title-wrap"
+            className="qualities-v2-title"
             variant="focus"
           />
         </div>
 
         <div className="qualities-v2-grid">
           {QUALITIES.map((q, i) => {
-            const Icon = ICONS[i] || Sparkles;
+            const Icon = ICONS[i] || Zap;
             return (
-              <Reveal key={q.title} delay={i * 0.08}>
+              <Reveal key={q.title} delay={i * 0.06}>
                 <QualityCard icon={Icon} title={q.title} text={q.text} />
               </Reveal>
             );
@@ -84,23 +76,21 @@ function QualityCard({
   text: string;
 }) {
   const reduceMotion = useReducedMotion();
-
   return (
     <motion.article
-      className="quality-v2-card"
+      className="quality-card"
       whileHover={reduceMotion ? undefined : { y: -6 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
     >
-      <motion.div
-        className="quality-v2-icon"
-        whileHover={reduceMotion ? undefined : { scale: 1.12, rotate: -6 }}
+      <motion.span
+        className="quality-icon"
+        whileHover={reduceMotion ? undefined : { scale: 1.08, rotate: -4 }}
         transition={{ type: 'spring', stiffness: 400, damping: 15 }}
       >
-        <Icon size={26} strokeWidth={1.7} aria-hidden="true" />
-      </motion.div>
-
-      <h3 className="quality-v2-title">{title}</h3>
-      <p className="quality-v2-text">{text}</p>
+        <Icon size={22} strokeWidth={1.75} aria-hidden="true" />
+      </motion.span>
+      <h3 className="quality-title">{title}</h3>
+      <p className="quality-text">{text}</p>
     </motion.article>
   );
 }

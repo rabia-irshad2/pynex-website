@@ -1,4 +1,4 @@
-//components/Footer.tsx
+//components/Footer.tsx — Eastern Tech-inspired footer, PYNEX branding
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -6,51 +6,41 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
-  Youtube,
   Star,
   MapPin,
   MessageCircle,
+  Globe,
 } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
-import Button from '@/components/Button';
 
-/* ═══════════════════════════════════════════════
-   CONFIG
-   ═══════════════════════════════════════════════ */
+/* ── Config ── */
 
 const SOCIALS = [
-  { label: 'Facebook', href: 'https://www.facebook.com/share/1KLfm9ApiW/', Icon: Facebook },
-  { label: 'Instagram', href: 'https://www.instagram.com/pynex.tech', Icon: Instagram },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/pynex.pk/', Icon: Linkedin },
-  // Add your X/Twitter URL when ready:
-  { label: 'X', href: '#', Icon: Twitter },
-  // Add your YouTube URL when ready:
-  { label: 'YouTube', href: '#', Icon: Youtube },
-];
-
-const SERVICES = [
-  { href: '/services/ai-solutions', label: 'AI solutions' },
-  { href: '/services/business-automation', label: 'Business automation' },
-  { href: '/services/custom-software', label: 'Custom software' },
-  { href: '/services/digital-products', label: 'Digital products' },
+  { label: 'Facebook',  href: 'https://www.facebook.com/share/1KLfm9ApiW/', Icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/pynex.tech',        Icon: Instagram },
+  { label: 'LinkedIn',  href: 'https://www.linkedin.com/company/pynex.pk/', Icon: Linkedin },
 ];
 
 const QUICK_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
+  { href: '/',         label: 'Home' },
+  { href: '/about',    label: 'About' },
   { href: '/projects', label: 'Projects' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/blog',     label: 'Insights' },
+  { href: '/contact',  label: 'Contact' },
 ];
 
-const PK_MAPS = 'https://maps.app.goo.gl/rfMw8sbvLK6Aumag9?g_st=ic';
+const SERVICES = [
+  { href: '/services/ai-solutions',        label: 'AI solutions' },
+  { href: '/services/business-automation', label: 'Business automation' },
+  { href: '/services/custom-software',     label: 'Custom software' },
+  { href: '/services/digital-products',    label: 'Digital products' },
+];
+
+const PK_MAPS  = 'https://maps.app.goo.gl/rfMw8sbvLK6Aumag9?g_st=ic';
 const UAE_MAPS = 'https://maps.app.goo.gl/y1pZg8aT7BXb1vx17?g_st=ipc';
 const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '923141754779';
 
-/* ═══════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════ */
+/* ── Footer component ── */
 
 export default function Footer({
   googleRating,
@@ -68,29 +58,41 @@ export default function Footer({
   return (
     <footer className="pynex-footer">
       <div className="container-pynex">
-        {/* ═══ TOP: Socials + Free Support ═══ */}
+
+        {/* ═══════════════════════════════════════════
+            1. TOP STRIP — Socials + Free Support
+            ═══════════════════════════════════════════ */}
         <div className="footer-top-strip">
           <div className="footer-socials">
             {SOCIALS.map(({ label, href, Icon }) => (
               <a
                 key={label}
                 href={href}
-                target={href === '#' ? undefined : '_blank'}
-                rel={href === '#' ? undefined : 'noopener noreferrer'}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={label}
                 className="footer-social-icon"
               >
-                <Icon size={16} />
+                <Icon size={16} aria-hidden="true" />
               </a>
             ))}
           </div>
 
-          <Button href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="footer-support-link" variant="outline">
-            <><MessageCircle size={14} aria-hidden="true" /> Free support</>
-          </Button>
+          <a
+            href={`https://wa.me/${WHATSAPP}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-support-link"
+          >
+            <MessageCircle size={14} aria-hidden="true" />
+            Free support
+            <ArrowUpRight size={12} aria-hidden="true" />
+          </a>
         </div>
 
-        {/* ═══ HERO: Big headline + CTA ═══ */}
+        {/* ═══════════════════════════════════════════
+            2. HERO — Big headline + Meeting CTA
+            ═══════════════════════════════════════════ */}
         <div className="footer-hero">
           <h2 className="footer-hero-title">
             Product. Design.
@@ -98,21 +100,25 @@ export default function Footer({
             <span className="footer-hero-accent">Technology.</span>
           </h2>
 
-          <Button href="/contact" className="footer-hero-cta" variant="outline">
-            <>Arrange a Meeting <ArrowUpRight size={18} aria-hidden="true" /></>
-          </Button>
+          <Link href="/contact" className="footer-hero-cta">
+            Arrange a Meeting
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
         </div>
 
-        {/* ═══ MIDDLE: Brand + Links ═══ */}
+        {/* ═══════════════════════════════════════════
+            3. MIDDLE — Brand + Quick Links + Services + Contact
+            ═══════════════════════════════════════════ */}
         <div className="footer-middle">
+
           {/* Brand column */}
           <div className="footer-brand-col">
             <Link href="/" className="footer-brand-mark" aria-label="PYNEX home">
               <Image
                 src="/images/logo/logo.png"
                 alt="PYNEX"
-                width={110}
-                height={68}
+                width={120}
+                height={72}
                 priority
               />
             </Link>
@@ -122,9 +128,9 @@ export default function Footer({
             </p>
           </div>
 
-          {/* Quick links */}
+          {/* Quick Links */}
           <nav className="footer-link-col" aria-label="Quick links">
-            <p className="footer-col-title">Quick Links</p>
+            <p className="footer-col-title">Company</p>
             <ul>
               {QUICK_LINKS.map((l) => (
                 <li key={l.href}>
@@ -146,58 +152,73 @@ export default function Footer({
             </ul>
           </nav>
 
-          {/* Contact */}
+          {/* Contact — dual office blocks */}
           <div className="footer-contact-col">
             <p className="footer-col-title">Contact Us</p>
-            <a href="mailto:pynexcompany@gmail.com" className="footer-contact-line">
-              pynexcompany@gmail.com
-            </a>
-            <a href="tel:+923141754779" className="footer-contact-line">
-              +92 314 1754779
-            </a>
-            <a href="tel:+971508124362" className="footer-contact-line">
-              +971 50 812 4362
-            </a>
+
+            <div className="footer-contact-block">
+              <p className="footer-contact-label">Pakistan Office</p>
+              <a href="mailto:pynexcompany@gmail.com">pynexcompany@gmail.com</a>
+              <a href="tel:+923141754779">+92 314 1754779</a>
+              <span>Islamabad, Pakistan</span>
+            </div>
+
+            <div className="footer-contact-block">
+              <p className="footer-contact-label">UAE Office</p>
+              <a href="tel:+971508124362">+971 50 812 4362</a>
+              <span>United Arab Emirates</span>
+            </div>
           </div>
         </div>
 
-        {/* ═══ LOCATIONS: Map + offices ═══ */}
+        {/* ═══════════════════════════════════════════
+            4. LOCATIONS — World map + office cards
+            ═══════════════════════════════════════════ */}
         <div className="footer-locations">
-          <p className="footer-col-title">Our Locations</p>
+          <div className="footer-locations-header">
+            <p className="footer-col-title">Our Locations</p>
+            <p className="footer-locations-lede">
+              Two offices. One team. Serving clients across time zones.
+            </p>
+          </div>
 
           <div className="footer-locations-body">
-            {/* Map visual */}
+
+            {/* ── World map SVG ── */}
             <div className="footer-map-visual">
               <svg viewBox="0 0 900 500" role="img" aria-label="PYNEX office locations">
                 <defs>
-                  <pattern id="footer-dots" width="14" height="14" patternUnits="userSpaceOnUse">
+                  <pattern id="ft-dots" width="14" height="14" patternUnits="userSpaceOnUse">
                     <circle cx="2" cy="2" r="1.4" fill="#1e3a5f" />
                   </pattern>
-                  <radialGradient id="footer-marker-glow" cx="50%" cy="50%">
+                  <radialGradient id="ft-glow" cx="50%" cy="50%">
                     <stop offset="0%" stopColor="#4fa9ff" stopOpacity="0.65" />
                     <stop offset="100%" stopColor="#4fa9ff" stopOpacity="0" />
                   </radialGradient>
+                  <radialGradient id="ft-glow-2" cx="50%" cy="50%">
+                    <stop offset="0%" stopColor="#0057ff" stopOpacity="0.55" />
+                    <stop offset="100%" stopColor="#0057ff" stopOpacity="0" />
+                  </radialGradient>
                 </defs>
 
-                <rect width="900" height="500" fill="url(#footer-dots)" opacity="0.4" />
+                {/* Background dot grid */}
+                <rect width="900" height="500" fill="url(#ft-dots)" opacity="0.35" />
 
-                {/* Continents */}
+                {/* Simplified continents — abstract shapes */}
                 <path
                   d="M100 200 Q200 140 320 160 L420 190 L440 260 L350 340 L220 350 L130 300 Z"
                   fill="#0a1830"
-                  opacity="0.85"
                   stroke="#1e3a5f"
                   strokeWidth="1"
                 />
                 <path
                   d="M480 240 Q580 220 700 250 L800 300 L780 380 L640 400 L500 380 Z"
                   fill="#0a1830"
-                  opacity="0.85"
                   stroke="#1e3a5f"
                   strokeWidth="1"
                 />
 
-                {/* Connection line */}
+                {/* Connection line PK → UAE */}
                 <line
                   x1="510"
                   y1="290"
@@ -218,19 +239,9 @@ export default function Footer({
 
                 {/* Pakistan marker */}
                 <g>
-                  <circle cx="510" cy="290" r="55" fill="url(#footer-marker-glow)">
-                    <animate
-                      attributeName="r"
-                      values="35;70;35"
-                      dur="3s"
-                      repeatCount="indefinite"
-                    />
-                    <animate
-                      attributeName="opacity"
-                      values="0.95;0.2;0.95"
-                      dur="3s"
-                      repeatCount="indefinite"
-                    />
+                  <circle cx="510" cy="290" r="55" fill="url(#ft-glow)">
+                    <animate attributeName="r" values="35;70;35" dur="3s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.95;0.2;0.95" dur="3s" repeatCount="indefinite" />
                   </circle>
                   <circle cx="510" cy="290" r="16" fill="#4fa9ff" />
                   <circle cx="510" cy="290" r="6.5" fill="#fff" />
@@ -240,7 +251,7 @@ export default function Footer({
                     textAnchor="middle"
                     fill="#7de5ff"
                     fontSize="16"
-                    fontFamily="var(--font-mono)"
+                    fontFamily="monospace"
                     letterSpacing="4"
                     fontWeight="700"
                   >
@@ -250,21 +261,9 @@ export default function Footer({
 
                 {/* UAE marker */}
                 <g>
-                  <circle cx="570" cy="340" r="45" fill="url(#footer-marker-glow)">
-                    <animate
-                      attributeName="r"
-                      values="28;56;28"
-                      dur="3s"
-                      begin="0.5s"
-                      repeatCount="indefinite"
-                    />
-                    <animate
-                      attributeName="opacity"
-                      values="0.95;0.2;0.95"
-                      dur="3s"
-                      begin="0.5s"
-                      repeatCount="indefinite"
-                    />
+                  <circle cx="570" cy="340" r="45" fill="url(#ft-glow-2)">
+                    <animate attributeName="r" values="28;56;28" dur="3s" begin="0.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.95;0.2;0.95" dur="3s" begin="0.5s" repeatCount="indefinite" />
                   </circle>
                   <circle cx="570" cy="340" r="13" fill="#0057ff" />
                   <circle cx="570" cy="340" r="5" fill="#fff" />
@@ -274,7 +273,7 @@ export default function Footer({
                     textAnchor="middle"
                     fill="#7de5ff"
                     fontSize="16"
-                    fontFamily="var(--font-mono)"
+                    fontFamily="monospace"
                     letterSpacing="4"
                     fontWeight="700"
                   >
@@ -282,9 +281,15 @@ export default function Footer({
                   </text>
                 </g>
               </svg>
+
+              {/* Corner badge: "Global presence" */}
+              <span className="footer-map-badge">
+                <Globe size={14} aria-hidden="true" />
+                Global presence
+              </span>
             </div>
 
-            {/* Office cards */}
+            {/* ── Office cards ── */}
             <div className="footer-office-list">
               <a
                 href={PK_MAPS}
@@ -318,9 +323,12 @@ export default function Footer({
           </div>
         </div>
 
-        {/* ═══ BOTTOM PANELS: Reviews + Newsletter ═══ */}
+        {/* ═══════════════════════════════════════════
+            5. BOTTOM PANELS — Reviews + Newsletter
+            ═══════════════════════════════════════════ */}
         <div className="footer-bottom-panels">
-          {/* Reviews */}
+
+          {/* Reviews panel */}
           <a
             href="https://www.google.com/search?q=PYNEX+company+reviews"
             target="_blank"
@@ -330,6 +338,7 @@ export default function Footer({
             <div className="footer-reviews-icon">
               <Star size={20} aria-hidden="true" />
             </div>
+
             <div className="footer-reviews-text">
               <p className="footer-col-title">Google Reviews</p>
               <strong>
@@ -343,31 +352,37 @@ export default function Footer({
                   : 'Read the latest feedback'}
               </span>
             </div>
+
             <ArrowUpRight size={16} aria-hidden="true" className="footer-panel-arrow" />
           </a>
 
-          {/* Newsletter */}
+          {/* Newsletter panel */}
           <div className="footer-newsletter-panel">
             <div className="footer-newsletter-text">
               <p className="footer-col-title">Stay in the loop</p>
               <strong>Useful ideas, occasionally.</strong>
               <span>Project notes and practical updates from PYNEX.</span>
             </div>
+
             <div className="footer-newsletter-form">
               <NewsletterForm />
             </div>
           </div>
         </div>
 
-        {/* ═══ BOTTOM BAR ═══ */}
+        {/* ═══════════════════════════════════════════
+            6. BOTTOM BAR — Copyright + Legal
+            ═══════════════════════════════════════════ */}
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} PYNEX. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} PYNEX. All rights reserved.</p>
+
           <div className="footer-legal-links">
             <Link href="/cookies">Cookies</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms">Terms & Services</Link>
+            <Link href="/terms">Terms &amp; Services</Link>
           </div>
         </div>
+
       </div>
     </footer>
   );

@@ -11,7 +11,6 @@
 @import './modules/02-layout.css';
 @import './modules/03-header.css';
 @import './modules/04-drawer.css';
-@import './modules/05-hero.css';
 @import './modules/06-buttons.css';
 @import './modules/07-cards.css';
 @import './modules/08-sections.css';
@@ -20,3 +19,6 @@
 @import './modules/11-fx.css';
 @import './modules/12-editorial.css';
 @import './modules/13-service-experience.css';
+@import './modules/14-hero.css';
+@import '../styles/modules/15-overview.css';
+

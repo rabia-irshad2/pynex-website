@@ -1,11 +1,4 @@
 [
-  {
-    "name": "Muhammad Ibrahim",
-    "role": "Founder & CEO"
-  },
-  {
-    "name": "Mirza Abdul Rehman",
-    "role": "Co-Founder & Head of Development"
-  }
+  { "name": "Muhammad Ibrahim", "role": "Founder & CEO" },
+  { "name": "Mirza Abdul Rehman", "role": "Co-Founder & Head of Development" }
 ]
-

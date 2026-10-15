@@ -42,15 +42,28 @@
 }
 
 /* ═══ Section labels — match Eastern Techno's small lowercase style ═══ */
+/* Update .section-label in styles/modules/02-layout.css */
 .section-label {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 0.7rem;
   font-weight: 600;
-  text-transform: lowercase;
-  letter-spacing: 0.08em;
-  color: #4fa9ff;
-  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #fff;
+  margin-bottom: 1.25rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e02020;
+  box-shadow: 0 0 8px rgba(224, 32, 32, 0.9);
+  flex-shrink: 0;
 }
 
 /* ═══ Section headings — LEFT-ALIGNED to match Eastern Techno ═══ */

@@ -1,4 +1,4 @@
-//components/TeamSection.tsx
+//components/TeamSection.tsx — corrected image block
 import Reveal from '@/components/Reveal';
 import ScrollRevealText from '@/components/ScrollRevealText';
 import SafeImage from '@/components/SafeImage';
@@ -43,9 +43,7 @@ export default function TeamSection({ team }: { team: Member[] }) {
             return (
               <Reveal key={member.name} delay={i * 0.1}>
                 <article className="team-card-v2">
-                  <div
-                    className={`team-card-v2-image team-profile-gradient-${gradient}`}
-                  >
+                  <div className={`team-card-v2-image team-profile-gradient-${gradient}`}>
                     {member.photo ? (
                       <SafeImage
                         src={member.photo}
@@ -54,9 +52,7 @@ export default function TeamSection({ team }: { team: Member[] }) {
                         sizes="(max-width: 768px) 50vw, 25vw"
                         className="object-cover"
                         fallback={
-                          <span className="team-avatar-initials">
-                            {initials}
-                          </span>
+                          <span className="team-avatar-initials">{initials}</span>
                         }
                       />
                     ) : (
