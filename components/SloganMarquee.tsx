@@ -1,22 +1,22 @@
-//components/SloganMarquee.tsx — original PYNEX slogans
+//components/SloganMarquee.tsx — dummy slogans until HR provides final copy
 const SLOGANS = [
-  'Automate the routine',
-  'Ship what matters',
-  'Software that earns its keep',
-  'AI with a clear job',
-  'Islamabad · UAE · Remote-ready',
-  'Measured in hours saved',
+  'Innovate. Build. Scale.',
+  'Driven by Technology Excellence',
+  'Solutions That Drive Impact',
+  'Scalable Solutions for Business',
+  'Where Innovation Performs',
+  'Driven by Results',
 ];
 
 export default function SloganMarquee() {
-  const loop = [...SLOGANS, ...SLOGANS, ...SLOGANS];
+  const loop = [...SLOGANS, ...SLOGANS];
   return (
-    <div className="slogan-marquee" aria-label="PYNEX values">
-      <div className="slogan-marquee-track" aria-hidden="true">
+    <div className="slogan-band" aria-label="PYNEX values">
+      <div className="slogan-band-track" aria-hidden="true">
         {loop.map((slogan, i) => (
-          <span className="slogan-marquee-item" key={i}>
+          <span className="slogan-band-item" key={i}>
             {slogan}
-            <span className="slogan-marquee-dot" aria-hidden="true" />
+            <i className="slogan-band-dot" />
           </span>
         ))}
       </div>

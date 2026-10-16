@@ -3,17 +3,17 @@ import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 
 export function ButtonLabel({ children }: { children: ReactNode }) {
   return (
-    <span className="btn-label">
-      <span>{children}</span>
-      <span aria-hidden="true">{children}</span>
+    <span className="btn-swap">
+      <span className="btn-swap-front">{children}</span>
+      <span className="btn-swap-back" aria-hidden="true">{children}</span>
     </span>
   );
 }
 
 type CommonProps = {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'default' | 'large';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'default' | 'large' | 'small';
   className?: string;
   'aria-busy'?: boolean;
   'aria-label'?: string;
@@ -51,10 +51,10 @@ export default function Button({
   ...accessibilityProps
 }: ButtonProps) {
   const classes = [
-    'roll-btn',
-    variant === 'primary' ? 'btn-primary' : 'btn-secondary',
-    variant === 'outline' ? 'btn-outline' : '',
+    'btn',
+    `btn-${variant}`,
     size === 'large' ? 'btn-large' : '',
+    size === 'small' ? 'btn-small' : '',
     className,
   ].filter(Boolean).join(' ');
 

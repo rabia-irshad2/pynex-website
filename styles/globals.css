@@ -20,5 +20,8 @@
 @import './modules/12-editorial.css';
 @import './modules/13-service-experience.css';
 @import './modules/14-hero.css';
-@import '../styles/modules/15-overview.css';
-
+@import './modules/15-overview.css';
+@import './modules/16-services.css';
+@import './modules/17-products.css';
+@import './modules/19-slogan.css';
+@import './modules/24-closing.css';

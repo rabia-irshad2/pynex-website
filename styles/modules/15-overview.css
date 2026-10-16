@@ -85,7 +85,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(4.25rem, 10vw, 9.5rem);      /* ← was 8.5rem max — bigger */
+  font-size: clamp(4.25rem, 10vw, 10.5rem);      /* ← was 8.5rem max — bigger */
   line-height: 0.86;                             /* ← tighter */
   letter-spacing: -0.028em;
   text-transform: uppercase;

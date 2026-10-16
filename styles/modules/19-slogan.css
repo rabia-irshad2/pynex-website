@@ -1,0 +1,50 @@
+/* styles/modules/19-slogan.css — Eastern Tech slogan band */
+
+.slogan-band {
+  position: relative;
+  overflow: hidden;
+  background: #0057ff;
+  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.slogan-band-track {
+  display: flex;
+  width: max-content;
+  animation: slogan-scroll 70s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.slogan-band-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding-inline: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.slogan-band-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+@keyframes slogan-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slogan-band-track { animation: none; }
+}

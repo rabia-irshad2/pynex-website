@@ -1,122 +1,149 @@
-/* styles/modules/06-buttons.css
- * Buttons — rounded rectangles (12px), matches Eastern Techno.
- */
+/* styles/modules/06-buttons.css — global button system with slide-down swap */
 
-.btn-primary,
-.btn-secondary {
+.btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 1.05rem 2rem;
+  height: 54px;
+  padding: 0 2rem;
   border-radius: 12px;
   font-family: var(--font-mono);
+  font-size: 0.86rem;
   font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-decoration: none;
   border: 1px solid transparent;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
-  text-decoration: none;
   transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    background 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.btn-large {
-  padding: 1.2rem 2.25rem;
-  font-size: 0.9rem;
-}
+.btn-large { height: 60px; padding: 0 2.4rem; font-size: 0.94rem; }
+.btn-small { height: 46px; padding: 0 1.4rem; font-size: 0.76rem; }
 
+/* Primary — white bg, dark text */
 .btn-primary {
-  color: #05080f;
   background: #ffffff;
-  box-shadow: 0 12px 32px rgba(255, 255, 255, 0.12);
+  color: #05080f;
+  border-color: #ffffff;
 }
-
 .btn-primary:hover {
-  background: #55dcf5;
-  transform: translateY(-3px);
-  box-shadow: 0 20px 44px rgba(85, 220, 245, 0.4);
+  background: #0057ff;
+  border-color: #0057ff;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4);
 }
 
+/* Secondary — dark bg, white text */
 .btn-secondary {
-  color: #fff;
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.28);
+  background: #141418;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.14);
 }
-
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.6);
-  transform: translateY(-3px);
+  background: #0057ff;
+  border-color: #0057ff;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4);
 }
 
-/* Arrow disc */
-.arrow-swap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
+/* Outline — transparent with border */
+.btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.btn-outline:hover {
+  background: #0057ff;
+  border-color: #0057ff;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4);
 }
 
-.arrow-disc {
-  position: absolute;
-  inset: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  transition:
-    opacity 0.3s var(--ease-out),
-    transform 0.35s var(--ease-out),
-    background-color 0.3s var(--ease-out),
-    color 0.3s var(--ease-out);
+/* Ghost — text only */
+.btn-ghost {
+  background: transparent;
+  color: #ffffff;
+  border-color: transparent;
+  padding-inline: 0;
 }
+.btn-ghost:hover { color: #7de5ff; }
 
-.arrow-disc-front {
-  color: currentColor;
-  background: rgba(0, 0, 0, 0.08);
-  opacity: 1;
-  transform: translateX(0);
-}
+/* Press feedback */
+.btn:active { transform: scale(0.97); }
 
-.btn-secondary .arrow-disc-front {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.arrow-disc-back {
-  color: #000;
-  background: #fff;
-  opacity: 0;
-  transform: translateX(-6px);
-}
-
-.btn-primary:hover .arrow-disc-front,
-.btn-secondary:hover .arrow-disc-front {
-  opacity: 0;
-  transform: translateX(6px);
-}
-
-.btn-primary:hover .arrow-disc-back,
-.btn-secondary:hover .arrow-disc-back {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Focus states */
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible {
+/* Focus */
+.btn:focus-visible {
   outline: 2px solid #4fa9ff;
   outline-offset: 3px;
+}
+
+/* Disabled */
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ═══════════════════════════════════════════════
+   SLIDE-DOWN LABEL SWAP
+   Both labels stacked inside a clipping box.
+   On hover: front label exits top, back label enters from bottom.
+   ═══════════════════════════════════════════════ */
+.btn-swap {
+  position: relative;
+  display: inline-grid;
+  grid-template-areas: 'stack';
+  place-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+.btn-swap-front,
+.btn-swap-back {
+  grid-area: stack;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.btn-swap-back {
+  transform: translateY(120%);
+}
+
+.btn:hover .btn-swap-front,
+.btn:focus-visible .btn-swap-front {
+  transform: translateY(-120%);
+}
+
+.btn:hover .btn-swap-back,
+.btn:focus-visible .btn-swap-back {
+  transform: translateY(0);
+}
+
+/* Icon inside labels */
+.btn-swap svg {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn-swap-front, .btn-swap-back, .btn svg {
+    transition: none !important;
+  }
+  .btn-swap-front { transform: none !important; }
+  .btn-swap-back { display: none; }
 }

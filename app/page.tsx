@@ -1,7 +1,7 @@
 //app/page.tsx
 import Button from '@/components/Button';
 import Hero from '@/components/Hero';
-import HomeStats from '@/components/HomeStats';
+//import HomeStats from '@/components/HomeStats';
 import HomeServices from '@/components/HomeServices';
 import HomeProducts from '@/components/HomeProducts';
 import HomeFeaturedProduct from '@/components/HomeFeaturedProduct';
@@ -44,7 +44,7 @@ export default function HomePage() {
       <HomeOverview />
 
       {/* ═══ 2. STATS ═══ */}
-      <HomeStats />
+     
 
       {/* ═══ 3. SERVICES ═══ */}
       <HomeServices services={servicePayload} />
