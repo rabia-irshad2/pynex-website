@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import type { Product } from '@/lib/content';
 import Image from 'next/image';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export default function HomeProducts({ products }: { products: Product[] }) {
   const [active, setActive] = useState(0);
@@ -53,18 +54,13 @@ export default function HomeProducts({ products }: { products: Product[] }) {
                         ))}
                       </div>
 
-                      <Link href={p.link} className="btn btn-primary btn-small mt-4">
-                        <span className="btn-swap">
-                          <span className="btn-swap-front">Explore AI <ArrowUpRight size={16}/></span>
-                          <span className="btn-swap-back">Explore AI <ArrowUpRight size={16}/></span>
-                        </span>
-                      </Link>
+                      <AnimatedButton href={p.link} className="btn-small mt-4">Explore AI <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
                     </div>
 
                     {/* 3D Image Placeholder (Robot/Dashboard) */}
                     <div className="et-product-visual">
                       <Image 
-                        src={`/images/ai-product-${i + 1}.png`} 
+                        src={p.image}
                         alt={p.name} 
                         fill 
                         className="object-contain"

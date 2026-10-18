@@ -2,10 +2,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import Button from '@/components/Button';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
 import SectionLabel from '@/components/SectionLabel';
 import Reveal from '@/components/Reveal';
 import ProjectCard from '@/components/ProjectCard';
+import SloganMarquee from '@/components/SloganMarquee';
 import {
   getAllServices,
   getServiceBySlug,
@@ -25,6 +28,12 @@ const relatedCategoryBySlug: Record<string, string[]> = {
   'business-automation': ['automation'],
   'custom-software': ['custom software'],
   'digital-products': ['digital products', 'digital product'],
+};
+const SERVICE_IMAGES: Record<string, string> = {
+  'ai-solutions': '/images/services/ai-solutions.jpg',
+  'business-automation': '/images/services/business-automation.jpg',
+  'custom-software': '/images/services/custom-software.jpg',
+  'digital-products': '/images/services/digital-products.jpg',
 };
 
 export function generateStaticParams() {
@@ -69,14 +78,16 @@ export default function ServiceDetailPage({
     <>
       {/* HERO */}
       <section className="services-page-hero theme-dark-section">
-        <div className="max-w-content mx-auto px-6 md:px-12 relative z-10">
+        <div className="service-detail-hero max-w-content mx-auto px-6 md:px-12 relative z-10">
           <Reveal>
             <SectionLabel>Service</SectionLabel>
             <h1 className="services-page-title">{service.frontmatter.title}</h1>
             <p className="services-page-intro">
               {service.frontmatter.shortDescription}
             </p>
+            <AnimatedButton href="/contact">Book a consultation <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
           </Reveal>
+          <Reveal><div className="service-detail-image"><Image src={SERVICE_IMAGES[service.slug] || SERVICE_IMAGES['ai-solutions']} alt={`${service.frontmatter.title} illustration`} fill priority sizes="(max-width: 760px) 100vw, 50vw" /></div></Reveal>
         </div>
       </section>
 
@@ -99,7 +110,7 @@ export default function ServiceDetailPage({
                 <p className="mission-card-text mb-6">
                   Tell us about your business and we&apos;ll show you how this fits.
                 </p>
-                <Button href="/contact">Book a Call</Button>
+                <AnimatedButton href="/contact">Book a consultation</AnimatedButton>
               </div>
             </Reveal>
           </aside>
@@ -153,11 +164,7 @@ export default function ServiceDetailPage({
                 ))}
               </div>
             </Reveal>
-          ) : (
-            <p className="text-secondary-text">
-              Technology details are provided during project discovery.
-            </p>
-          )}
+          ) : null}
         </div>
       </section>
 
@@ -204,11 +211,12 @@ export default function ServiceDetailPage({
       <section className="theme-dark-section py-20 md:py-28 text-center border-t border-white/5">
         <div className="max-w-content mx-auto px-6 md:px-12">
           <Reveal>
-            <h2 className="section-title mb-6">Ready to discuss your project?</h2>
-            <Button href="/contact">Book a Call</Button>
+            <h2 className="section-title mb-6">Ready to make your business smarter?</h2>
+            <AnimatedButton href="/contact">Book a consultation <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
           </Reveal>
         </div>
       </section>
+      <SloganMarquee />
     </>
   );
 }

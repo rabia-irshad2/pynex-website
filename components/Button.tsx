@@ -1,11 +1,13 @@
-import Link from 'next/link';
 import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export function ButtonLabel({ children }: { children: ReactNode }) {
   return (
-    <span className="btn-swap">
-      <span className="btn-swap-front">{children}</span>
-      <span className="btn-swap-back" aria-hidden="true">{children}</span>
+    <span className="animated-button-window">
+      <span className="animated-button-track">
+        <span className="animated-button-label">{children}</span>
+        <span className="animated-button-label" aria-hidden="true">{children}</span>
+      </span>
     </span>
   );
 }
@@ -58,17 +60,5 @@ export default function Button({
     className,
   ].filter(Boolean).join(' ');
 
-  if (href) {
-    return (
-      <Link href={href} className={classes} onClick={onClick as MouseEventHandler<HTMLAnchorElement>} target={target} rel={rel} {...accessibilityProps}>
-        <ButtonLabel>{children}</ButtonLabel>
-      </Link>
-    );
-  }
-
-  return (
-    <button className={classes} type={type} onClick={onClick as MouseEventHandler<HTMLButtonElement>} disabled={disabled} {...accessibilityProps}>
-      <ButtonLabel>{children}</ButtonLabel>
-    </button>
-  );
+  return <AnimatedButton href={href} className={classes} variant={variant} type={type} onClick={onClick} disabled={disabled} target={target} rel={rel} {...accessibilityProps}>{children}</AnimatedButton>;
 }

@@ -2,8 +2,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Send } from 'lucide-react';
-import Button from '@/components/Button';
+import { ArrowRight } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export default function ContactForm() {
   const [form, setForm] = useState({
@@ -39,10 +39,7 @@ export default function ContactForm() {
   if (status === 'done') {
     return (
       <div className="contact-success-box">
-        <p className="contact-success-title">Thank you for contacting PYNEX.</p>
-        <p className="contact-success-copy">
-          We have received your inquiry and will reply within one business day.
-        </p>
+        <p className="contact-success-title">Thank you for contacting PYNEX. We have received your inquiry and will reply within one business day.</p>
       </div>
     );
   }
@@ -68,7 +65,7 @@ export default function ContactForm() {
         <input
           id="contact-name"
           required
-          placeholder="Your full name"
+          placeholder="FULL NAME *"
           value={form.name}
           onChange={(e) => update('name', e.target.value)}
         />
@@ -82,7 +79,7 @@ export default function ContactForm() {
           id="contact-email"
           type="email"
           required
-          placeholder="you@company.com"
+          placeholder="EMAIL ADDRESS *"
           value={form.email}
           onChange={(e) => update('email', e.target.value)}
         />
@@ -92,7 +89,7 @@ export default function ContactForm() {
         <label htmlFor="contact-company">Company</label>
         <input
           id="contact-company"
-          placeholder="Your company"
+          placeholder="COMPANY"
           value={form.company}
           onChange={(e) => update('company', e.target.value)}
         />
@@ -105,7 +102,7 @@ export default function ContactForm() {
           value={form.service}
           onChange={(e) => update('service', e.target.value)}
         >
-          <option value="">Choose a service</option>
+          <option value="">SERVICE OF INTEREST</option>
           <option value="AI solutions">AI solutions</option>
           <option value="Business automation">Business automation</option>
           <option value="Custom software development">
@@ -118,7 +115,7 @@ export default function ContactForm() {
         </select>
       </div>
 
-      <div className="contact-field">
+      <div className="contact-field contact-field-full">
         <label htmlFor="message">
           Project details <span>*</span>
         </label>
@@ -126,34 +123,26 @@ export default function ContactForm() {
           id="message"
           required
           rows={5}
-          placeholder="Tell us what you are trying to improve or build."
+          placeholder="PROJECT DETAILS *"
           value={form.message}
           onChange={(e) => update('message', e.target.value)}
         />
       </div>
 
       <div className="contact-form-actions">
-        <Button
+        <AnimatedButton
           type="submit"
           disabled={status === 'loading'}
           aria-busy={status === 'loading'}
           className="contact-submit"
         >
-          {status === 'loading' ? (
-            <>
-              <span className="spinner" aria-hidden="true" />
-              Sending...
-            </>
-          ) : (
-            <>Send message <Send size={16} aria-hidden="true" /></>
-          )}
-        </Button>
+          {status === 'loading' ? 'Sending...' : <>Send message <ArrowRight size={16} aria-hidden="true" /></>}
+        </AnimatedButton>
       </div>
 
       {status === 'error' && (
         <p className="contact-error" role="alert">
-          Email delivery is not available yet. Please email
-          pynexcompany@gmail.com or WhatsApp +92 314 1754779 directly.
+          Something went wrong. Please email pynexcompany@gmail.com or message us on WhatsApp.
         </p>
       )}
     </form>

@@ -1,135 +1,60 @@
-//app/blog/[slug]/page.tsx
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import SafeImage from '@/components/SafeImage';
+import Image from 'next/image';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import AnimatedButton from '@/components/AnimatedButton';
+import ExpandCard from '@/components/ExpandCard';
 import SectionLabel from '@/components/SectionLabel';
 import Reveal from '@/components/Reveal';
-import Button from '@/components/Button';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/content';
 
 export function generateStaticParams() {
-  return getAllBlogPosts().map((p) => ({ slug: p.slug }));
+  return getAllBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const post = getBlogPostBySlug(params.slug);
   if (!post) return {};
-  return {
-    title: post.frontmatter.title,
-    description: post.frontmatter.summary,
-  };
+  return { title: post.frontmatter.title, description: post.frontmatter.summary };
 }
 
-export default function BlogPostPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+function formatDate(date: string) {
+  const parsed = new Date(`${date}T00:00:00`);
+  return Number.isNaN(parsed.getTime()) ? '' : new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).format(parsed);
+}
+
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = getBlogPostBySlug(params.slug);
   if (!post) notFound();
 
-  const related = getAllBlogPosts()
-    .filter(
-      (item) =>
-        item.slug !== post.slug &&
-        item.frontmatter.category === post.frontmatter.category
-    )
-    .slice(0, 3);
+  const meta = [post.frontmatter.author, formatDate(post.frontmatter.date), post.frontmatter.readingTime].filter((value): value is string => Boolean(value));
+  const related = getAllBlogPosts().filter((item) => item.slug !== post.slug && item.frontmatter.category === post.frontmatter.category).slice(0, 3);
 
   return (
-    <article className="theme-dark-section">
-      {/* HERO */}
-      <section className="blog-page-hero">
-        <div className="max-w-content mx-auto px-6 md:px-12">
+    <main className="blog-redesign blog-article-page theme-dark-section">
+      <header className="blog-article-header">
+        <div className="blog-article-container">
           <Reveal>
             <SectionLabel>{post.frontmatter.category}</SectionLabel>
-            <h1 className="blog-page-title">
-              {post.frontmatter.title}
-            </h1>
-            <p className="blog-page-intro">
-              {post.frontmatter.author} ·{' '}
-              {new Date(post.frontmatter.date).toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-              })}
-              {post.frontmatter.readingTime && ` · ${post.frontmatter.readingTime}`}
-            </p>
+            <h1>{post.frontmatter.title}</h1>
+            {meta.length > 0 && <div className="blog-article-meta">{meta.map((item, index) => <span key={`${item}-${index}`}>{index > 0 && <i aria-hidden="true" />}{item}</span>)}</div>}
           </Reveal>
         </div>
-      </section>
+      </header>
 
-      {/* CONTENT */}
-      <div className="max-w-content mx-auto px-6 md:px-12 py-16 md:py-24">
-        <Reveal>
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-12 border border-white/10">
-            <SafeImage
-              src={post.frontmatter.image}
-              alt={post.frontmatter.title}
-              fill
-              className="object-cover"
-              fallback={
-                <div className="blog-placeholder">
-                  <span>{post.frontmatter.category}</span>
-                </div>
-              }
-            />
-          </div>
-        </Reveal>
+      {post.frontmatter.image && <div className="blog-article-image-wrap"><Image src={post.frontmatter.image} alt={post.frontmatter.title} width={1600} height={900} sizes="(max-width: 1240px) 100vw, 1200px" priority /></div>}
 
-        <article className="blog-article-content max-w-3xl mx-auto">
-          <MDXRemote source={post.content} />
-        </article>
+      <article className="blog-article-content"><MDXRemote source={post.content} /></article>
 
-        {/* CTA */}
-        <Reveal>
-          <div className="mission-card text-center mt-16 max-w-3xl mx-auto">
-            <h2 className="mission-card-title">Have a business problem to solve?</h2>
-            <p className="mission-card-text mb-6">
-              Tell us about it — we&apos;ll reply within one business day.
-            </p>
-            <Button href="/contact">Talk to PYNEX</Button>
-          </div>
-        </Reveal>
+      {related.length > 0 && <section className="blog-related-section"><div className="blog-container">
+        <Reveal><SectionLabel>Keep reading</SectionLabel><h2>More on {post.frontmatter.category}</h2></Reveal>
+        <div className="blog-related-grid">{related.map((item, index) => {
+          const relatedMeta = [item.frontmatter.author, formatDate(item.frontmatter.date), item.frontmatter.readingTime].filter((value): value is string => Boolean(value));
+          return <Reveal key={item.slug} delay={index * .06}><ExpandCard mode="article" href={`/blog/${item.slug}`} title={item.frontmatter.title} category={item.frontmatter.category} summary={item.frontmatter.summary} image={item.frontmatter.image || undefined} imageAlt={item.frontmatter.title} meta={relatedMeta} /></Reveal>;
+        })}</div>
+      </div></section>}
 
-        {/* RELATED */}
-        {related.length > 0 && (
-          <section className="mt-20 max-w-3xl mx-auto">
-            <Reveal>
-              <SectionLabel>Related articles</SectionLabel>
-            </Reveal>
-            <div className="grid md:grid-cols-3 gap-5 mt-6">
-              {related.map((item, i) => (
-                <Reveal key={item.slug} delay={i * 0.06}>
-                  <Link
-                    href={`/blog/${item.slug}`}
-                    className="blog-card p-5 block"
-                  >
-                    <p className="section-label">{item.frontmatter.category}</p>
-                    <h3
-                      className="text-main-text mt-2"
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '1.35rem',
-                        lineHeight: 1.1,
-                        color: '#fff',
-                      }}
-                    >
-                      {item.frontmatter.title}
-                    </h3>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          </section>
-        )}
-      </div>
-    </article>
+      <section className="blog-closing"><Reveal><h2>Ready to make your business smarter?</h2><AnimatedButton href="/contact">Book a consultation</AnimatedButton></Reveal></section>
+    </main>
   );
 }

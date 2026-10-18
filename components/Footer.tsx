@@ -1,5 +1,6 @@
 //components/Footer.tsx — Eastern Tech-inspired footer, PYNEX branding
 import Link from 'next/link';
+import AnimatedButton from '@/components/AnimatedButton';
 import Image from 'next/image';
 import {
   ArrowUpRight,
@@ -100,10 +101,7 @@ export default function Footer({
             <span className="footer-hero-accent">Technology.</span>
           </h2>
 
-          <Link href="/contact" className="footer-hero-cta">
-            Arrange a Meeting
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
+          <AnimatedButton href="/contact" className="footer-hero-cta">Arrange a Meeting <ArrowUpRight size={18} aria-hidden="true" /></AnimatedButton>
         </div>
 
         {/* ═══════════════════════════════════════════

@@ -2,10 +2,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import Button from '@/components/Button';
+import { ArrowUpRight } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
 import SectionLabel from '@/components/SectionLabel';
 import SafeImage from '@/components/SafeImage';
 import Reveal from '@/components/Reveal';
+import SloganMarquee from '@/components/SloganMarquee';
 import {
   getAllProjects,
   getProjectBySlug,
@@ -63,49 +65,42 @@ export default function ProjectDetailPage({
     (project.frontmatter.category
       ? CATEGORY_TO_SERVICE[project.frontmatter.category]
       : undefined);
+  const titleWords = project.frontmatter.title.trim().split(/\s+/);
+  const accentWord = titleWords.pop() || '';
 
   return (
     <>
       {/* HERO */}
       <section className="projects-page-hero theme-dark-section">
-        <div className="max-w-content mx-auto px-6 md:px-12 relative z-10">
+        <div className="project-hero-box max-w-content mx-auto px-6 md:px-12 relative z-10">
           <Reveal>
             <SectionLabel>{project.frontmatter.category}</SectionLabel>
-            <h1 className="projects-page-title">{project.frontmatter.title}</h1>
-            <p className="projects-page-intro">{project.frontmatter.summary}</p>
-
-            <div className="flex flex-wrap gap-2 mt-8">
-              <span className="scope-chip">{project.frontmatter.location}</span>
-              {project.frontmatter.scope.map((s) => (
-                <span className="scope-chip" key={s}>
-                  {s}
-                </span>
-              ))}
+            <h1 className="projects-page-title">{titleWords.join(' ')} <span>{accentWord}</span></h1>
+            <div className="project-monitor">
+              <div className="project-monitor-screen">
+                <SafeImage src={project.frontmatter.image} alt={`Preview of ${project.frontmatter.title}`} fill className="object-cover" fallback={<div className="project-placeholder"><span>{project.frontmatter.category}</span><strong>{project.frontmatter.title}</strong></div>} />
+              </div>
+              <div className="project-monitor-stand" />
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="project-facts theme-dark-section">
+        <div className="max-w-content mx-auto px-6 md:px-12">
+          <p className="project-facts-meta">{project.frontmatter.location} <i /> {project.frontmatter.category}</p>
+          <div className="project-facts-grid">
+            <p className="project-facts-summary">{project.frontmatter.summary}</p>
+            <div><span>SERVICES UTILIZED</span><strong>{project.frontmatter.category}</strong></div>
+            <div><span>SCOPE OF WORK</span><ul>{project.frontmatter.scope.map((scope) => <li key={scope}>{scope}</li>)}</ul></div>
+          </div>
+          {project.frontmatter.website && !project.frontmatter.website.includes('example.com') && <AnimatedButton href={project.frontmatter.website} target="_blank" rel="noopener noreferrer">Visit website <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>}
         </div>
       </section>
 
       {/* COVER IMAGE + CONTENT */}
       <section className="project-detail-content theme-dark-section py-16 md:py-24">
         <div className="max-w-content mx-auto px-6 md:px-12">
-          <Reveal>
-            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-16 border border-white/10">
-              <SafeImage
-                src={project.frontmatter.image}
-                alt={`Preview of ${project.frontmatter.title}`}
-                fill
-                className="object-cover"
-                fallback={
-                  <div className="project-placeholder">
-                    <span>{project.frontmatter.category}</span>
-                    <strong>{project.frontmatter.title}</strong>
-                  </div>
-                }
-              />
-            </div>
-          </Reveal>
-
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2 space-y-12">
               <section>
@@ -199,24 +194,27 @@ export default function ProjectDetailPage({
 
                   {project.frontmatter.website &&
                     !project.frontmatter.website.includes('example.com') && (
-                      <Button href={project.frontmatter.website} target="_blank" rel="noopener noreferrer" variant="outline" className="w-full justify-center mb-3">
-                        Visit live site
-                      </Button>
+              <AnimatedButton href={project.frontmatter.website} target="_blank" rel="noopener noreferrer" variant="outline" className="w-full justify-center mb-3">Visit live site</AnimatedButton>
                     )}
 
                   {relatedService && (
-                    <Button href={`/services/${relatedService}`} variant="outline" className="w-full justify-center mb-3">
-                      View related service
-                    </Button>
+                    <AnimatedButton href={`/services/${relatedService}`} variant="outline" className="w-full justify-center mb-3">View related service</AnimatedButton>
                   )}
 
-                  <Button href="/contact">Start a similar project</Button>
+                  <AnimatedButton href="/contact">Start a similar project</AnimatedButton>
                 </div>
               </Reveal>
             </aside>
           </div>
         </div>
       </section>
+      <section className="project-closing theme-dark-section">
+        <Reveal>
+          <h2>Start a similar project</h2>
+          <AnimatedButton href="/contact">Book a consultation <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
+        </Reveal>
+      </section>
+      <SloganMarquee />
     </>
   );
 }

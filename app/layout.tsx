@@ -51,7 +51,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ScrollProgress />
         <Analytics measurementId={GA_ID} />
         <Header />
-        <main>{children}</main>
+        <main className="site-main">{children}</main>
         <Footer
           googleRating={googleReviews?.rating}
           googleReviewCount={googleReviews?.reviewCount}

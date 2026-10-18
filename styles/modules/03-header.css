@@ -157,3 +157,39 @@ header.site-header {
   display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); cursor: pointer;
 }
 @media (min-width: 1000px) { .header-menu-trigger { display: none !important; } }
+
+/* Shared fixed header with scroll direction behavior. */
+header.site-header, header.site-header.is-hidden, header.site-header.is-scrolled {
+  position: fixed !important;
+  inset: 0 0 auto !important;
+  z-index: 99999 !important;
+  padding: 14px 0 0 !important;
+  transform: translateY(0) !important;
+  transition: transform .35s ease !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+header.site-header.is-hidden { transform: translateY(-100%) !important; }
+header.site-header .header-inner {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  transition: background-color .25s ease, backdrop-filter .25s ease;
+}
+header.site-header.is-scrolled .header-inner {
+  background: rgba(10, 14, 17, .8);
+  border-color: transparent;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+header.site-header .header-inner,
+header.site-header.is-scrolled .header-inner {
+  background: rgba(10, 14, 17, .8);
+  border-color: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.site-main > .legal-page,
+.site-main > .unsubscribe-page,
+.site-main > .contact-page,
+.site-main > .not-found-page { padding-top: calc(78px + 2rem); }

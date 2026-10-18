@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import AnimatedButton from '@/components/AnimatedButton';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -73,19 +73,7 @@ export default function HomeOverview() {
               ref={cta.ref}
               className={`et-overview-cta-wrap ${cta.shown ? 'is-in' : ''}`}
             >
-              <Link href="/contact" className="et-overview-cta">
-                {/* Two stacked labels — one visible, one hidden below */}
-                <span className="et-overview-cta-slot">
-                  <span className="et-overview-cta-label">
-                    Book a Call
-                    <ArrowUpRight size={16} aria-hidden="true" />
-                  </span>
-                  <span className="et-overview-cta-label-clone" aria-hidden="true">
-                    Book a Call
-                    <ArrowUpRight size={16} aria-hidden="true" />
-                  </span>
-                </span>
-              </Link>
+              <AnimatedButton href="/contact" className="et-overview-cta">Book a Call <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
             </div>
           </div>
 

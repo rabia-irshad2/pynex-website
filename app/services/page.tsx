@@ -7,7 +7,7 @@ import Reveal from '@/components/Reveal';
 import SectionLabel from '@/components/SectionLabel';
 import ServicesFeatureCard from '@/components/ServicesFeatureCard';
 import SloganMarquee from '@/components/SloganMarquee';
-import Button from '@/components/Button';
+import AnimatedButton from '@/components/AnimatedButton';
 import { getAllServices, getAllProjects } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const PROJECT_IMAGES: Record<string, string> = {
-  'ai-support-assistant': '/images/projects/ai-support-assistant.jpg',
+  'ai-support-assistant': '/images/projects/ai-support-assistant.JPG',
   'client-portal-platform': '/images/projects/custom-software.jpg',
   'smart-inventory-system': '/images/projects/business-automation.jpg',
 };
@@ -25,13 +25,9 @@ const PROJECT_IMAGES: Record<string, string> = {
 export default function ServicesPage() {
   const services = getAllServices();
   const projects = getAllProjects();
-  const featuredSlugs = ['ai-solutions', 'business-automation', 'custom-software'];
-  const featuredServices = featuredSlugs
+  const featuredServices = ['ai-solutions', 'business-automation', 'custom-software', 'digital-products']
     .map((slug) => services.find((s) => s.slug === slug))
     .filter((s): s is (typeof services)[number] => Boolean(s));
-  const additionalService = services.find(
-    (s) => !featuredSlugs.includes(s.slug),
-  );
 
   return (
     <div className="services-route">
@@ -41,11 +37,11 @@ export default function ServicesPage() {
           <Reveal>
             <SectionLabel>Services</SectionLabel>
             <h1 className="services-route-title">
-              <span>Make work</span>
-              <span>work better.</span>
+              <span>Services Built</span>
+              <span>Around Real Business Problems</span>
             </h1>
             <p className="services-route-intro">
-              AI, automation, and software shaped around the work your team needs to move forward.
+              From strategy and AI to automation and custom software, we build digital products that solve real business problems and create lasting advantages.
             </p>
           </Reveal>
 
@@ -64,19 +60,6 @@ export default function ServicesPage() {
             ))}
           </div>
 
-          {additionalService && (
-            <Reveal>
-              <Link
-                href={`/services/${additionalService.slug}`}
-                className="services-additional-link"
-              >
-                <span>ALSO IN OUR TOOLKIT</span>
-                <strong>{additionalService.frontmatter.title}</strong>
-                <span>{additionalService.frontmatter.shortDescription}</span>
-                <ArrowUpRight size={19} aria-hidden="true" />
-              </Link>
-            </Reveal>
-          )}
         </div>
       </section>
 
@@ -86,7 +69,7 @@ export default function ServicesPage() {
           <Reveal>
             <div className="services-work-heading">
               <SectionLabel>Our work</SectionLabel>
-              <h2>Built to move business forward.</h2>
+                <h2>Built to move business forward.</h2>
               <p>
                 Selected systems designed around real teams, processes, and customer needs.
               </p>
@@ -94,7 +77,7 @@ export default function ServicesPage() {
           </Reveal>
 
           <div className="case-study-list">
-            {projects.slice(0, 3).map((project, index) => {
+            {projects.slice(0, 2).map((project, index) => {
               const image =
                 project.frontmatter.image ||
                 PROJECT_IMAGES[project.slug] ||
@@ -151,12 +134,19 @@ export default function ServicesPage() {
 
           <Reveal>
             <div className="services-work-action">
-              <Button href="/projects" variant="secondary">
+              <AnimatedButton href="/projects" variant="secondary">
                 Explore all case studies
-              </Button>
+              </AnimatedButton>
             </div>
           </Reveal>
         </div>
+      </section>
+
+      <section className="services-closing theme-dark-section">
+        <Reveal>
+          <h2>Ready to make your business smarter?</h2>
+          <AnimatedButton href="/contact">Book a consultation <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
+        </Reveal>
       </section>
 
       {/* ═══ SLOGAN BAND ═══ */}

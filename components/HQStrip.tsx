@@ -9,7 +9,7 @@ export default function HQStrip() {
           <h2 className="et-hq-title">Step Inside The<br/>PYNEX HQ</h2>
         </div>
         <div className="et-hq-image">
-           <Image src="/images/hq-building.jpg" alt="PYNEX Headquarters" fill className="object-cover" />
+           <Image src="/images/overview/overview.jpg" alt="PYNEX workspace" fill className="object-cover" />
         </div>
       </div>
     </section>

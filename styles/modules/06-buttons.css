@@ -116,3 +116,69 @@
   .btn-swap-front { transform: none !important; }
   .btn-swap-back { display: none !important; }
 }
+
+/* Shared clipped label window: padding stays on the outer control. */
+.animated-button.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 54px;
+  padding: 14px 22px;
+  border-radius: 10px;
+  overflow: visible;
+  gap: 0;
+  transition: background-color .3s, color .3s, border-color .3s, box-shadow .3s;
+}
+.animated-button-window { display: block; height: 1.25em; line-height: 1.25em; overflow: hidden; }
+.animated-button-track { display: flex; flex-direction: column; transition: transform .4s cubic-bezier(.65,0,.35,1); }
+.animated-button-label { display: flex; align-items: center; justify-content: center; gap: 8px; height: 1.25em; line-height: 1.25em; white-space: nowrap; }
+.animated-button:hover .animated-button-track,
+.animated-button:focus-visible .animated-button-track,
+.btn:hover .animated-button-track,
+.btn:focus-visible .animated-button-track,
+.footer-hero-cta:hover .animated-button-track,
+.footer-hero-cta:focus-visible .animated-button-track,
+.et-overview-cta:hover .animated-button-track,
+.et-overview-cta:focus-visible .animated-button-track { transform: translateY(-50%); }
+.filter-button:hover .animated-button-track,
+.filter-button:focus-visible .animated-button-track,
+.services-feature-card:hover .animated-button-track,
+.services-feature-card:focus-visible .animated-button-track,
+.service-flip-card:hover .animated-button-track,
+.service-flip-card:focus-visible .animated-button-track,
+.featured-article-card:hover .animated-button-track,
+.featured-article-card:focus-visible .animated-button-track { transform: translateY(-50%); }
+.animated-button.btn-primary { background: #fff; color: #0a0e11; }
+.animated-button.btn-primary:hover,
+.animated-button.btn-primary:focus-visible { background: #3080ff; border-color: #3080ff; color: #fff; }
+.animated-button.btn-secondary,
+.animated-button.btn-outline { background: #0a1a33; color: #fff; }
+.animated-button.btn-secondary:hover,
+.animated-button.btn-secondary:focus-visible,
+.animated-button.btn-outline:hover,
+.animated-button.btn-outline:focus-visible { background: #fff; border-color: #fff; color: #0a0e11; }
+.animated-button:disabled { opacity: .55; cursor: not-allowed; }
+.animated-button:disabled .animated-button-track { transform: none; }
+.nav-cta.animated-button { min-height: 44px; padding: 11px 20px; border-radius: 999px; background: #0a1a33; color: #fff; border-color: transparent; font-size: .75rem; }
+.nav-cta.animated-button:hover,
+.nav-cta.animated-button:focus-visible { background: #fff; color: #0a0e11; }
+@media (prefers-reduced-motion: reduce) {
+  .animated-button, .animated-button-track { transition: none !important; }
+  .animated-button:hover .animated-button-track,
+  .animated-button:focus-visible .animated-button-track,
+  .btn:hover .animated-button-track,
+  .btn:focus-visible .animated-button-track,
+  .footer-hero-cta:hover .animated-button-track,
+  .footer-hero-cta:focus-visible .animated-button-track,
+  .et-overview-cta:hover .animated-button-track,
+  .et-overview-cta:focus-visible .animated-button-track { transform: none; }
+  .filter-button:hover .animated-button-track,
+  .filter-button:focus-visible .animated-button-track,
+  .services-feature-card:hover .animated-button-track,
+  .services-feature-card:focus-visible .animated-button-track,
+  .service-flip-card:hover .animated-button-track,
+  .service-flip-card:focus-visible .animated-button-track,
+  .featured-article-card:hover .animated-button-track,
+  .featured-article-card:focus-visible .animated-button-track { transform: none; }
+}

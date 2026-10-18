@@ -1,9 +1,9 @@
 //components/ClosingCta.tsx — self-contained, no external Rv dependency
 'use client';
 
-import Link from 'next/link';
 import { ArrowUpRight, Phone } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import AnimatedButton from '@/components/AnimatedButton';
 
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T>(null);
@@ -68,18 +68,7 @@ export default function ClosingCta() {
           ref={actions.ref}
           className={`et-closing-actions ${actions.shown ? 'is-in' : ''}`}
         >
-          <Link href="/contact" className="btn btn-primary">
-            <span className="btn-swap">
-              <span className="btn-swap-front">
-                Book a Call
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </span>
-              <span className="btn-swap-back" aria-hidden="true">
-                Book a Call
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </span>
-            </span>
-          </Link>
+          <AnimatedButton href="/contact">Book a Call <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
 
           <a href="tel:+923141754779" className="et-closing-pill">
             <Phone size={14} aria-hidden="true" />

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowUpRight, Check } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
 
 export default function HomeFeaturedProduct() {
   return (
@@ -14,7 +14,7 @@ export default function HomeFeaturedProduct() {
             <span className="text-[#00C6FF]">to work their way.</span>
           </h2>
           <p className="et-featured-desc">
-            A configurable platform that adapts to each client's workflow, branding, and data — instead of forcing everyone into the same rigid template.
+            A configurable platform that adapts to each client&apos;s workflow, branding, and data — instead of forcing everyone into the same rigid template.
           </p>
           
           <ul className="et-featured-list">
@@ -23,17 +23,12 @@ export default function HomeFeaturedProduct() {
             <li><span className="icon"><Check size={14}/></span> <strong>Built for scale</strong> — from one team to multi-tenant.</li>
           </ul>
 
-          <Link href="/contact" className="btn btn-primary">
-            <span className="btn-swap">
-              <span className="btn-swap-front">Test Live <ArrowUpRight size={16}/></span>
-              <span className="btn-swap-back">Test Live <ArrowUpRight size={16}/></span>
-            </span>
-          </Link>
+          <AnimatedButton href="/contact">Test Live <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
         </div>
 
         <div className="et-featured-visual">
            {/* Replace with your actual screenshot */}
-           <Image src="/images/ai-support-assistant.jpg" alt="Product interface" fill className="object-cover rounded-2xl border border-white/10" />
+           <Image src="/images/projects/ai-support-assistant.JPG" alt="Product interface" fill className="object-cover rounded-2xl border border-white/10" />
         </div>
 
       </div>

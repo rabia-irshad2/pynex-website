@@ -4,7 +4,7 @@
     "name": "AI Support Assistant",
     "tagline": "AI that answers every customer question",
     "description": "Trained on your support transcripts and knowledge base, our AI assistant answers common questions instantly, escalates edge cases to humans, and learns from every interaction.",
-    "image": "/images/projects/ai-support-assistant.jpg",
+    "image": "/images/projects/ai-support-assistant.JPG",
     "link": "/projects/ai-support-assistant",
     "linkLabel": "Explore case study",
     "stats": [
@@ -17,7 +17,7 @@
     "name": "Smart Inventory System",
     "tagline": "Warehouse intelligence without the spreadsheets",
     "description": "Real-time inventory tracking that syncs across warehouse and sales channels, predicts stockouts before they happen, and cuts manual stock checks to zero.",
-    "image": "/images/projects/smart-inventory-system.jpg",
+    "image": "/images/projects/business-automation.jpg",
     "link": "/projects/smart-inventory-system",
     "linkLabel": "Explore case study",
     "stats": [
@@ -30,7 +30,7 @@
     "name": "Client Portal Platform",
     "tagline": "One place for every client relationship",
     "description": "Give clients a single dashboard for project updates, files, and messages. Automatic notifications keep everyone aligned — no email threads, no missed deadlines.",
-    "image": "/images/projects/client-portal-platform.jpg",
+    "image": "/images/projects/custom-software.jpg",
     "link": "/projects/client-portal-platform",
     "linkLabel": "Explore case study",
     "stats": [
