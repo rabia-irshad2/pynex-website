@@ -163,7 +163,43 @@
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(79, 169, 255, 0.5);
 }
+/* ── Closed state ── */
+.drawer-root {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
+/* ── Open state ── */
+.drawer-root.is-open {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Backdrop fade */
+.drawer-backdrop {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.drawer-root.is-open .drawer-backdrop {
+  opacity: 1;
+}
+
+/* Panel slide in from right */
+.drawer-panel {
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.drawer-root.is-open .drawer-panel {
+  transform: translateX(0);
+}
 .drawer-links {
   flex: 1;
   display: flex;

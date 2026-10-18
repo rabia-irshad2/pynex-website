@@ -1,14 +1,9 @@
-/* styles/modules/11-fx.css
- * Transitions and effects — matches Eastern Techno's timing.
- */
+/* styles/modules/11-fx.css */
 
 /* ═══ SCROLL PROGRESS ═══ */
 .scroll-progress {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
+  top: 0; left: 0; width: 100%; height: 2px;
   background: linear-gradient(90deg, #4fa9ff, #55dcf5);
   transform-origin: left;
   z-index: 200;
@@ -18,164 +13,63 @@
 
 /* ═══ BACK TO TOP ═══ */
 .back-to-top {
-  position: fixed;
-  bottom: 108px;
-  left: 24px;
-  z-index: 40;
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: rgba(5, 12, 24, 0.9);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(79, 169, 255, 0.25);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: fixed; bottom: 108px; left: 24px; z-index: 40;
+  width: 46px; height: 46px; border-radius: 12px;
+  background: rgba(5, 12, 24, 0.9); backdrop-filter: blur(14px);
+  border: 1px solid rgba(79, 169, 255, 0.25); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.back-to-top:hover {
-  background: #4fa9ff;
-  border-color: #4fa9ff;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(79, 169, 255, 0.4);
-}
+.back-to-top:hover { background: #4fa9ff; border-color: #4fa9ff; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(79, 169, 255, 0.4); }
 
 /* ═══ WHATSAPP FAB ═══ */
 .whatsapp-fab {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 40;
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: #25d366;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed; bottom: 24px; right: 24px; z-index: 40;
+  width: 56px; height: 56px; border-radius: 14px; background: #25d366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.whatsapp-fab:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.5);
-}
+.whatsapp-fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 16px 40px rgba(37, 211, 102, 0.5); }
 
 /* ═══ COOKIE BANNER ═══ */
 .cookie-banner {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  max-width: 560px;
-  width: calc(100% - 48px);
-  padding: 22px 26px;
-  border-radius: 16px;
-  background: rgba(5, 12, 24, 0.96);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(79, 169, 255, 0.3);
-  color: #fff;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow:
-    0 24px 80px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(79, 169, 255, 0.12);
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100;
+  max-width: 560px; width: calc(100% - 48px); padding: 22px 26px;
+  border-radius: 16px; background: rgba(5, 12, 24, 0.96); backdrop-filter: blur(24px);
+  border: 1px solid rgba(79, 169, 255, 0.3); color: #fff;
+  font-family: var(--font-mono); font-size: 13px; display: flex; flex-direction: column; gap: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8), 0 0 60px rgba(79, 169, 255, 0.12);
   animation: cookie-slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes cookie-slide-up {
-  from {
-    transform: translate(-50%, 20px);
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, 0);
-    opacity: 1;
-  }
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
 }
 
-.cookie-banner p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.78);
-  line-height: 1.55;
-}
-
-.cookie-banner a {
-  color: #4fa9ff;
-  text-decoration: underline;
-}
-
-.cookie-actions {
-  display: flex;
-  gap: 10px;
-}
-
+.cookie-banner p { margin: 0; color: rgba(255, 255, 255, 0.78); line-height: 1.55; }
+.cookie-banner a { color: #4fa9ff; text-decoration: underline; }
+.cookie-actions { display: flex; gap: 10px; }
 .cookie-actions button {
-  flex: 1;
-  padding: 12px 18px;
-  border-radius: 10px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  flex: 1; padding: 12px 18px; border-radius: 10px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; cursor: pointer; transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.cookie-decline {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-.cookie-decline:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.cookie-accept {
-  background: #ffffff;
-  border: 1px solid transparent;
-  color: #05080f;
-}
-
-.cookie-accept:hover {
-  background: #55dcf5;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(85, 220, 245, 0.4);
-}
+.cookie-decline { background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; }
+.cookie-decline:hover { border-color: rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.06); }
+.cookie-accept { background: #ffffff; border: 1px solid transparent; color: #05080f; }
+.cookie-accept:hover { background: #55dcf5; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(85, 220, 245, 0.4); }
 
 @media (max-width: 640px) {
-  .cookie-banner {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    transform: none;
-    width: auto;
-  }
+  .cookie-banner { left: 16px; right: 16px; bottom: 16px; transform: none; width: auto; }
   @keyframes cookie-slide-up {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
 }
 
-/* ═══ SECTION ENTRANCE — Eastern Techno timing ═══ */
+/* ═══ SECTION ENTRANCE ═══ */
 @supports (animation-timeline: view()) {
   .section-centered,
   .home-overview,
@@ -193,14 +87,8 @@
   }
 
   @keyframes section-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(32px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 

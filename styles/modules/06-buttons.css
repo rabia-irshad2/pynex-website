@@ -1,4 +1,4 @@
-/* styles/modules/06-buttons.css — global button system with slide-down swap */
+/* styles/modules/06-buttons.css */
 
 .btn {
   position: relative;
@@ -19,125 +19,94 @@
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
-  transition:
-    background 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.22s;
 }
 
 .btn-large { height: 60px; padding: 0 2.4rem; font-size: 0.94rem; }
 .btn-small { height: 46px; padding: 0 1.4rem; font-size: 0.76rem; }
 
-/* Primary — white bg, dark text */
-.btn-primary {
-  background: #ffffff;
-  color: #05080f;
-  border-color: #ffffff;
-}
-.btn-primary:hover {
-  background: #0057ff;
-  border-color: #0057ff;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4);
-}
+.btn-primary { background: #ffffff; color: #05080f; border-color: #ffffff; }
+.btn-primary:hover { background: #0057ff; border-color: #0057ff; color: #ffffff; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4); }
 
-/* Secondary — dark bg, white text */
-.btn-secondary {
-  background: #141418;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.14);
-}
-.btn-secondary:hover {
-  background: #0057ff;
-  border-color: #0057ff;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4);
-}
+.btn-secondary { background: #141418; color: #ffffff; border-color: rgba(255, 255, 255, 0.14); }
+.btn-secondary:hover { background: #0057ff; border-color: #0057ff; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4); }
 
-/* Outline — transparent with border */
-.btn-outline {
-  background: transparent;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.22);
-}
-.btn-outline:hover {
-  background: #0057ff;
-  border-color: #0057ff;
-  transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4);
-}
+.btn-outline { background: transparent; color: #ffffff; border-color: rgba(255, 255, 255, 0.22); }
+.btn-outline:hover { background: #0057ff; border-color: #0057ff; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0, 87, 255, 0.4); }
 
-/* Ghost — text only */
-.btn-ghost {
-  background: transparent;
-  color: #ffffff;
-  border-color: transparent;
-  padding-inline: 0;
-}
+.btn-ghost { background: transparent; color: #ffffff; border-color: transparent; padding-inline: 0; }
 .btn-ghost:hover { color: #7de5ff; }
 
-/* Press feedback */
 .btn:active { transform: scale(0.97); }
-
-/* Focus */
-.btn:focus-visible {
-  outline: 2px solid #4fa9ff;
-  outline-offset: 3px;
-}
-
-/* Disabled */
-.btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  transform: none !important;
-}
+.btn:focus-visible { outline: 2px solid #4fa9ff; outline-offset: 3px; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none !important; }
 
 /* ═══════════════════════════════════════════════
-   SLIDE-DOWN LABEL SWAP
-   Both labels stacked inside a clipping box.
-   On hover: front label exits top, back label enters from bottom.
+   THE SCROLL-DOWN SWAP EFFECT
    ═══════════════════════════════════════════════ */
+
+/* Common wrapper */
 .btn-swap {
   position: relative;
-  display: inline-grid;
+  display: grid !important;
   grid-template-areas: 'stack';
   place-items: center;
+  overflow: hidden !important;
   height: 100%;
-  overflow: hidden;
 }
 
+/* Force both texts to sit exactly on top of each other */
 .btn-swap-front,
 .btn-swap-back {
   grid-area: stack;
-  display: inline-flex;
+  display: flex !important;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   transform: translateY(0);
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
   will-change: transform;
 }
 
+/* Back text starts 100% below */
 .btn-swap-back {
-  transform: translateY(120%);
+  transform: translateY(100%);
 }
 
+/* Nav Link height adjustments */
+.nav-link .btn-swap { height: 15px; line-height: 15px; }
+.nav-cta .btn-swap { height: 20px; line-height: 20px; }
+
+/* TRIGGER THE ANIMATION ON HOVER */
+
+/* 1. General buttons */
 .btn:hover .btn-swap-front,
 .btn:focus-visible .btn-swap-front {
-  transform: translateY(-120%);
+  transform: translateY(-100%) !important;
 }
-
 .btn:hover .btn-swap-back,
 .btn:focus-visible .btn-swap-back {
-  transform: translateY(0);
+  transform: translateY(0) !important;
 }
 
-/* Icon inside labels */
-.btn-swap svg {
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  flex-shrink: 0;
+/* 2. Nav links */
+.nav-link:hover .btn-swap-front,
+.nav-link:focus-visible .btn-swap-front {
+  transform: translateY(-100%) !important;
+}
+.nav-link:hover .btn-swap-back,
+.nav-link:focus-visible .btn-swap-back {
+  transform: translateY(0) !important;
+}
+
+/* 3. Book a Call CTA */
+.nav-cta:hover .btn-swap-front,
+.nav-cta:focus-visible .btn-swap-front {
+  transform: translateY(-100%) !important;
+}
+.nav-cta:hover .btn-swap-back,
+.nav-cta:focus-visible .btn-swap-back {
+  transform: translateY(0) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -145,5 +114,5 @@
     transition: none !important;
   }
   .btn-swap-front { transform: none !important; }
-  .btn-swap-back { display: none; }
+  .btn-swap-back { display: none !important; }
 }
