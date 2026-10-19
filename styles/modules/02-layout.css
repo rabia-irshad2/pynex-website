@@ -61,8 +61,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #e02020;
-  box-shadow: 0 0 8px rgba(224, 32, 32, 0.9);
+  background: #0057ff;
+  box-shadow: 0 0 8px rgba(0, 87, 255, 0.9);
   flex-shrink: 0;
 }
 

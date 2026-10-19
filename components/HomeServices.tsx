@@ -67,8 +67,15 @@ export default function HomeServices({ services }: { services: Svc[] }) {
                   </div>
                   {/* BACK */}
                   <div className="et-flip-back">
+                    <div className="et-flip-back-media" aria-hidden="true">
+                      <Image src={data.image} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" />
+                    </div>
+                    <div className="et-flip-back-shade" aria-hidden="true" />
                     <div className="et-flip-back-inner">
                       <h3 className="et-flip-back-title">{data.label}</h3>
+                      <p className="et-flip-back-description">
+                        {svc.introduction || svc.frontmatter.shortDescription}
+                      </p>
                       <ul className="et-flip-back-list">
                         {data.features.map((f: string, j: number) => <li key={j}>{f}</li>)}
                       </ul>

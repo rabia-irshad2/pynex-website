@@ -126,8 +126,8 @@
 }
 
 .footer-hero-accent {
-  color: #55dcf5;
-  text-shadow: 0 0 60px rgba(85, 220, 245, 0.3);
+  color: #fff;
+  text-shadow: none;
 }
 
 .footer-hero-cta {

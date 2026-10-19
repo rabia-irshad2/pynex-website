@@ -40,10 +40,7 @@
 .et-hero-line:nth-child(2) { animation-delay: 0.24s; }
 
 .et-hero-accent {
-  background: linear-gradient(90deg, #ffffff 30%, #7de5ff 50%, #ffffff 70%);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
 }
 
 .et-hero-icons {

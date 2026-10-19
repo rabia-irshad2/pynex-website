@@ -143,8 +143,8 @@
 .et-overview-cta:focus-visible .animated-button-track { transform: translateY(-50%); }
 .filter-button:hover .animated-button-track,
 .filter-button:focus-visible .animated-button-track,
-.services-feature-card:hover .animated-button-track,
-.services-feature-card:focus-visible .animated-button-track,
+.services-feature-action:hover .animated-button-track,
+.services-feature-action:focus-visible .animated-button-track,
 .service-flip-card:hover .animated-button-track,
 .service-flip-card:focus-visible .animated-button-track,
 .featured-article-card:hover .animated-button-track,
@@ -175,8 +175,8 @@
   .et-overview-cta:focus-visible .animated-button-track { transform: none; }
   .filter-button:hover .animated-button-track,
   .filter-button:focus-visible .animated-button-track,
-  .services-feature-card:hover .animated-button-track,
-  .services-feature-card:focus-visible .animated-button-track,
+  .services-feature-action:hover .animated-button-track,
+  .services-feature-action:focus-visible .animated-button-track,
   .service-flip-card:hover .animated-button-track,
   .service-flip-card:focus-visible .animated-button-track,
   .featured-article-card:hover .animated-button-track,
