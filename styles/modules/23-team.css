@@ -50,10 +50,10 @@
 .et-section-dot {
   width: 6px;
   height: 6px;
-  background-color: #ef4444;
+  background-color: #3e4efc;
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+  box-shadow: 0 0 8px rgba(77, 122, 244, 0.8);
 }
 
 /* FIXED: Title font to Bebas Neue (var(--font-display)) and made it much larger */
@@ -194,7 +194,7 @@
 }
 
 /* 7. GRADIENT BACKDROPS */
-.et-team-gradient-1 { background: linear-gradient(180deg, #7a2b18 0%, #3d1208 50%, #05080f 100%); }
+.et-team-gradient-1 { background: linear-gradient(180deg, #524cf8 0%, #0f172a 50%, #05080f 100%); }
 .et-team-gradient-2 { background: linear-gradient(180deg, #1d4ed8 0%, #0f172a 50%, #05080f 100%); }
 .et-team-gradient-3 { background: linear-gradient(180deg, #581c87 0%, #1e1b4b 50%, #05080f 100%); }
 .et-team-gradient-4 { background: linear-gradient(180deg, #047857 0%, #064e3b 50%, #05080f 100%); }
@@ -214,14 +214,14 @@
   align-items: center;
   gap: 0.8rem;
   background: rgba(255, 255, 255, 0.03);
-  padding: 0.4rem 0.8rem;
+  padding: 0.1rem 0.1rem;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .et-team-arrow {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 20px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.05);
