@@ -11,7 +11,6 @@ import CookieBanner from '@/components/CookieBanner';
 import Analytics from '@/components/Analytics';
 import ScrollProgress from '@/components/ScrollProgress';
 import BackToTop from '@/components/BackToTop';
-import { getGoogleReviews } from '@/lib/googleReviews';
 
 const bebasNeue = Bebas_Neue({
   weight: '400',
@@ -41,10 +40,6 @@ export const metadata: Metadata = {
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // Live Google rating, refreshed hourly. Resolves to null (no GOOGLE_PLACES_API_KEY /
-  // GOOGLE_PLACE_ID configured yet) and the footer falls back to a plain Google link.
-  const googleReviews = await getGoogleReviews();
-
   return (
     <html lang="en" className={bebasNeue.variable}>
       <body>
@@ -52,10 +47,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Analytics measurementId={GA_ID} />
         <Header />
         <main className="site-main">{children}</main>
-        <Footer
-          googleRating={googleReviews?.rating}
-          googleReviewCount={googleReviews?.reviewCount}
-        />
+        <Footer />
         <WhatsAppButton />
         <BackToTop />
         <CookieBanner />
