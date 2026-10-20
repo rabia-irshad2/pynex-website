@@ -10,7 +10,6 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import HQStrip from '@/components/HQStrip';
 import QualitiesSection from '@/components/QualitiesSection';
 import TeamSection from '@/components/TeamSection';
-import ClosingCta from '@/components/ClosingCta';
 
 import {
   getAllServices,
@@ -48,8 +47,8 @@ export default function HomePage() {
       <HQStrip />
       <QualitiesSection />
       <TeamSection team={team} />
-      <SloganMarquee />
-      <ClosingCta />
+      <SloganMarquee /> 
+      {/* Notice: ClosingCta is removed so Slogan flows directly into the Footer */}
     </>
   );
 }

@@ -87,7 +87,8 @@ function QualityCard({
         whileHover={reduceMotion ? undefined : { scale: 1.08, rotate: -4 }}
         transition={{ type: 'spring', stiffness: 400, damping: 15 }}
       >
-        <Icon size={22} strokeWidth={1.75} aria-hidden="true" />
+        {/* Increased size from 22 to 32 */}
+        <Icon size={32} strokeWidth={1.5} aria-hidden="true" />
       </motion.span>
       <h3 className="quality-title">{title}</h3>
       <p className="quality-text">{text}</p>

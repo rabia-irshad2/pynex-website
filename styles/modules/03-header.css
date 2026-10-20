@@ -1,140 +1,102 @@
 /* styles/modules/03-header.css */
 
-/* Force the header to stay fixed and override any other file */
-header.site-header,
-header.site-header.is-hidden,
-header.site-header.is-scrolled {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 9999 !important;
-  padding-top: 14px !important;
-  background: transparent !important;
-  transform: none !important;
-  transition: none !important;
-  animation: none !important;
-}
-
-.header-inner {
-  max-width: 1360px;
-  margin-inline: auto;
-  padding-inline: 1.6rem;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  border-radius: 999px;
-  background: rgba(10, 14, 20, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(1.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-}
-
-/* Brand */
-.header-brand { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; flex-shrink: 0; }
-.header-brand-logo { position: relative; display: block; width: 36px; height: 36px; flex-shrink: 0; }
-.header-brand-logo-img { object-fit: contain; object-position: center; }
-.header-brand-text { font-family: var(--font-display); font-size: 1.55rem; letter-spacing: 0.08em; color: #fff; line-height: 1; text-transform: uppercase; }
-
-/* Nav */
-.header-nav { display: none; align-items: center; gap: 2.25rem; flex: 1; justify-content: center; }
-@media (min-width: 1000px) { .header-nav { display: flex; } }
-
-.nav-link {
-  position: relative;
-  color: rgba(255, 255, 255, 0.72);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: background 0.3s, color 0.3s;
-  overflow: hidden !important; /* CRITICAL for scroll swap */
-}
-
-.nav-link:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
-
-.nav-link-active { color: #fff; background: rgba(79, 169, 255, 0.12); }
-.nav-link-active::after {
-  content: '';
-  position: absolute;
-  left: 50%; transform: translateX(-50%);
-  bottom: 2px; width: 16px; height: 2px;
-  background: #4fa9ff;
-  border-radius: 2px;
-}
-
-/* Fix heights for nav scroll swap */
-.nav-link .btn-swap { 
-  height: 22px !important; 
-  line-height: 22px !important; 
-  display: block; 
-}
-.nav-link .btn-swap-front,
-.nav-link .btn-swap-back { 
-  display: block; 
-  height: 22px;
-  line-height: 22px;
-}
-/* Guarantee nothing on the page creates a new containing block for the header */
-html, body {
-  overflow-x: clip !important;
-  overflow-y: visible !important;
-  transform: none !important;
-  filter: none !important;
-  perspective: none !important;
-  contain: none !important;
-  will-change: auto !important;
-}
-
-main {
-  position: relative;
-  z-index: 1;
-}
-
-/* Force the header to be a top-level stacking context */
 header.site-header {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   z-index: 99999 !important;
-  margin: 0 !important;
-  transform: none !important;
-  will-change: auto !important;
-  contain: none !important;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  padding-top: 10px !important; /* Added a bit of breathing room from the top */
+  background: transparent !important;
 }
-header.site-header {
-  position: fixed !important;
-  top: 0 !important;
-  transform: translateY(0) !important;
-}
-/* Actions */
-.header-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
-/* White CTA (Book a Call) */
+/* FULL WIDTH, TRANSPARENT NAVBAR */
+.header-inner {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 4vw, 3rem);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.01rem;
+  
+  /* REMOVED: background, border, backdrop-filter, box-shadow, border-radius */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* Brand */
+.header-brand { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; flex-shrink: 0; }
+.header-brand-logo { position: relative; display: block; width: 50px; height: 40px; flex-shrink: 0; }
+.header-brand-logo-img { object-fit: contain; object-position: center; }
+.header-brand-text { 
+  font-family: var(--font-display); 
+  font-size: 2rem; 
+  letter-spacing: 0.01em; 
+  color: #fff; 
+  line-height: 1; 
+  text-transform: uppercase; 
+}
+
+/* Nav Layout */
+.header-nav { display: none; align-items: center; gap: 4.5rem; flex: 1; justify-content: center; }
+@media (min-width: 1000px) { .header-nav { display: flex; } }
+
+/* Nav Links */
+.nav-link {
+  position: relative;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-mono);
+  font-size: 1.15rem; 
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 2px 0; /* Removed horizontal padding so they look like plain text links */
+  transition: color 0.3s;
+  overflow: hidden !important;
+}
+
+.nav-link:hover { color: #fff; }
+
+/* Active state - just a cyan line underneath */
+.nav-link-active { color: #fff; }
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  left: 50%; transform: translateX(-50%);
+  bottom: 0; 
+  width: 100%; /* Line matches the text width */
+  height: 2px;
+  background: #4fa9ff;
+  border-radius: 2px;
+}
+
+/* Nav Link Scroll Animation Heights */
+.nav-link .btn-swap { height: 24px !important; line-height: 24px !important; display: block; }
+.nav-link .btn-swap-front,
+.nav-link .btn-swap-back { display: block; height: 24px; line-height: 24px; }
+
+/* Actions */
+.header-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+/* Book a Call CTA */
 .nav-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  padding: 0 20px;
-  border-radius: 999px;
+  height: 48px !important;
+  padding: 0 12px !important;
+  border-radius: 12px !important;
   background: #ffffff !important;
   border: 1px solid #ffffff !important;
-  color: #05080f !important; /* Black text on white by default */
+  color: #05080f !important;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 1.15rem !important;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -142,54 +104,25 @@ header.site-header {
 }
 
 .nav-cta:hover {
-  background: #0057FF !important;
+  background: #2b6def !important;
   border-color: #0057FF !important;
-  color: #ffffff !important; /* White text on hover */
+  color: #ffffff !important;
   box-shadow: 0 8px 24px rgba(0, 87, 255, 0.4);
 }
 
-/* Fix heights for button scroll swap */
-.nav-cta .btn-swap { height: 22px !important; line-height: 22px !important; display: block; }
-.nav-cta .btn-swap-front, .nav-cta .btn-swap-back { display: flex; align-items: center; gap: 0.5rem; height: 22px; line-height: 22px;}
+/* Button Scroll Animation Heights */
+.nav-cta .btn-swap { height: 28px !important; line-height: 28px !important; display: block; }
+.nav-cta .btn-swap-front, 
+.nav-cta .btn-swap-back { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.6rem; 
+  height: 28px; 
+  line-height: 28px;
+}
 
 .header-menu-trigger {
   color: #fff; padding: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.15);
   display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); cursor: pointer;
 }
 @media (min-width: 1000px) { .header-menu-trigger { display: none !important; } }
-
-/* Shared fixed header with scroll direction behavior. */
-header.site-header, header.site-header.is-hidden, header.site-header.is-scrolled {
-  position: fixed !important;
-  inset: 0 0 auto !important;
-  z-index: 99999 !important;
-  padding: 14px 0 0 !important;
-  transform: translateY(0) !important;
-  transition: transform .35s ease !important;
-  background: transparent !important;
-  border: 0 !important;
-}
-header.site-header.is-hidden { transform: translateY(-100%) !important; }
-header.site-header .header-inner {
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-  transition: background-color .25s ease, backdrop-filter .25s ease;
-}
-header.site-header.is-scrolled .header-inner {
-  background: rgba(10, 14, 17, .8);
-  border-color: transparent;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-header.site-header .header-inner,
-header.site-header.is-scrolled .header-inner {
-  background: rgba(10, 14, 17, .8);
-  border-color: rgba(255, 255, 255, .08);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-.site-main > .legal-page,
-.site-main > .unsubscribe-page,
-.site-main > .contact-page,
-.site-main > .not-found-page { padding-top: calc(78px + 2rem); }
