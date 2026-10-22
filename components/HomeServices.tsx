@@ -8,9 +8,21 @@ import AnimatedButton from '@/components/AnimatedButton';
 type Svc = { slug: string; frontmatter: { title: string; shortDescription?: string }; introduction: string };
 
 const ART_DATA: Record<string, { label: string; image: string; features: string[] }> = {
-  'ai-solutions': { label: 'AI Solutions', image: '/images/services/ai-solutions.jpg', features: ['Custom AI assistants', 'Document analysis', 'Prediction engines', 'LLM workflow automation'] },
-  'business-automation': { label: 'Business Automation', image: '/images/services/business-automation.jpg', features: ['Workflow mapping', 'Tool integrations', 'Data syncing', 'Real-time alerts'] },
-  'custom-software': { label: 'Custom Software', image: '/images/services/custom-software.jpg', features: ['Web apps & portals', 'Scalable architecture', 'API design', 'Ongoing support'] },
+  'ai-solutions': { 
+    label: 'AI & Agentic Systems', 
+    image: '/images/services/ai-solutions.jpg', 
+    features: ['Custom AI assistants', 'Document analysis', 'Prediction engines', 'LLM workflow automation'] 
+  },
+  'business-automation': { 
+    label: 'Software Development', 
+    image: '/images/services/business-automation.jpg', 
+    features: ['Workflow mapping', 'Tool integrations', 'Data syncing', 'Real-time alerts'] 
+  },
+  'custom-software': { 
+    label: 'Product Discovery & Design', 
+    image: '/images/services/custom-software.jpg', 
+    features: ['Web apps & portals', 'Scalable architecture', 'API design', 'Ongoing support'] 
+  },
 };
 
 function useReveal<T extends HTMLElement>() {
@@ -30,16 +42,22 @@ export default function HomeServices({ services }: { services: Svc[] }) {
   const label = useReveal<HTMLParagraphElement>();
   const title = useReveal<HTMLHeadingElement>();
   const grid = useReveal<HTMLDivElement>();
+  
+  const [flippedCard, setFlippedCard] = useState<string | null>(null);
 
   const ordered = ['ai-solutions', 'business-automation', 'custom-software']
     .map(slug => services.find(s => s.slug === slug))
     .filter((s): s is Svc => Boolean(s));
 
+  const handleCardClick = (slug: string) => {
+    setFlippedCard(prev => (prev === slug ? null : slug));
+  };
+
   return (
     <section className="et-services" id="services">
       <div className="et-services-inner">
         
-        <p ref={label.ref} className={`et-section-label et-section-label--center ${label.shown ? 'is-in' : ''}`}>
+        <p ref={label.ref} className={`et-section-label--center ${label.shown ? 'is-in' : ''}`}>
           <span className="et-section-dot" /> Services
         </p>
 
@@ -54,23 +72,37 @@ export default function HomeServices({ services }: { services: Svc[] }) {
             const data = ART_DATA[svc.slug];
             if (!data) return null;
 
+            const isFlipped = flippedCard === svc.slug;
+
             return (
-              <div key={svc.slug} className="et-flip-card" style={{ '--delay': `${i * 0.15}s` } as React.CSSProperties}>
+              <div 
+                key={svc.slug} 
+                className={`et-flip-card ${isFlipped ? 'is-flipped' : ''}`} 
+                style={{ '--delay': `${i * 0.2 + 0.1}s` } as React.CSSProperties}
+                onClick={() => handleCardClick(svc.slug)}
+              >
                 <div className="et-flip-inner">
-                  {/* FRONT */}
+                  
+                  {/* FRONT: Full Image Background */}
                   <div className="et-flip-front">
-                    <div className="et-flip-media"><Image src={data.image} alt={`${data.label} service`} fill sizes="(max-width: 700px) 100vw, 33vw" className="et-flip-svg" /></div>
+                    <Image 
+                      src={data.image} 
+                      alt={`${data.label} service`} 
+                      fill 
+                      sizes="(max-width: 700px) 100vw, 33vw" 
+                      className="et-flip-svg" 
+                    />
+                    <div className="et-flip-shade" />
                     <div className="et-flip-body">
                       <span className="et-flip-label"><span className="et-flip-dot" /> Services</span>
                       <h3 className="et-flip-title">{data.label}</h3>
                     </div>
                   </div>
-                  {/* BACK */}
+
+                  {/* BACK: Blurred Image + Details */}
                   <div className="et-flip-back">
-                    <div className="et-flip-back-media" aria-hidden="true">
-                      <Image src={data.image} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" />
-                    </div>
-                    <div className="et-flip-back-shade" aria-hidden="true" />
+                    <Image src={data.image} alt="" fill sizes="(max-width: 700px) 100vw, 33vw" className="et-flip-back-img" />
+                    <div className="et-flip-back-shade" />
                     <div className="et-flip-back-inner">
                       <h3 className="et-flip-back-title">{data.label}</h3>
                       <p className="et-flip-back-description">
@@ -79,9 +111,12 @@ export default function HomeServices({ services }: { services: Svc[] }) {
                       <ul className="et-flip-back-list">
                         {data.features.map((f: string, j: number) => <li key={j}>{f}</li>)}
                       </ul>
-                      <AnimatedButton href={`/services/${svc.slug}`} className="btn-small">Explore <ArrowUpRight size={14} /></AnimatedButton>
+                      <AnimatedButton href={`/services/${svc.slug}`} className="btn-small">
+                        Explore <ArrowUpRight size={14} />
+                      </AnimatedButton>
                     </div>
                   </div>
+
                 </div>
               </div>
             );

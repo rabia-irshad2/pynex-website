@@ -1,4 +1,4 @@
-//components/Hero.tsx — Eastern Tech hero, bottom arc, icons below headline top
+//components/Hero.tsx
 import {
   NodeIcon, CodeIcon, JsIcon, AndroidIcon, ReactIcon,
   GlobeIcon, CoilIcon, SafariIcon, AppleIcon,
@@ -8,33 +8,32 @@ type HeroIconDef = {
   id: string;
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   left: string;
-  top: string;      // now 55%–92%, all BELOW the headline top
+  top: string;
   size: number;
   rotate: number;
   delay: number;
 };
 
 const HERO_ICONS: HeroIconDef[] = [
-  // ── Left arc (bottom half only) ──
-  { id: 'node',    Icon: NodeIcon,    left: '5%',  top: '58%', size: 150, rotate: -12, delay: 0    },
-  { id: 'code',    Icon: CodeIcon,    left: '13%', top: '76%', size: 122, rotate: 6,   delay: 0.08 },
-  { id: 'js',      Icon: JsIcon,      left: '20%', top: '90%', size: 130, rotate: -4,  delay: 0.16 },
+  // ── Left arc ──
+  { id: 'node',    Icon: NodeIcon,    left: '6%',  top: '50%', size: 160, rotate: -12, delay: 0    },
+  { id: 'code',    Icon: CodeIcon,    left: '16%', top: '68%', size: 130, rotate: 6,   delay: 0.08 },
+  { id: 'js',      Icon: JsIcon,      left: '22%', top: '86%', size: 140, rotate: -4,  delay: 0.16 },
 
-  // ── Bottom row (hugging the bottom of the headline) ──
-  { id: 'android', Icon: AndroidIcon, left: '38%', top: '98%', size: 104, rotate: 0,   delay: 0.24 },
-  { id: 'react',   Icon: ReactIcon,   left: '52%', top: '96%', size: 112, rotate: 0,   delay: 0.32 },
-  { id: 'globe',   Icon: GlobeIcon,   left: '64%', top: '92%', size: 100, rotate: 0,   delay: 0.4  },
+  // ── Bottom row ──
+  { id: 'android', Icon: AndroidIcon, left: '38%', top: '96%', size: 116, rotate: 0,   delay: 0.24 },
+  { id: 'react',   Icon: ReactIcon,   left: '52%', top: '94%', size: 124, rotate: 0,   delay: 0.32 },
+  { id: 'globe',   Icon: GlobeIcon,   left: '63%', top: '90%', size: 110, rotate: 0,   delay: 0.4  },
 
-  // ── Right arc (bottom half only) ──
-  { id: 'coil',    Icon: CoilIcon,    left: '77%', top: '80%', size: 140, rotate: 8,   delay: 0.48 },
-  { id: 'safari',  Icon: SafariIcon,  left: '87%', top: '62%', size: 116, rotate: -6,  delay: 0.56 },
-  { id: 'apple',   Icon: AppleIcon,   left: '93%', top: '48%', size: 128, rotate: 12,  delay: 0.64 },
+  // ── Right arc ──
+  { id: 'coil',    Icon: CoilIcon,    left: '76%', top: '78%', size: 150, rotate: 8,   delay: 0.48 },
+  { id: 'safari',  Icon: SafariIcon,  left: '86%', top: '60%', size: 125, rotate: -6,  delay: 0.56 },
+  { id: 'apple',   Icon: AppleIcon,   left: '92%', top: '40%', size: 140, rotate: 12,  delay: 0.64 },
 ];
 
 export default function Hero() {
   return (
     <section className="et-hero" aria-labelledby="et-hero-title">
-      {/* 3D icons layer */}
       <ul className="et-hero-icons" aria-hidden="true">
         {HERO_ICONS.map(({ id, Icon, left, top, size, rotate, delay }, i) => (
           <li
@@ -57,7 +56,6 @@ export default function Hero() {
         ))}
       </ul>
 
-      {/* Headline — kept at your preferred large size */}
       <h1 id="et-hero-title" className="et-hero-title">
         <span className="et-hero-line">Built For</span>
         <span className="et-hero-line et-hero-accent">Smarter Business</span>

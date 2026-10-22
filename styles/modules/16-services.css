@@ -1,348 +1,256 @@
-/* styles/modules/16-services.css — Eastern Tech Light Theme + 3D Cards */
+/* styles/modules/16-services.css */
 
-.et-services--light {
-  background: #F6F9FF; /* PYNEX Pale blue from requirements */
-  color: #0B1F44; /* PYNEX Near-black navy */
-  padding-block: clamp(6rem, 10vw, 10rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.et-services-inner {
-  max-width: 1320px;
-  margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 3rem);
-}
-
-/* Centered Label - Dark */
-.et-section-label--dark {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 0 auto 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  color: #0B1F44;
-  width: fit-content;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.7s, transform 0.7s;
-}
-.et-section-label--dark.is-in { opacity: 1; transform: none; }
-.et-section-label--dark .et-section-dot { background: #0057ff; }
-
-/* Centered Headline - Dark */
-.et-services-title--dark {
-  margin: 0 auto clamp(4rem, 8vw, 6rem);
-  max-width: 1100px;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(3.5rem, 8vw, 7.5rem);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: #0B1F44;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.et-services-title-line {
-  display: block;
-  opacity: 0;
-  transform: translateY(30px);
-  filter: blur(6px);
-  transition: opacity 0.9s, transform 0.9s, filter 0.9s;
-}
-.et-services-title-line:nth-child(1) { transition-delay: 0.05s; }
-.et-services-title-line:nth-child(2) { transition-delay: 0.15s; }
-.et-services-title-line:nth-child(3) { transition-delay: 0.25s; }
-.et-services-title--dark.is-in .et-services-title-line { opacity: 1; transform: none; filter: blur(0); }
-
-/* Grid */
-.et-services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
-  perspective: 1600px;
-}
-
-@media (max-width: 1000px) { .et-services-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 640px) { .et-services-grid { grid-template-columns: 1fr; } }
-
-/* Card Base - Light Theme */
-.et-flip-card--light {
-  position: relative;
-  aspect-ratio: 3 / 4;
-  min-height: 520px;
-}
-
-.et-flip-card-inner {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.et-flip-card.is-flipped .et-flip-card-inner { transform: rotateY(180deg); }
-
-.et-flip-face {
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Front Face — Dark UI overlay inside light section */
-.et-flip-front {
-  background: #05080F;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-/* Media art — Bleeds to edges but text sits at bottom */
-.et-flip-media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.et-flip-svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.et-flip-card:hover .et-flip-svg { transform: scale(1.05); }
-
-.et-flip-shade {
-  position: absolute;
-  inset: 0;
-  /* Very subtle shade so the bottom text pops */
-  background: linear-gradient(180deg, transparent 40%, rgba(5, 8, 15, 0.95) 100%);
-}
-
-/* Body pushed to the very bottom */
-.et-flip-body {
-  position: relative;
-  z-index: 1;
-  padding: 2.5rem 1.75rem 1.75rem;
-  text-align: left;
-}
-
-.et-flip-label--dark {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-
-.et-flip-label-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.et-flip-title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.25rem, 3.5vw, 3.25rem);
-  line-height: 0.92;
-  text-transform: uppercase;
-  color: #fff;
-  max-width: 14ch;
-}
-
-/* Back Face */
-.et-flip-back {
-  background: #0B1F44; /* PYNEX Primary Blue */
-  color: #fff;
-  transform: rotateY(180deg);
-  border: 1px solid rgba(0, 198, 255, 0.2);
-}
-
-.et-flip-back-inner {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 2.5rem 2rem;
-  text-align: left;
-}
-
-.et-flip-back-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #00C6FF;
-  margin-bottom: 1rem;
-}
-
-.et-flip-back-title {
-  margin: 0 0 1.5rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
-  line-height: 0.95;
-  text-transform: uppercase;
-}
-
-.et-flip-back-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  flex: 1;
-}
-
-.et-flip-back-list li {
-  position: relative;
-  padding-left: 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.et-flip-bullet {
-  position: absolute;
-  left: 0;
-  top: 0.45rem;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #00C6FF;
-}
-
-.et-flip-back-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: auto;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #00C6FF;
-  transition: gap 0.25s;
-}
-
-.et-flip-back-cta:hover { gap: 0.75rem; }
-
-.et-services-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 3.5rem;
-}
-
-/* Dark button style override for light background */
-.btn--dark {
-  background: #0B1F44;
-  color: #fff;
-  border-color: #0B1F44;
-}
-.btn--dark:hover {
-  background: #0057FF;
-  border-color: #0057FF;
-}/* Dark background matching the reference site */
+/* =========================================
+   1. SECTION WRAPPER & BACKGROUND
+   ========================================= */
 .et-services {
-  background: #0a0a0a; 
-  padding-block: clamp(6rem, 10vw, 10rem);
+  background: #ffffff; /* White background */
+  padding-block: 4rem 6rem; /* Adjust top/bottom spacing here */
   overflow: hidden;
+  position: relative;
 }
 
-.et-services-inner { max-width: 1320px; margin-inline: auto; padding-inline: clamp(1.5rem, 4vw, 3rem); }
+.et-services-inner { 
+  max-width: 1320px; 
+  margin-inline: auto; 
+  padding-inline: clamp(1.5rem, 4vw, 3rem); 
+}
 
+/* =========================================
+   2. HEADER & LABEL (Made Black for visibility)
+   ========================================= */
 .et-section-label--center {
-  display: flex; justify-content: center; align-items: center; gap: 0.6rem;
-  margin-bottom: 1.5rem; font-family: var(--font-mono); font-size: 0.72rem;
-  font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #fff;
-  opacity: 0; transform: translateY(10px); transition: all 0.7s ease;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 0.6rem;
+  margin-bottom: 1rem; 
+  font-family: var(--font-mono); 
+  font-size: 0.9rem; /* Increased Label Size */
+  font-weight: 700; 
+  letter-spacing: 0.2em; 
+  text-transform: uppercase; 
+  color: #000000; /* BLACK TEXT */
+  opacity: 0; 
+  transform: translateY(10px); 
+  transition: all 0.7s ease;
 }
 .et-section-label--center.is-in { opacity: 1; transform: none; }
-.et-section-dot { width: 6px; height: 6px; border-radius: 50%; background: #0057ff; }
+.et-section-dot { width: 6px; height: 6px; border-radius: 50%; background: #e53e3e; }
 
+/* Main Heading */
 .et-services-title {
-  margin: 0 auto clamp(3rem, 5vw, 5rem); text-align: center;
-  font-family: var(--font-display); font-size: clamp(3rem, 7vw, 6rem);
-  line-height: 0.92; text-transform: uppercase; color: #fff;
-  display: flex; flex-direction: column;
+  margin: 0 auto 4rem; 
+  text-align: center;
+  font-family: var(--font-display); 
+  font-size: clamp(3rem, 7vw, 6.5rem); /* INCREASED HEADING SIZE */
+  line-height: 0.92; 
+  text-transform: uppercase; 
+  color: #000000; /* BLACK TEXT */
+  display: flex; 
+  flex-direction: column;
 }
-.et-services-title-line { opacity: 0; transform: translateY(30px); filter: blur(6px); transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+.et-services-title-line { 
+  opacity: 0; 
+  transform: translateY(30px); 
+  filter: blur(6px); 
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1); 
+}
 .et-services-title-line:nth-child(2) { transition-delay: 0.1s; }
 .et-services-title-line:nth-child(3) { transition-delay: 0.2s; }
 .et-services-title.is-in .et-services-title-line { opacity: 1; transform: none; filter: blur(0); }
 
-/* Grid with staggered load */
-.et-services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; perspective: 1600px; }
-@media (max-width: 900px) { .et-services-grid { grid-template-columns: 1fr; } }
+/* =========================================
+   3. GRID & STAGGERED LOADING
+   ========================================= */
+.et-services-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 2rem; 
+  perspective: 2000px; 
+}
 
-/* 3D Card structure */
+@media (max-width: 900px) { 
+  .et-services-grid { grid-template-columns: 1fr; gap: 2rem; } 
+}
+
+/* Sequential Card Loading (1st -> 2nd -> 3rd) */
 .et-flip-card {
-  aspect-ratio: 3 / 4; min-height: 520px;
-  opacity: 0; transform: translateY(40px);
-  transition: opacity 0.8s ease var(--delay), transform 0.8s ease var(--delay);
+  aspect-ratio: 3 / 4; /* Standard portrait ratio */
+  min-height: 480px;
+  opacity: 0; 
+  transform: translateY(40px); 
+  transition: opacity 0.8s ease var(--delay), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--delay);
+  cursor: pointer;
 }
-.et-services-grid.is-in .et-flip-card { opacity: 1; transform: none; }
+.et-services-grid.is-in .et-flip-card { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
 
+/* =========================================
+   4. FLIP MECHANICS (Rotate on Click)
+   ========================================= */
 .et-flip-inner {
-  position: relative; width: 100%; height: 100%;
+  position: relative; 
+  width: 100%; 
+  height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-/* Flip on HOVER exactly like Eastern Tech */
-.et-flip-card:hover .et-flip-inner { transform: rotateY(180deg); }
+
+.et-flip-card:hover .et-flip-inner,
+.et-flip-card.is-flipped .et-flip-inner { 
+  transform: rotateY(180deg); 
+}
 
 .et-flip-front, .et-flip-back {
-  position: absolute; inset: 0; border-radius: 20px; overflow: hidden;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  position: absolute; 
+  inset: 0; 
+  border-radius: 16px; 
+  overflow: hidden; /* Clips the image to the rounded corners */
+  backface-visibility: hidden; 
+  -webkit-backface-visibility: hidden;
 }
 
-.et-flip-front { background: #05080F; display: flex; flex-direction: column; justify-content: flex-end; }
-.et-flip-media { position: absolute; inset: 0; z-index: 0; }
-.et-flip-svg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; }
-.et-flip-card:hover .et-flip-svg { transform: scale(1.06); }
+/* =========================================
+   5. FRONT FACE (Full Image Background)
+   ========================================= */
+.et-flip-front { 
+  background: #05080f; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end; 
+}
 
-.et-flip-body { position: relative; z-index: 1; padding: 2rem 1.5rem 1.5rem; background: linear-gradient(to top, #05080F 20%, transparent); }
-.et-flip-label { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
-.et-flip-dot { width: 5px; height: 5px; background: #fff; border-radius: 50%; }
-.et-flip-title { margin: 0; font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.5rem); color: #fff; line-height: 0.95; text-transform: uppercase; }
+.et-flip-svg { 
+  object-fit: cover; /* Fills the entire card */
+  transition: transform 0.8s ease; 
+}
+.et-flip-card:hover .et-flip-svg { 
+  transform: scale(1.05); 
+}
 
-.et-flip-back { background: #07101d; transform: rotateY(180deg); border: 1px solid rgba(0, 198, 255, 0.3); }
-.et-flip-back-media { position: absolute; inset: 0; overflow: hidden; }
-.et-flip-back-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; filter: blur(3px); transform: scale(1.06); }
-.et-flip-back-shade { position: absolute; inset: 0; background: rgba(4, 9, 18, 0.66); }
-.et-flip-back-inner { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; padding: 2.5rem 2rem; color: #fff; }
-.et-flip-back-title { margin: 0 0 1.5rem; font-family: var(--font-display); font-size: 2rem; line-height: 1; text-transform: uppercase; }
-.et-flip-back-description { margin: -0.75rem 0 1rem; color: rgba(255,255,255,.82); font-family: 'Inter Variable', Inter, sans-serif; font-size: .82rem; line-height: 1.6; }
-.et-flip-back-list { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
-.et-flip-back-list li { font-family: var(--font-mono); font-size: 0.85rem; color: rgba(255,255,255,0.8); padding-left: 1.25rem; position: relative; }
-.et-flip-back-list li::before { content: ''; position: absolute; left: 0; top: 0.4rem; width: 6px; height: 6px; border-radius: 50%; background: #00C6FF; }
+/* Dark Gradient at bottom so text is readable */
+.et-flip-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(5, 8, 15, 0.9) 100%);
+  z-index: 1;
+}
 
-/* Fixed Footer Button */
-.et-services-footer { margin-top: 4rem; display: flex; justify-content: center; opacity: 0; transform: translateY(20px); transition: all 0.8s ease 0.4s; }
+.et-flip-body { 
+  position: relative; 
+  z-index: 2; 
+  padding: 2rem 1.75rem; 
+}
+.et-flip-label { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+  font-family: var(--font-mono); 
+  font-size: 0.75rem; 
+  font-weight: 700; 
+  color: #ffffff; 
+  margin-bottom: 0.5rem; 
+  text-transform: uppercase;
+}
+.et-flip-dot { width: 5px; height: 5px; background: #e53e3e; border-radius: 50%; }
+
+/* INCREASED CARD TITLE SIZE */
+.et-flip-title { 
+  margin: 0; 
+  font-family: var(--font-display); 
+  font-size: clamp(2.2rem, 3.5vw, 3rem); /* Increased from 1.8rem */
+  color: #ffffff; 
+  line-height: 0.92; 
+  text-transform: uppercase; 
+}
+
+/* =========================================
+   6. BACK FACE (Blurred Image + Text)
+   ========================================= */
+.et-flip-back { 
+  background: #05080f; 
+  transform: rotateY(180deg); 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.et-flip-back-img { 
+  object-fit: cover;
+  opacity: 0.3; 
+  filter: blur(12px); /* Creates the beautiful blur effect */
+  transform: scale(1.1); /* Prevents white edges from blur */
+}
+
+.et-flip-back-shade { 
+  position: absolute; 
+  inset: 0; 
+  background: rgba(5, 8, 15, 0.6); 
+}
+
+.et-flip-back-inner { 
+  position: relative; 
+  z-index: 2; 
+  display: flex; 
+  flex-direction: column; 
+  height: 100%; 
+  padding: 2rem 1.75rem; 
+  color: #ffffff; 
+}
+
+.et-flip-back-title { 
+  margin: 0 0 0.8rem; 
+  font-family: var(--font-display); 
+  font-size: 2rem; 
+  line-height: 1; 
+  text-transform: uppercase; 
+}
+
+.et-flip-back-description { 
+  margin: 0 0 1.25rem; 
+  color: rgba(255, 255, 255, 0.85); 
+  font-family: var(--font-body); 
+  font-size: 0.9rem; 
+  line-height: 1.5; 
+}
+
+.et-flip-back-list { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0 0 1.5rem; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.6rem; 
+  flex: 1; 
+}
+.et-flip-back-list li { 
+  font-family: var(--font-mono); 
+  font-size: 0.85rem; 
+  color: rgba(255, 255, 255, 0.9); 
+  padding-left: 1.2rem; 
+  position: relative; 
+}
+.et-flip-back-list li::before { 
+  content: ''; 
+  position: absolute; 
+  left: 0; 
+  top: 0.45rem; 
+  width: 5px; 
+  height: 5px; 
+  border-radius: 50%; 
+  background: #e53e3e; 
+}
+
+/* =========================================
+   7. FOOTER BUTTON
+   ========================================= */
+.et-services-footer { 
+  margin-top: 3.5rem; 
+  display: flex; 
+  justify-content: center; 
+  opacity: 0; 
+  transform: translateY(20px); 
+  transition: all 0.8s ease 0.6s; 
+}
 .et-services-footer.is-in { opacity: 1; transform: none; }

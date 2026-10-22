@@ -43,15 +43,26 @@
 
 /* ═══ Section labels — match Eastern Techno's small lowercase style ═══ */
 /* Update .section-label in styles/modules/02-layout.css */
-.section-label {
+/* Force all section labels to 1rem */
+.section-label,
+.et-section-label,
+.et-section-label--center,
+.home-services .section-label,
+.home-products .section-label,
+.case-studies .section-label,
+.testimonials-section .section-label,
+.team-section .section-label,
+.qualities-v2 .section-label {
+  
+
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.8rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 1rem !important;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.01em;
   color: #fff;
   margin-bottom: 1.25rem;
 }

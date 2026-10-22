@@ -1,10 +1,10 @@
-//components/HomeOverview.tsx — 2-line headline, working slide button
+//components/HomeOverview.tsx
 'use client';
 
 import Image from 'next/image';
 import AnimatedButton from '@/components/AnimatedButton';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Box } from 'lucide-react'; // Added Box icon
 
 type ClientLogo = { name: string; src: string };
 const CLIENT_LOGOS: ClientLogo[] = [];
@@ -55,7 +55,6 @@ export default function HomeOverview() {
 
         <div className="et-overview-grid">
           <div className="et-overview-copy">
-            {/* 2-line headline — each line wrapped in overflow:hidden span */}
             <h2
               ref={title.ref}
               id="et-overview-title"
@@ -73,7 +72,21 @@ export default function HomeOverview() {
               ref={cta.ref}
               className={`et-overview-cta-wrap ${cta.shown ? 'is-in' : ''}`}
             >
-              <AnimatedButton href="/contact" className="et-overview-cta">Book a Call <ArrowUpRight size={16} aria-hidden="true" /></AnimatedButton>
+              <AnimatedButton href="/contact" className="et-overview-cta">
+                Book a Call <ArrowUpRight size={16} aria-hidden="true" />
+              </AnimatedButton>
+            </div>
+
+            {/* MOVED PROOF STRIP HERE */}
+            <div
+              ref={proof.ref}
+              className={`et-overview-proof ${proof.shown ? 'is-in' : ''}`}
+            >
+              <Box size={28} className="et-overview-proof-icon" />
+              <div className="et-overview-proof-text">
+                <strong>We've executed 150+ successful</strong>
+                <span>implementations.</span>
+              </div>
             </div>
           </div>
 
@@ -98,29 +111,6 @@ export default function HomeOverview() {
               <span className="et-overview-visual-glow" aria-hidden="true" />
             </div>
           </div>
-        </div>
-
-        <div
-          ref={proof.ref}
-          className={`et-overview-proof ${proof.shown ? 'is-in' : ''}`}
-        >
-          <p className="et-overview-proof-text">
-            We&apos;ve executed <strong>150+ successful</strong> implementations.
-          </p>
-
-          {CLIENT_LOGOS.length > 0 && (
-            <div className="et-overview-logos">
-              {CLIENT_LOGOS.map((logo) => (
-                <Image
-                  key={logo.name}
-                  src={logo.src}
-                  alt={logo.name}
-                  width={100}
-                  height={32}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </section>
