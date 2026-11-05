@@ -4,9 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ───────────────────────────────────────────────
-   Modular styles — imported in order
-   ─────────────────────────────────────────────── */
 @import './modules/01-base.css';
 @import './modules/02-layout.css';
 @import './modules/03-header.css';
@@ -17,7 +14,6 @@
 @import './modules/09-pages.css';
 @import './modules/10-legal.css';
 @import './modules/11-fx.css';
-
 @import './modules/13-service-experience.css';
 @import './modules/14-hero.css';
 @import './modules/15-overview.css';
@@ -30,3 +26,6 @@
 @import './modules/22-qualities.css';
 @import './modules/23-team.css';
 @import './modules/24-closing.css';
+
+/* NEW — must be last */
+@import './modules/25-responsive.css';

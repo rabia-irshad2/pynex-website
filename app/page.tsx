@@ -1,4 +1,3 @@
-//app/page.tsx
 import Hero from '@/components/Hero';
 import HomeOverview from '@/components/HomeOverview';
 import HomeServices from '@/components/HomeServices';
@@ -10,7 +9,7 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import HQStrip from '@/components/HQStrip';
 import QualitiesSection from '@/components/QualitiesSection';
 import TeamSection from '@/components/TeamSection';
-
+import ClosingCta from '@/components/ClosingCta';
 import {
   getAllServices,
   getAllProjects,
@@ -31,7 +30,8 @@ export default function HomePage() {
     slug: s.slug,
     frontmatter: s.frontmatter,
     introduction:
-      s.content.split(/\n\s*##\s+/)[0]?.trim() || s.frontmatter.shortDescription,
+      s.content.split(/\n\s*##\s+/)[0]?.trim() ||
+      s.frontmatter.shortDescription,
   }));
 
   return (
@@ -43,12 +43,14 @@ export default function HomePage() {
       <HomeFeaturedProduct />
       <SloganMarquee />
       <CaseStudiesSection projects={projects} />
-      {showTestimonials && <TestimonialsCarousel testimonials={testimonials} />}
+      {showTestimonials && (
+        <TestimonialsCarousel testimonials={testimonials} />
+      )}
       <HQStrip />
       <QualitiesSection />
       <TeamSection team={team} />
-      <SloganMarquee /> 
-      {/* Notice: ClosingCta is removed so Slogan flows directly into the Footer */}
+      <SloganMarquee />
+      <ClosingCta />
     </>
   );
 }

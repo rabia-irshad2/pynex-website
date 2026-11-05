@@ -1,44 +1,41 @@
-/* styles/modules/23-team.css */
+/* styles/modules/23-team.css — responsive version */
 
 :root {
   --card-width: 480px;
   --card-gap: 30px;
 }
 
-/* 1. SECTION WRAPPER */
 .et-team-section {
   position: relative;
   background: #05080f;
-  padding-block: 6rem 4rem;
+  padding-block: clamp(3rem, 8vw, 6rem) clamp(2rem, 4vw, 4rem);
   overflow: hidden;
   width: 100%;
 }
 
-/* 2. GRID LAYOUT */
 .et-team-inner {
   max-width: 1440px;
   margin-inline: auto;
-  padding-inline: 4rem;
+  padding-inline: clamp(1rem, 4vw, 4rem);
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 3rem;
+  gap: clamp(2rem, 4vw, 3rem);
   align-items: center;
 }
 
-/* 3. LEFT SIDE: HEADING & VISIBLE LABEL */
 .et-team-copy {
   max-width: 650px;
   z-index: 5;
   position: relative;
+  min-width: 0;
 }
 
-/* FIXED: Label font to Geist Mono (var(--font-mono)) */
 .et-section-label {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--font-mono); 
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -56,13 +53,12 @@
   box-shadow: 0 0 8px rgba(77, 122, 244, 0.8);
 }
 
-/* FIXED: Title font to Bebas Neue (var(--font-display)) and made it much larger */
 .et-team-title {
   margin: 0;
-  font-family: var(--font-display); 
-  font-size: clamp(4.5rem, 8vw, 8rem); /* Increased from 6.5rem to 8rem */
-  font-weight: 400; /* Bebas Neue should always be 400 */
-  line-height: 0.85; /* Tighter line height for large display text */
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 8rem);
+  font-weight: 400;
+  line-height: 0.88;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #ffffff;
@@ -70,16 +66,13 @@
   flex-direction: column;
 }
 
-.et-team-title span {
-  display: block;
-}
+.et-team-title span { display: block; }
 
-/* 4. RIGHT SIDE: STAGE CONTAINER */
 .et-team-carousel-container {
   width: 100%;
   position: relative;
-  height: 580px;
-  overflow: visible;
+  height: clamp(400px, 55vw, 580px);
+  overflow: hidden;
 }
 
 .et-team-cards-stage {
@@ -88,18 +81,17 @@
   height: 100%;
 }
 
-/* 5. CARDS ABSOLUTE POSITIONING & TRANSITIONS */
 .et-team-card {
   position: absolute;
   top: 0;
   right: 0;
   width: var(--card-width);
+  max-width: 100%;
   cursor: pointer;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity, filter;
 }
 
-/* Future / Hidden Right Cards */
 .et-team-card.is-future,
 .et-team-card.is-hidden-right {
   transform: translateX(100px);
@@ -108,7 +100,6 @@
   pointer-events: none;
 }
 
-/* Active Card (Crisp & Fully Visible on the right) */
 .et-team-card.is-active {
   transform: translateX(0);
   opacity: 1;
@@ -117,7 +108,6 @@
   pointer-events: auto;
 }
 
-/* Past Card (Shifted precisely to the left with blur effect) */
 .et-team-card.is-past {
   transform: translateX(calc(-1 * (var(--card-width) + var(--card-gap))));
   opacity: 0.5;
@@ -126,7 +116,6 @@
   pointer-events: auto;
 }
 
-/* Hidden far left */
 .et-team-card.is-hidden-left {
   transform: translateX(calc(-2 * (var(--card-width) + var(--card-gap))));
   opacity: 0;
@@ -134,10 +123,9 @@
   pointer-events: none;
 }
 
-/* 6. TALL CARD IMAGE CONTAINER */
 .et-team-card-image {
   position: relative;
-  height: 540px;
+  height: clamp(340px, 42vw, 540px);
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -150,7 +138,7 @@
 
 .et-team-card-meta {
   position: absolute;
-  top: 2.2rem;
+  top: clamp(1.25rem, 3vw, 2.2rem);
   left: 0;
   right: 0;
   z-index: 10;
@@ -158,13 +146,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
 }
 
-/* FIXED: Names and roles in Geist Mono */
 .et-team-card-name {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -173,7 +160,7 @@
 
 .et-team-card-role {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 0.95vw, 0.75rem);
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -187,26 +174,24 @@
 
 .et-team-initials {
   font-family: var(--font-display);
-  font-size: 6rem;
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 5rem;
 }
 
-/* 7. GRADIENT BACKDROPS */
 .et-team-gradient-1 { background: linear-gradient(180deg, #524cf8 0%, #0f172a 50%, #05080f 100%); }
 .et-team-gradient-2 { background: linear-gradient(180deg, #1d4ed8 0%, #0f172a 50%, #05080f 100%); }
 .et-team-gradient-3 { background: linear-gradient(180deg, #581c87 0%, #1e1b4b 50%, #05080f 100%); }
 .et-team-gradient-4 { background: linear-gradient(180deg, #047857 0%, #064e3b 50%, #05080f 100%); }
 
-/* 8. CONTROLS */
 .et-team-controls-wrap {
   max-width: 1440px;
   margin-inline: auto;
-  padding-inline: 4rem;
+  padding-inline: clamp(1rem, 4vw, 4rem);
   display: flex;
   justify-content: flex-end;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 }
 
 .et-team-controls {
@@ -214,14 +199,14 @@
   align-items: center;
   gap: 0.8rem;
   background: rgba(255, 255, 255, 0.03);
-  padding: 0.1rem 0.1rem;
+  padding: 0.1rem;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .et-team-arrow {
-  width: 35px;
-  height: 20px;
+  width: 40px;
+  height: 32px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.05);
@@ -251,7 +236,6 @@
   padding-inline: 0.6rem;
 }
 
-/* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
   :root {
     --card-width: 340px;
@@ -262,10 +246,9 @@
     height: 460px;
   }
 
-  .et-team-inner { 
-    grid-template-columns: 1fr; 
-    gap: 3rem; 
-    padding-inline: 1.5rem;
+  .et-team-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .et-team-card-image {
@@ -274,6 +257,32 @@
 
   .et-team-controls-wrap {
     justify-content: center;
-    padding-inline: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --card-width: 260px;
+    --card-gap: 12px;
+  }
+
+  .et-team-carousel-container {
+    height: 400px;
+  }
+
+  .et-team-card-image {
+    height: 360px;
+  }
+
+  .et-team-initials {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .et-team-card.is-past {
+    transform: translateX(0);
+    opacity: 0;
+    filter: blur(8px);
+    pointer-events: none;
   }
 }

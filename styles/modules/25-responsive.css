@@ -1,0 +1,146 @@
+/* styles/modules/25-responsive.css
+ * Master responsive layer — loaded LAST so it can safely override.
+ */
+
+/* ─────────────────────────────────────────────
+   1. FLUID TOKENS
+   ───────────────────────────────────────────── */
+:root {
+  --space-1: clamp(4px, 0.4vw + 2px, 8px);
+  --space-2: clamp(10px, 0.8vw + 4px, 16px);
+  --space-3: clamp(16px, 1.2vw + 6px, 24px);
+  --space-4: clamp(20px, 1.6vw + 8px, 32px);
+  --space-5: clamp(28px, 2.2vw + 12px, 48px);
+  --space-6: clamp(40px, 3vw + 16px, 64px);
+  --space-7: clamp(56px, 4.5vw + 20px, 96px);
+  --fs-body: clamp(0.9375rem, 0.9rem + 0.15vw, 1rem);
+}
+
+body {
+  font-size: var(--fs-body);
+}
+
+/* ─────────────────────────────────────────────
+   2. SAFETY NET
+   ───────────────────────────────────────────── */
+html,
+body {
+  overflow-x: clip;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.flex,
+[class*='-grid'] {
+  min-width: 0;
+}
+
+/* ─────────────────────────────────────────────
+   3. SECTION PADDING
+   ───────────────────────────────────────────── */
+.section-pynex,
+.section-centered {
+  padding-block: clamp(3.5rem, 8vw, 10rem);
+}
+
+/* ─────────────────────────────────────────────
+   4. TOUCH / HOVER-ONLY MECHANICS
+   ───────────────────────────────────────────── */
+@media (hover: none), (pointer: coarse) {
+  .service-flip-card,
+  .et-flip-card,
+  .home-service-flip-card,
+  .services-feature-card.services-flip-card,
+  .project-flip-card {
+    perspective: none;
+  }
+
+  .et-flip-card:hover .et-flip-inner,
+  .et-flip-card.is-flipped .et-flip-inner {
+    transform: none;
+  }
+
+  .quality-card:hover,
+  .qcard-scene:hover .qcard-body,
+  .case-study-card:hover,
+  .service-flip-card:hover .service-flip-inner {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   5. FORM CONTROLS — prevent iOS zoom
+   ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  input,
+  select,
+  textarea,
+  .footer-newsletter-form-wrap input {
+    font-size: 16px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   6. SAFE AREA SUPPORT
+   ───────────────────────────────────────────── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .whatsapp-fab {
+    right: max(24px, env(safe-area-inset-right) + 12px);
+    bottom: max(24px, env(safe-area-inset-bottom) + 12px);
+  }
+
+  .back-to-top {
+    left: max(24px, env(safe-area-inset-left) + 12px);
+  }
+
+  .cookie-banner {
+    padding-bottom: max(22px, env(safe-area-inset-bottom) + 12px);
+  }
+
+  .drawer-panel {
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* ─────────────────────────────────────────────
+   7. TYPOGRAPHY
+   ───────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .section-heading,
+  .centered-title-wrap .sr-text,
+  .home-services-title .sr-text,
+  .home-products-title .sr-text,
+  .case-studies-title .sr-text,
+  .testimonials-title .sr-text,
+  .hq-strip-title .sr-text,
+  .team-title .sr-text {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+    line-height: 0.96;
+  }
+
+  a,
+  p,
+  li {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   8. REDUCE MOTION
+   ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .slogan-band-track,
+  .slogan-marquee-track,
+  .marquee-track,
+  .services-marquee-track {
+    animation-duration: 0s !important;
+  }
+}

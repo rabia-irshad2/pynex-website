@@ -1,12 +1,21 @@
-import Button from '@/components/Button';
+import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <section className="not-found-page min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
-      <p className="section-label mb-3">404</p>
-      <h1 className="text-4xl font-bold mb-4 text-white">Page not found</h1>
-      <p className="text-white/65 mb-8">The page you&apos;re looking for doesn&apos;t exist.</p>
-      <Button href="/">Back to home</Button>
+    <section className="error-page">
+      <p className="section-label">404</p>
+      <h1 className="error-title">Page not found</h1>
+      <p style={{ opacity: 0.7, marginBottom: '2rem' }}>
+        The page you&apos;re looking for doesn&apos;t exist.
+      </p>
+      <div className="error-actions">
+        <Link href="/" className="btn btn-primary">
+          Back to home
+        </Link>
+        <Link href="/contact" className="btn btn-outline">
+          Contact
+        </Link>
+      </div>
     </section>
   );
 }

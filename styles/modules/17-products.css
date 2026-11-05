@@ -1,26 +1,25 @@
-/* styles/modules/17-products.css */
+/* styles/modules/17-products.css — responsive version */
 
 /* =========================================
    1. SECTION WRAPPER & HEADER
    ========================================= */
-.et-products { 
-  background: #05080f; 
-  padding-block: clamp(6rem, 10vw, 10rem); 
+.et-products {
+  background: #05080f;
+  padding-block: clamp(4rem, 10vw, 10rem);
 }
-.et-products-inner { 
-  max-width: 1400px; 
-  margin-inline: auto; 
-  padding-inline: clamp(1.5rem, 4vw, 3rem); 
+.et-products-inner {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
-/* FIXED HEADING LABEL */
 .et-products-label {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -32,238 +31,323 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #e53e3e; /* Red dot */
+  background: #e53e3e;
 }
 
-/* FIXED HEADING TITLE */
 .et-products-title {
-  margin: 0 auto 4rem; 
-  text-align: center; 
+  margin: 0 auto clamp(2rem, 5vw, 4rem);
+  text-align: center;
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 7vw, 6.5rem); /* Increased size */
-  line-height: 0.92; 
-  text-transform: uppercase; 
+  font-size: clamp(2.25rem, 7vw, 6.5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
   color: #fff;
-  display: flex; 
+  display: flex;
   flex-direction: column;
 }
 
 /* =========================================
-   2. STAGE (The flex container)
+   2. STAGE — horizontal accordion (desktop)
    ========================================= */
 .et-products-stage {
-  display: flex; 
-  height: 650px; 
-  gap: 1rem; 
+  display: flex;
+  height: clamp(420px, 55vw, 650px);
+  gap: 1rem;
   overflow: hidden;
-  border-radius: 20px; 
-  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* =========================================
-   3. INDIVIDUAL COLUMNS (Tabs)
-   ========================================= */
 .et-product-col {
-  position: relative; 
-  flex: 1; 
-  min-width: 100px; 
+  position: relative;
+  flex: 1;
+  min-width: 100px;
   overflow: hidden;
-  background: #0f1626; 
-  border-right: 1px solid rgba(255,255,255,0.05);
-  
-  /* Smooth slide for the columns */
-  transition: flex 0.8s cubic-bezier(0.22, 1, 0.36, 1); 
+  background: #0f1626;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  transition: flex 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
 }
 .et-product-col:last-child { border-right: 0; }
 
-/* Active Column */
-.et-product-col.is-active { 
-  flex: 4.5; 
-  background: #05080F; 
+.et-product-col.is-active {
+  flex: 4.5;
+  background: #05080f;
 }
 
 /* =========================================
-   4. COLLAPSED STATE (Vertical Text)
+   3. COLLAPSED STATE
    ========================================= */
 .et-product-collapsed {
-  position: absolute; 
-  inset: 0; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  padding: 2rem 0; 
-  opacity: 1; 
-  transition: opacity 0.4s; 
+  padding: 2rem 0;
+  opacity: 1;
+  transition: opacity 0.4s;
 }
-.et-product-col.is-active .et-product-collapsed { 
-  opacity: 0; 
-  pointer-events: none; 
+.et-product-col.is-active .et-product-collapsed {
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* INCREASED TAB TEXT */
-.et-product-id-vert { 
-  font-family: var(--font-mono); 
-  font-size: 1rem; 
-  color: rgba(255,255,255,0.4); 
+.et-product-id-vert {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
 }
-.et-product-title-vert { 
-  writing-mode: vertical-rl; 
-  transform: rotate(180deg); 
-  font-family: var(--font-display); 
-  font-size: 2.4rem; /* Increased */
-  color: #fff; 
-  text-transform: uppercase; 
-  letter-spacing: 2px; 
+.et-product-title-vert {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 /* =========================================
-   5. EXPANDED CONTENT
+   4. EXPANDED CONTENT
    ========================================= */
 .et-product-content {
-  position: absolute; 
-  inset: 0; 
-  display: flex; 
-  flex-direction: column; 
-  padding: 3rem;
-  opacity: 0; 
-  visibility: hidden; 
-  
-  /* Fades content in after column expands */
-  transition: opacity 0.6s ease 0.3s; 
-  width: 1000px; 
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 3vw, 3rem);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease 0.3s;
+  width: 100%;
+  min-width: 0;
 }
-.et-product-col.is-active .et-product-content { 
-  opacity: 1; 
-  visibility: visible; 
-}
-
-/* Header Row */
-.et-product-head { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  margin-bottom: 3rem; 
-  border-bottom: 1px solid rgba(255,255,255,0.1); 
-  padding-bottom: 1rem; 
-}
-.et-product-id { 
-  font-family: var(--font-mono); 
-  font-size: 1rem; 
-  font-weight: 700; 
-  color: #fff; 
-  letter-spacing: 0.1em; 
-}
-.et-product-live { 
-  display: flex; 
-  align-items: center; 
-  gap: 0.5rem; 
-  font-family: var(--font-mono); 
-  font-size: 0.85rem; 
-  color: #10b981; 
-  letter-spacing: 0.1em; 
-}
-.et-product-live .dot { 
-  width: 6px; 
-  height: 6px; 
-  background: #10b981; 
-  border-radius: 50%; 
-  box-shadow: 0 0 8px #10b981; 
+.et-product-col.is-active .et-product-content {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* Grid Layout */
-.et-product-body { 
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  gap: 3rem; 
-  flex: 1; 
+.et-product-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 3vw, 3rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
 }
-.et-product-copy { 
-  display: flex; 
-  flex-direction: column; 
-  align-items: flex-start; 
+.et-product-id {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.1em;
+}
+.et-product-live {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  color: #10b981;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+.et-product-live .dot {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.et-product-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.et-product-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
+  min-width: 0;
 }
 
-/* Typography */
-.et-product-tag { 
-  color: #00C6FF; 
-  font-family: var(--font-mono); 
-  font-size: 0.9rem; 
-  font-weight: 700; 
-  letter-spacing: 0.15em; 
-  text-transform: uppercase; 
-  margin-bottom: 1rem; 
+.et-product-tag {
+  color: #00c6ff;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
-.et-product-name { 
-  font-family: var(--font-display); 
-  font-size: clamp(3rem, 4.5vw, 4.5rem); 
-  line-height: 0.9; 
-  color: #fff; 
-  text-transform: uppercase; 
-  margin: 0 0 1.5rem; 
+.et-product-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  line-height: 0.9;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
 }
-.et-product-desc { 
-  font-family: var(--font-body); 
-  font-size: 1.1rem; 
-  line-height: 1.6; 
-  color: rgba(255,255,255,0.7); 
-  max-width: 42ch; 
-  margin-bottom: 2rem; 
-}
-
-/* Stats */
-.et-product-stats { 
-  display: flex; 
-  gap: 3rem; 
-  margin-bottom: 2rem; 
-}
-.et-product-stats .stat { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0.25rem; 
-}
-.et-product-stats strong { 
-  font-family: var(--font-display); 
-  font-size: 3.5rem; 
-  line-height: 1; 
-  color: #fff; 
-}
-.et-product-stats span { 
-  font-family: var(--font-mono); 
-  font-size: 0.8rem; 
-  color: rgba(255,255,255,0.5); 
-  text-transform: uppercase; 
-  letter-spacing: 0.1em; 
+.et-product-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 42ch;
+  margin-bottom: clamp(1.25rem, 2vw, 2rem);
 }
 
-/* Image Container */
-.et-product-visual { 
-  position: relative; 
-  width: 100%; 
-  height: 100%; 
-  border-radius: 16px; 
-  overflow: hidden; 
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+.et-product-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-bottom: clamp(1.25rem, 2vw, 2rem);
+}
+.et-product-stats .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.et-product-stats strong {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  line-height: 1;
+  color: #fff;
+}
+.et-product-stats span {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* =========================================
-   6. LOADING LINE (Bottom of Tab)
-   ========================================= */
+.et-product-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
 .et-product-loading-line {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 4px; 
-  background: #00C6FF;
-  width: 0%; /* Starts at 0 */
+  height: 4px;
+  background: #00c6ff;
+  width: 0%;
   z-index: 10;
 }
-
-/* When active, fill the line in 3 seconds */
 .et-product-col.is-active .et-product-loading-line {
-  width: 100%; 
-  transition: width 3s linear; /* MUST MATCH the 3000ms in React */
+  width: 100%;
+  transition: width 3s linear;
+}
+
+/* =========================================
+   5. TABLET / MOBILE — vertical stacking
+   ========================================= */
+@media (max-width: 1024px) {
+  .et-products-stage {
+    flex-direction: column;
+    height: auto;
+    gap: 0.75rem;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .et-product-col {
+    flex: none !important;
+    width: 100%;
+    min-width: 0;
+    min-height: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    transition: background 0.3s ease;
+  }
+
+  .et-product-col.is-active {
+    flex: none !important;
+    background: #05080f;
+  }
+
+  .et-product-collapsed {
+    position: relative;
+    inset: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    min-height: 72px;
+  }
+
+  .et-product-id-vert {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.85rem;
+    min-width: 32px;
+  }
+
+  .et-product-title-vert {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    letter-spacing: 0.05em;
+  }
+
+  .et-product-content {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    padding: 1.5rem;
+    display: none;
+  }
+  .et-product-col.is-active .et-product-content {
+    display: flex;
+  }
+
+  .et-product-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .et-product-visual {
+    aspect-ratio: 16 / 10;
+    height: auto;
+    min-height: 0;
+    max-height: 320px;
+  }
+
+  .et-product-loading-line {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .et-product-head {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .et-product-stats {
+    gap: 1.25rem;
+  }
+  .et-product-stats strong {
+    font-size: 2rem;
+  }
 }

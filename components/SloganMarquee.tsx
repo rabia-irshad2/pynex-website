@@ -1,4 +1,3 @@
-//components/SloganMarquee.tsx — dummy slogans until HR provides final copy
 const SLOGANS = [
   'Innovate. Build. Scale.',
   'Driven by Technology Excellence',
@@ -13,9 +12,9 @@ export default function SloganMarquee() {
   return (
     <div className="slogan-band" aria-label="PYNEX values">
       <div className="slogan-band-track" aria-hidden="true">
-        {loop.map((slogan, i) => (
-          <span className="slogan-band-item" key={i}>
-            {slogan}
+        {loop.map((s, i) => (
+          <span key={i} className="slogan-band-item">
+            {s}
             <i className="slogan-band-dot" />
           </span>
         ))}

@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import AnimatedButton from '@/components/AnimatedButton';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Box } from 'lucide-react'; // Added Box icon
+import { ArrowUpRight, Box } from 'lucide-react';
 
 type ClientLogo = { name: string; src: string };
 const CLIENT_LOGOS: ClientLogo[] = [];
@@ -77,15 +77,17 @@ export default function HomeOverview() {
               </AnimatedButton>
             </div>
 
-            {/* MOVED PROOF STRIP HERE */}
+            {/* MOVED PROOF STRIP HERE & UPDATED MARKUP */}
+                        {/* MOVED PROOF STRIP HERE */}
             <div
               ref={proof.ref}
               className={`et-overview-proof ${proof.shown ? 'is-in' : ''}`}
             >
-              <Box size={28} className="et-overview-proof-icon" />
+              {/* Increased icon size to match Eastern Tech */}
+              <Box size={42} className="et-overview-proof-icon" />
               <div className="et-overview-proof-text">
-                <strong>We've executed 150+ successful</strong>
-                <span>implementations.</span>
+                {/* Combined into one strong tag so it flows naturally like Eastern Tech */}
+                <strong>WE'VE EXECUTED 150+ SUCCESSFUL<br/>IMPLEMENTATIONS.</strong>
               </div>
             </div>
           </div>

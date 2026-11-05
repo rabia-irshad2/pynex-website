@@ -2,25 +2,26 @@
 
 .et-overview {
   background: #0a0a0a;
-  padding-block: clamp(4rem, 7vw, 6.5rem);
+  /* Keeps top padding, drastically reduces bottom padding */
+  padding-top: clamp(3.5rem, 7vw, 6.5rem);
+  padding-bottom: 1rem; 
 }
 
 .et-overview-inner {
   max-width: 1320px;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 3rem);
+  padding-inline: clamp(1rem, 4vw, 3rem);
 }
-
-/* ENLARGED LABEL */
-.et-section-label {
+/* modify overview title */
+.et-section-label { 
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
   margin: 0 0 0.4rem;
   font-family: var(--font-mono);
-  font-size: 1rem; /* Enlarged */
-  font-weight: 600;
-  letter-spacing: 0.20em;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   color: #fff;
   opacity: 0;
@@ -45,17 +46,12 @@
 
 .et-overview-grid {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  gap: clamp(2.5rem, 5vw, 4.5rem);
+  /* Changed to 1.2fr for text and 0.8fr for the image. */
+  /* This pushes the image to the right and gives the text 60% of the space. */
+  grid-template-columns: 1.1fr 0.9fr; 
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: start;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-@media (max-width: 900px) {
-  .et-overview-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+  margin-bottom: 0;
 }
 
 .et-overview-copy {
@@ -63,15 +59,16 @@
   flex-direction: column;
   gap: 1.5rem;
   max-width: 620px;
+  min-width: 0;
 }
 
 .et-overview-title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(4.25rem, 10vw, 10.5rem);
-  line-height: 0.86;
-  letter-spacing: -0.028em;
+  font-weight: 500;
+  font-size: 120px; /* Fluid size: scales nicely without cutting off */
+  line-height: 0.85; /* Slightly taller line height */
+  letter-spacing: -0.028em; /* ADJUSTED: Less cramped, more readable */
   text-transform: uppercase;
   color: #fff;
   display: flex;
@@ -87,7 +84,6 @@
 
 .et-overview-title-line {
   display: block;
-  white-space: nowrap;
   opacity: 0;
   transform: translateX(-70px);
   filter: blur(8px);
@@ -115,7 +111,6 @@
   .et-overview-title-line { white-space: normal; }
 }
 
-/* CTA BUTTON */
 .et-overview-cta-wrap {
   opacity: 0;
   transform: translateY(14px);
@@ -128,15 +123,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 58px;
-  padding: 0 2rem;
-  border-radius: 8px; /* Changed to match the overview button style */
+  
+  padding: 0 clamp(1rem, 2vw, 2rem); /* Wider padding */
+  font-size: clamp(1rem, 1.3vw, 1.15rem); /* INCREASED TEXT SIZE */
+  font-weight: 800; /* Bold text */
+  height: clamp(40px, 4vw, 38px);
+  
+  border-radius: 8px;
   background: #ffffff;
   border: 1px solid #ffffff;
   color: #05080f;
   font-family: var(--font-mono);
-  font-size: 1rem;
-  font-weight: 800;
+  
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
@@ -159,9 +157,10 @@
 .et-overview-proof {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 5rem;
-  padding-top: 1.5rem;
+  gap: 1.25rem;
+  /* Changed margin-top from 5rem to 3rem to remove the huge gap */
+  margin-top: 4rem; 
+  padding-top: 2rem;
   border-top: 1px solid rgba(255,255,255,0.08);
   opacity: 0;
   transform: translateY(18px);
@@ -170,31 +169,49 @@
 .et-overview-proof.is-in { opacity: 1; transform: none; }
 
 .et-overview-proof-icon {
-  color: #0057ff;
+  color: #0057ff; /* Blue box icon */
   flex-shrink: 0;
-  width: 56px; /* Added size for the Box icon */
-  height: 56px; /* Added size for the Box icon */
+  width: 48px;
+  height: 48px;
 }
 
 .et-overview-proof-text {
   display: flex;
   flex-direction: column;
   font-family: var(--font-mono);
-  font-size: 1.15rem; 
+  /* Increased size to match Eastern Tech's 500+ text */
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem); 
+  font-weight: 600;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.25;
 }
 
-.et-overview-proof-text strong { color: rgba(255, 255, 255, 255); }
-.et-overview-proof-text span { color: rgba(255, 255, 255, 255); }
+.et-overview-proof-text strong { 
+  color: #ffffff; 
+  font-weight: 700;
+}
 
-/* IMAGE */
+/* Ensure the layout doesn't break on mobile */
+@media (max-width: 640px) {
+  .et-overview-proof {
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+  .et-overview-proof-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .et-overview-proof-text {
+    font-size: 1rem;
+  }
+}
+
 .et-overview-visual {
   position: relative;
-  margin-top: -2rem; 
+  margin-top: -2rem;
   aspect-ratio: 4 / 3;
-  max-height: 500px;
+  max-height: 400px;
   perspective: 1400px;
   isolation: isolate;
   opacity: 0;
@@ -245,18 +262,61 @@
   z-index: 2;
 }
 
-.et-overview-placeholder { width: 100%; height: 100%; display: block; object-fit: cover; background: #05080f; }
+.et-overview-placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #05080f;
+}
 
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .et-overview-visual { max-height: 420px; }
+  .et-overview-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .et-overview-visual {
+    margin-top: 0;
+    max-height: 420px;
+  }
+  .et-overview-proof {
+    margin-top: 2.5rem;
+  }
 }
 
 @media (max-width: 640px) {
-  .et-overview { padding-block: 3.5rem; }
-  .et-overview-grid { gap: 2rem; margin-bottom: 2.5rem; }
-  .et-overview-title { font-size: clamp(2.75rem, 13vw, 4.5rem); line-height: 0.92; }
-  .et-overview-visual { max-height: 340px; transform: none; }
-  .et-overview-visual-frame { transform: none; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08); }
-  .et-overview-visual:hover .et-overview-visual-frame { transform: none; }
-  .et-overview-cta { height: 52px; padding: 0 1.6rem; font-size: 0.85rem; }
+  .et-overview {
+    padding-block: 3rem;
+  }
+  .et-overview-grid {
+    gap: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .et-overview-title {
+    font-size: clamp(2.25rem, 13vw, 4.5rem);
+    line-height: 0.92;
+  }
+  .et-overview-copy {
+    gap: 1.25rem;
+  }
+  .et-overview-visual {
+    max-height: 340px;
+    transform: none;
+  }
+  .et-overview-visual-frame {
+    transform: none;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+  .et-overview-visual:hover .et-overview-visual-frame {
+    transform: none;
+  }
+  .et-overview-cta {
+    height: 52px;
+    padding: 0 1.6rem;
+    font-size: 0.85rem;
+  }
+  .et-overview-proof-text {
+    font-size: 0.9rem;
+  }
 }

@@ -1,60 +1,59 @@
-/* styles/modules/16-services.css */
+/* styles/modules/16-services.css — responsive version */
 
 /* =========================================
    1. SECTION WRAPPER & BACKGROUND
    ========================================= */
 .et-services {
-  background: #ffffff; /* White background */
-  padding-block: 4rem 6rem; /* Adjust top/bottom spacing here */
+  background: #ffffff;
+  padding-block: 4rem 6rem;
   overflow: hidden;
   position: relative;
 }
 
-.et-services-inner { 
-  max-width: 1320px; 
-  margin-inline: auto; 
-  padding-inline: clamp(1.5rem, 4vw, 3rem); 
+.et-services-inner {
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
 /* =========================================
-   2. HEADER & LABEL (Made Black for visibility)
+   2. HEADER & LABEL
    ========================================= */
 .et-section-label--center {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.6rem;
-  margin-bottom: 1rem; 
-  font-family: var(--font-mono); 
-  font-size: 0.9rem; /* Increased Label Size */
-  font-weight: 700; 
-  letter-spacing: 0.2em; 
-  text-transform: uppercase; 
-  color: #000000; /* BLACK TEXT */
-  opacity: 0; 
-  transform: translateY(10px); 
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #000000;
+  opacity: 0;
+  transform: translateY(10px);
   transition: all 0.7s ease;
 }
 .et-section-label--center.is-in { opacity: 1; transform: none; }
 .et-section-dot { width: 6px; height: 6px; border-radius: 50%; background: #e53e3e; }
 
-/* Main Heading */
 .et-services-title {
-  margin: 0 auto 4rem; 
+  margin: 0 auto clamp(2rem, 5vw, 4rem);
   text-align: center;
-  font-family: var(--font-display); 
-  font-size: clamp(3rem, 7vw, 6.5rem); /* INCREASED HEADING SIZE */
-  line-height: 0.92; 
-  text-transform: uppercase; 
-  color: #000000; /* BLACK TEXT */
-  display: flex; 
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 7vw, 6.5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: #000000;
+  display: flex;
   flex-direction: column;
 }
-.et-services-title-line { 
-  opacity: 0; 
-  transform: translateY(30px); 
-  filter: blur(6px); 
-  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1); 
+.et-services-title-line {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(6px);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .et-services-title-line:nth-child(2) { transition-delay: 0.1s; }
 .et-services-title-line:nth-child(3) { transition-delay: 0.2s; }
@@ -63,75 +62,69 @@
 /* =========================================
    3. GRID & STAGGERED LOADING
    ========================================= */
-.et-services-grid { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 2rem; 
-  perspective: 2000px; 
+.et-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  perspective: 2000px;
 }
 
-@media (max-width: 900px) { 
-  .et-services-grid { grid-template-columns: 1fr; gap: 2rem; } 
-}
-
-/* Sequential Card Loading (1st -> 2nd -> 3rd) */
 .et-flip-card {
-  aspect-ratio: 3 / 4; /* Standard portrait ratio */
+  aspect-ratio: 3 / 4;
   min-height: 480px;
-  opacity: 0; 
-  transform: translateY(40px); 
+  opacity: 0;
+  transform: translateY(40px);
   transition: opacity 0.8s ease var(--delay), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--delay);
   cursor: pointer;
 }
-.et-services-grid.is-in .et-flip-card { 
-  opacity: 1; 
-  transform: translateY(0); 
+.et-services-grid.is-in .et-flip-card {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================================
-   4. FLIP MECHANICS (Rotate on Click)
+   4. FLIP MECHANICS
    ========================================= */
 .et-flip-inner {
-  position: relative; 
-  width: 100%; 
+  position: relative;
+  width: 100%;
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .et-flip-card:hover .et-flip-inner,
-.et-flip-card.is-flipped .et-flip-inner { 
-  transform: rotateY(180deg); 
+.et-flip-card.is-flipped .et-flip-inner {
+  transform: rotateY(180deg);
 }
 
 .et-flip-front, .et-flip-back {
-  position: absolute; 
-  inset: 0; 
-  border-radius: 16px; 
-  overflow: hidden; /* Clips the image to the rounded corners */
-  backface-visibility: hidden; 
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
 /* =========================================
-   5. FRONT FACE (Full Image Background)
+   5. FRONT FACE
    ========================================= */
-.et-flip-front { 
-  background: #05080f; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: flex-end; 
+.et-flip-front {
+  background: #05080f;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
-.et-flip-svg { 
-  object-fit: cover; /* Fills the entire card */
-  transition: transform 0.8s ease; 
+.et-flip-svg {
+  object-fit: cover;
+  transition: transform 0.8s ease;
 }
-.et-flip-card:hover .et-flip-svg { 
-  transform: scale(1.05); 
+.et-flip-card:hover .et-flip-svg {
+  transform: scale(1.05);
 }
 
-/* Dark Gradient at bottom so text is readable */
 .et-flip-shade {
   position: absolute;
   inset: 0;
@@ -139,118 +132,184 @@
   z-index: 1;
 }
 
-.et-flip-body { 
-  position: relative; 
-  z-index: 2; 
-  padding: 2rem 1.75rem; 
+.et-flip-body {
+  position: relative;
+  z-index: 2;
+  padding: clamp(1.25rem, 2vw, 2rem) clamp(1rem, 1.75vw, 1.75rem);
 }
-.et-flip-label { 
-  display: flex; 
-  align-items: center; 
-  gap: 0.5rem; 
-  font-family: var(--font-mono); 
-  font-size: 0.75rem; 
-  font-weight: 700; 
-  color: #ffffff; 
-  margin-bottom: 0.5rem; 
+.et-flip-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.75rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
 }
 .et-flip-dot { width: 5px; height: 5px; background: #e53e3e; border-radius: 50%; }
 
-/* INCREASED CARD TITLE SIZE */
-.et-flip-title { 
-  margin: 0; 
-  font-family: var(--font-display); 
-  font-size: clamp(2.2rem, 3.5vw, 3rem); /* Increased from 1.8rem */
-  color: #ffffff; 
-  line-height: 0.92; 
-  text-transform: uppercase; 
+.et-flip-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  color: #ffffff;
+  line-height: 0.92;
+  text-transform: uppercase;
 }
 
 /* =========================================
-   6. BACK FACE (Blurred Image + Text)
+   6. BACK FACE
    ========================================= */
-.et-flip-back { 
-  background: #05080f; 
-  transform: rotateY(180deg); 
-  border: 1px solid rgba(255, 255, 255, 0.1); 
+.et-flip-back {
+  background: #05080f;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.et-flip-back-img { 
+.et-flip-back-img {
   object-fit: cover;
-  opacity: 0.3; 
-  filter: blur(12px); /* Creates the beautiful blur effect */
-  transform: scale(1.1); /* Prevents white edges from blur */
+  opacity: 0.3;
+  filter: blur(12px);
+  transform: scale(1.1);
 }
 
-.et-flip-back-shade { 
-  position: absolute; 
-  inset: 0; 
-  background: rgba(5, 8, 15, 0.6); 
+.et-flip-back-shade {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.6);
 }
 
-.et-flip-back-inner { 
-  position: relative; 
-  z-index: 2; 
-  display: flex; 
-  flex-direction: column; 
-  height: 100%; 
-  padding: 2rem 1.75rem; 
-  color: #ffffff; 
+.et-flip-back-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(1.25rem, 2vw, 2rem) clamp(1rem, 1.75vw, 1.75rem);
+  color: #ffffff;
 }
 
-.et-flip-back-title { 
-  margin: 0 0 0.8rem; 
-  font-family: var(--font-display); 
-  font-size: 2rem; 
-  line-height: 1; 
-  text-transform: uppercase; 
+.et-flip-back-title {
+  margin: 0 0 0.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.et-flip-back-description { 
-  margin: 0 0 1.25rem; 
-  color: rgba(255, 255, 255, 0.85); 
-  font-family: var(--font-body); 
-  font-size: 0.9rem; 
-  line-height: 1.5; 
+.et-flip-back-description {
+  margin: 0 0 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-body);
+  font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+  line-height: 1.5;
 }
 
-.et-flip-back-list { 
-  list-style: none; 
-  padding: 0; 
-  margin: 0 0 1.5rem; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 0.6rem; 
-  flex: 1; 
+.et-flip-back-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
 }
-.et-flip-back-list li { 
-  font-family: var(--font-mono); 
-  font-size: 0.85rem; 
-  color: rgba(255, 255, 255, 0.9); 
-  padding-left: 1.2rem; 
-  position: relative; 
+.et-flip-back-list li {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.9);
+  padding-left: 1.2rem;
+  position: relative;
 }
-.et-flip-back-list li::before { 
-  content: ''; 
-  position: absolute; 
-  left: 0; 
-  top: 0.45rem; 
-  width: 5px; 
-  height: 5px; 
-  border-radius: 50%; 
-  background: #e53e3e; 
+.et-flip-back-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e53e3e;
 }
 
 /* =========================================
    7. FOOTER BUTTON
    ========================================= */
-.et-services-footer { 
-  margin-top: 3.5rem; 
-  display: flex; 
-  justify-content: center; 
-  opacity: 0; 
-  transform: translateY(20px); 
-  transition: all 0.8s ease 0.6s; 
+.et-services-footer {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease 0.6s;
 }
 .et-services-footer.is-in { opacity: 1; transform: none; }
+
+/* =========================================
+   8. RESPONSIVE
+   ========================================= */
+@media (max-width: 1024px) {
+  .et-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .et-services {
+    padding-block: 3rem 4rem;
+  }
+  .et-flip-card {
+    aspect-ratio: 4 / 5;
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 640px) {
+  .et-services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .et-flip-card {
+    aspect-ratio: 4 / 5;
+    min-height: 420px;
+  }
+}
+
+/* Touch devices — show back content stacked, no hover needed */
+@media (hover: none), (pointer: coarse) {
+  .et-flip-card:hover .et-flip-inner,
+  .et-flip-card.is-flipped .et-flip-inner {
+    transform: none;
+  }
+  .et-flip-card {
+    aspect-ratio: auto;
+    min-height: 0;
+    height: auto;
+  }
+  .et-flip-inner {
+    position: relative;
+    height: auto;
+  }
+  .et-flip-front {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px 16px 0 0;
+  }
+  .et-flip-back {
+    position: relative;
+    inset: auto;
+    transform: none;
+    border-radius: 0 0 16px 16px;
+    margin-top: -1px;
+  }
+  .et-flip-back-inner {
+    height: auto;
+    min-height: 0;
+  }
+  .et-flip-back-list {
+    flex: none;
+  }
+}

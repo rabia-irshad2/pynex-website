@@ -6,97 +6,116 @@ header.site-header {
   left: 0 !important;
   right: 0 !important;
   z-index: 99999 !important;
-  padding-top: 10px !important; /* Added a bit of breathing room from the top */
+  padding-top: 10px !important;
   background: transparent !important;
-
- /* Smooth slide transition */
-  
-
- /* CRITICAL: Remove all animations and transforms */
   transform: none !important;
   transition: none !important;
   animation: none !important;
 }
-/* When scrolled past hero, hide the header */
+
 header.site-header.is-hidden {
   transform: translateY(-220%) !important;
   pointer-events: none;
 }
 
-/* FULL WIDTH, TRANSPARENT NAVBAR */
 .header-inner {
   max-width: 1400px;
   margin-inline: auto;
-  padding-inline: clamp(1.5rem, 4vw, 3rem);
+  padding-inline: clamp(1rem, 4vw, 3rem);
   height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.01rem;
-  
-  /* REMOVED: background, border, backdrop-filter, box-shadow, border-radius */
+  gap: 0.5rem;
   background: transparent;
   border: none;
   box-shadow: none;
 }
 
-/* Brand */
-.header-brand { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; flex-shrink: 0; }
-.header-brand-logo { position: relative; display: block; width: 50px; height: 40px; flex-shrink: 0; }
-.header-brand-logo-img { object-fit: contain; object-position: center; }
-.header-brand-text { 
-  font-family: var(--font-display); 
-  font-size: 2.1rem; 
-  letter-spacing: 0.01em; 
+.header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.header-brand-logo {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.header-brand-logo-img {
+  object-fit: contain;
+  object-position: center;
+}
+.header-brand-text {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  letter-spacing: 0.01em;
   font-weight: 580;
-  color: #fff; 
-  line-height: 1; 
-  text-transform: uppercase; 
+  color: #fff;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-/* Nav Layout */
-.header-nav { display: none; align-items: center; gap: 3.75rem; flex: 1; justify-content: center; }
-@media (min-width: 1000px) { .header-nav { display: flex; } }
+.header-nav {
+  display: none;
+  align-items: center;
+  gap: clamp(1.5rem, 3.75vw, 3.75rem);
+  flex: 1;
+  justify-content: center;
+}
 
-/* Nav Links */
 .nav-link {
   position: relative;
   color: rgba(255, 255, 255, 0.72);
   font-family: var(--font-mono);
-  font-size: 1rem; 
+  font-size: clamp(0.85rem, 1vw, 1rem);
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 2px 0; /* Removed horizontal padding so they look like plain text links */
+  padding: 2px 0;
   transition: color 0.3s;
   overflow: hidden !important;
 }
 
 .nav-link:hover { color: #fff; }
 
-/* Active state - just a cyan line underneath */
 .nav-link-active { color: #fff; }
 .nav-link-active::after {
   content: '';
   position: absolute;
-  left: 50%; transform: translateX(-50%);
-  bottom: 0; 
-  width: 100%; /* Line matches the text width */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 100%;
   height: 2px;
   background: #4fa9ff;
   border-radius: 2px;
 }
 
-/* Nav Link Scroll Animation Heights */
-.nav-link .btn-swap { height: 24px !important; line-height: 24px !important; display: block; }
+.nav-link .btn-swap {
+  height: 24px !important;
+  line-height: 24px !important;
+  display: block;
+}
 .nav-link .btn-swap-front,
-.nav-link .btn-swap-back { display: block; height: 24px; line-height: 24px; }
+.nav-link .btn-swap-back {
+  display: block;
+  height: 24px;
+  line-height: 24px;
+}
 
-/* Actions */
-.header-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
 
-/* Book a Call CTA */
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -108,7 +127,7 @@ header.site-header.is-hidden {
   border: 1px solid #ffffff !important;
   color: #05080f !important;
   font-family: var(--font-mono);
-  font-size: 1rem !important;
+  font-size: clamp(0.85rem, 1vw, 1rem) !important;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -124,19 +143,68 @@ header.site-header.is-hidden {
   box-shadow: 0 8px 24px rgba(0, 87, 255, 0.4);
 }
 
-/* Button Scroll Animation Heights */
-.nav-cta .btn-swap { height: 28px !important; line-height: 28px !important; display: block; }
-.nav-cta .btn-swap-front, 
-.nav-cta .btn-swap-back { 
-  display: flex; 
-  align-items: center; 
-  gap: 0.6rem; 
-  height: 28px; 
+.nav-cta .btn-swap {
+  height: 28px !important;
+  line-height: 28px !important;
+  display: block;
+}
+.nav-cta .btn-swap-front,
+.nav-cta .btn-swap-back {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 28px;
   line-height: 28px;
 }
 
 .header-menu-trigger {
-  color: #fff; padding: 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.15);
-  display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); cursor: pointer;
+  color: #fff;
+  padding: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
 }
-@media (min-width: 1000px) { .header-menu-trigger { display: none !important; } }
+
+/* ── DESKTOP: show nav, hide hamburger ── */
+@media (min-width: 1000px) {
+  .header-nav { display: flex; }
+  .header-menu-trigger { display: none !important; }
+}
+
+/* ── TABLET/MOBILE: hide nav, show hamburger ── */
+@media (max-width: 999px) {
+  .header-menu-trigger { display: inline-flex !important; }
+}
+
+/* ── SMALL PHONES ── */
+@media (max-width: 480px) {
+  .header-inner {
+    height: 56px;
+    padding-inline: 1rem;
+  }
+  .header-brand-logo {
+    width: 40px;
+    height: 32px;
+  }
+  .header-brand-text {
+    font-size: 1.5rem;
+  }
+  .nav-cta {
+    height: 40px !important;
+    padding: 0 10px !important;
+    font-size: 0.75rem !important;
+  }
+  .nav-cta .btn-swap {
+    height: 22px !important;
+    line-height: 22px !important;
+  }
+  .nav-cta .btn-swap-front,
+  .nav-cta .btn-swap-back {
+    height: 22px;
+    line-height: 22px;
+  }
+}

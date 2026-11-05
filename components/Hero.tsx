@@ -1,41 +1,40 @@
 //components/Hero.tsx
-import {
-  NodeIcon, CodeIcon, JsIcon, AndroidIcon, ReactIcon,
-  GlobeIcon, CoilIcon, SafariIcon, AppleIcon,
-} from '@/components/HeroIcons3D';
+'use client';
+
+import Image from 'next/image';
 
 type HeroIconDef = {
   id: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  src: string;
   left: string;
   top: string;
   size: number;
+  mobileSize: number; // Added mobile size
   rotate: number;
   delay: number;
+  clickEffect?: 'spin' | 'wiggle' | 'pulse' | 'flip' | 'tumble' | 'swing';
 };
 
 const HERO_ICONS: HeroIconDef[] = [
   // ── Left arc ──
-  { id: 'node',    Icon: NodeIcon,    left: '6%',  top: '50%', size: 160, rotate: -12, delay: 0    },
-  { id: 'code',    Icon: CodeIcon,    left: '16%', top: '68%', size: 130, rotate: 6,   delay: 0.08 },
-  { id: 'js',      Icon: JsIcon,      left: '22%', top: '86%', size: 140, rotate: -4,  delay: 0.16 },
-
-  // ── Bottom row ──
-  { id: 'android', Icon: AndroidIcon, left: '38%', top: '96%', size: 116, rotate: 0,   delay: 0.24 },
-  { id: 'react',   Icon: ReactIcon,   left: '52%', top: '94%', size: 124, rotate: 0,   delay: 0.32 },
-  { id: 'globe',   Icon: GlobeIcon,   left: '63%', top: '90%', size: 110, rotate: 0,   delay: 0.4  },
-
+  { id: 'code',    src: '/images/hero/code.svg',    left: '8%',  top: '45%', size: 120, mobileSize: 60, rotate: -12, delay: 0,    clickEffect: 'pulse' },
+  { id: 'js',      src: '/images/hero/js.svg',      left: '15%', top: '68%', size: 130, mobileSize: 70, rotate: 6,   delay: 0.08, clickEffect: 'wiggle' },
+  
+  // ── Bottom row (Moved up slightly so they don't hit the bottom) ──
+  { id: 'android', src: '/images/hero/android.svg', left: '30%', top: '82%', size: 110, mobileSize: 55, rotate: -4,  delay: 0.16, clickEffect: 'swing' },
+  { id: 'react',   src: '/images/hero/react.svg',   left: '50%', top: '85%', size: 110, mobileSize: 60, rotate: 0,   delay: 0.24, clickEffect: 'spin' },
+  { id: 'earth',   src: '/images/hero/earth.svg',   left: '70%', top: '80%', size: 120, mobileSize: 60, rotate: 0,   delay: 0.32, clickEffect: 'flip' },
+  
   // ── Right arc ──
-  { id: 'coil',    Icon: CoilIcon,    left: '76%', top: '78%', size: 150, rotate: 8,   delay: 0.48 },
-  { id: 'safari',  Icon: SafariIcon,  left: '86%', top: '60%', size: 125, rotate: -6,  delay: 0.56 },
-  { id: 'apple',   Icon: AppleIcon,   left: '92%', top: '40%', size: 140, rotate: 12,  delay: 0.64 },
+  { id: 'ios',     src: '/images/hero/ios.svg',     left: '85%', top: '55%', size: 120, mobileSize: 65, rotate: 8,   delay: 0.48, clickEffect: 'flip' },
+  { id: 'new1',    src: '/images/hero/icon2.svg',   left: '92%', top: '30%', size: 130, mobileSize: 70, rotate: 12,  delay: 0.56, clickEffect: 'tumble' },
 ];
 
 export default function Hero() {
   return (
     <section className="et-hero" aria-labelledby="et-hero-title">
       <ul className="et-hero-icons" aria-hidden="true">
-        {HERO_ICONS.map(({ id, Icon, left, top, size, rotate, delay }, i) => (
+        {HERO_ICONS.map(({ id, src, left, top, size, mobileSize, rotate, delay, clickEffect }, i) => (
           <li
             key={id}
             className="et-hero-icon"
@@ -43,15 +42,29 @@ export default function Hero() {
               {
                 left,
                 top,
-                width: size,
-                height: size,
+                '--size': `${size}px`,
+                '--mobile-size': `${mobileSize}px`,
                 '--rot': `${rotate}deg`,
                 '--i': i,
                 '--d': `${delay}s`,
               } as React.CSSProperties
             }
           >
-            <Icon width={size} height={size} />
+            {/* LAYER 1: Jump Animation */}
+            <div className="et-hero-jump-wrapper">
+              {/* LAYER 2: Spin/Effect Animation */}
+              <div className={`et-hero-effect-wrapper ${clickEffect ? `effect-${clickEffect}` : ''}`}>
+                <Image
+                  src={src}
+                  alt=""
+                  width={size}
+                  height={size}
+                  draggable={false}
+                  priority
+                  className="et-hero-icon-img"
+                />
+              </div>
+            </div>
           </li>
         ))}
       </ul>
