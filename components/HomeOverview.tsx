@@ -87,7 +87,7 @@ export default function HomeOverview() {
               <Box size={42} className="et-overview-proof-icon" />
               <div className="et-overview-proof-text">
                 {/* Combined into one strong tag so it flows naturally like Eastern Tech */}
-                <strong>WE'VE EXECUTED 150+ SUCCESSFUL<br/>IMPLEMENTATIONS.</strong>
+                <strong>WE&apos;VE EXECUTED 150+ SUCCESSFUL<br/>IMPLEMENTATIONS.</strong>
               </div>
             </div>
           </div>
