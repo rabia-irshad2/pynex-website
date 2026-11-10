@@ -19,9 +19,9 @@
   z-index: 2;
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   /* Adjusted to fit nicely between the icons */
-  font-size: clamp(4rem, 15vw, 15rem); 
+  font-size: clamp(8rem, 15vw, 30rem); 
   line-height: 0.8;
   letter-spacing: -0.03em;
   text-transform: uppercase;
