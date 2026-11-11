@@ -33,7 +33,7 @@ export default function HomeFeaturedProduct() {
           </h2>
           
           <p className="et-featured-desc">
-            A configurable platform that adapts to each client's workflow, 
+            A configurable platform that adapts to each client&apos;s workflow, 
             branding, and data — instead of forcing everyone into the same rigid template.
           </p>
 
