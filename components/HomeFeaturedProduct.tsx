@@ -1,60 +1,74 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowUpRight, Check } from 'lucide-react';
+import { ArrowUpRight, RefreshCw, Box } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
+
+const FEATURES = [
+  {
+    icon: RefreshCw,
+    title: 'REAL-TIME 3D CUSTOMIZATION',
+    desc: 'CONFIGURE PRODUCTS WITH LIVE, INTERACTIVE 3D PREVIEWS.',
+  },
+  {
+    icon: Box,
+    title: 'DYNAMIC DESIGN CONTROL',
+    desc: 'CUSTOMIZE COLORS, MATERIALS, AND DETAILS WITH EASE.',
+  },
+];
 
 export default function HomeFeaturedProduct() {
   return (
     <section className="et-featured">
       <div className="et-featured-inner">
+        
+        {/* LEFT COLUMN */}
         <div className="et-featured-copy">
           <p className="et-section-label">
             <span className="et-section-dot" /> Our Recent Product
           </p>
+          
+          {/* Heading flows naturally, no <br/> tags to allow 2-line spillover */}
           <h2 className="et-featured-title">
-            <span className="text-white">Give clients the freedom</span>
-            <br />
-            <span className="text-[#00C6FF]">to work their way.</span>
+            Give clients the freedom to work their way.
           </h2>
+          
           <p className="et-featured-desc">
-            A configurable platform that adapts to each client&apos;s workflow,
-            branding, and data — instead of forcing everyone into the same rigid
-            template.
+            A configurable platform that adapts to each client's workflow, 
+            branding, and data — instead of forcing everyone into the same rigid template.
           </p>
-          <ul className="et-featured-list">
-            <li>
-              <span className="icon">
-                <Check size={14} />
-              </span>
-              <strong>Real-time customization</strong> — configure workflows
-              live.
-            </li>
-            <li>
-              <span className="icon">
-                <Check size={14} />
-              </span>
-              <strong>Dynamic design control</strong> — branding updates
-              instantly.
-            </li>
-            <li>
-              <span className="icon">
-                <Check size={14} />
-              </span>
-              <strong>Built for scale</strong> — from one team to multi-tenant.
-            </li>
-          </ul>
-          <Link href="/contact" className="btn btn-primary">
-            Test Live <ArrowUpRight size={16} />
-          </Link>
+
+          <div className="et-featured-btn-wrap">
+            <AnimatedButton href="/contact" variant="outline" className="et-test-btn">
+              Test Live <ArrowUpRight size={16} />
+            </AnimatedButton>
+          </div>
+
+          {/* SMALL ROUNDED SQUARE CARDS */}
+          <div className="et-featured-cards">
+            {FEATURES.map((feature, i) => (
+              <div key={i} className="et-feature-card">
+                <feature.icon size={24} className="et-feature-icon" />
+                <div className="et-feature-content">
+                  <h3 className="et-feature-card-title">{feature.title}</h3>
+                  <p className="et-feature-card-desc">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
+        {/* RIGHT COLUMN: IMAGE MATCHES HEIGHT OF CARDS */}
         <div className="et-featured-visual">
-          <Image
-            src="/images/overview/overview.jpg"
-            alt="Product interface"
-            fill
-            className="object-cover rounded-2xl border border-white/10"
-          />
+          <div className="et-featured-device">
+            <Image
+              src="/images/overview/overview.jpg"
+              alt="Product interface"
+              fill
+              className="object-cover object-top"
+            />
+          </div>
         </div>
+
       </div>
     </section>
   );

@@ -1,83 +1,93 @@
-/* styles/modules/17-products.css — responsive version */
+/* styles/modules/17-products.css */
 
-/* =========================================
-   1. SECTION WRAPPER & HEADER
-   ========================================= */
 .et-products {
   background: #05080f;
-  padding-block: clamp(4rem, 10vw, 10rem);
+  padding-block: clamp(5rem, 8vw, 8rem);
+  overflow: hidden;
 }
+
 .et-products-inner {
   max-width: 1400px;
   margin-inline: auto;
   padding-inline: clamp(1rem, 4vw, 3rem);
 }
 
+/* HEADER STYLES */
 .et-products-label {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
+  margin-bottom: 1rem;
   font-family: var(--font-mono);
-  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #ffffff;
-  margin-bottom: 1rem;
 }
 
 .et-products-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #e53e3e;
+  background: #3e3ee5;
 }
 
 .et-products-title {
-  margin: 0 auto clamp(2rem, 5vw, 4rem);
+  margin: 0 auto;
   text-align: center;
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 7vw, 6.5rem);
+  /* Maximized size to match Eastern Tech */
+  font-size: clamp(3.5rem, 9vw, 8rem);
   line-height: 0.92;
   text-transform: uppercase;
-  color: #fff;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
 }
 
-/* =========================================
-   2. STAGE — horizontal accordion (desktop)
-   ========================================= */
+/* SUBTITLE STYLES */
+.et-products-subtitle {
+  max-width: 800px;
+  margin: 1.5rem auto clamp(3rem, 5vw, 4.5rem);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* STAGE */
 .et-products-stage {
   display: flex;
-  height: clamp(420px, 55vw, 650px);
+  height: clamp(480px, 60vw, 650px);
   gap: 1rem;
   overflow: hidden;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* INDIVIDUAL TABS */
 .et-product-col {
   position: relative;
   flex: 1;
-  min-width: 100px;
+  min-width: 80px;
   overflow: hidden;
   background: #0f1626;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  transition: flex 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  transition: flex 0.7s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
   cursor: pointer;
 }
-.et-product-col:last-child { border-right: 0; }
 
 .et-product-col.is-active {
   flex: 4.5;
   background: #05080f;
+  border-color: rgba(255, 255, 255, 0.15); /* Highlight border */
 }
 
-/* =========================================
-   3. COLLAPSED STATE
-   ========================================= */
+/* COLLAPSED SIDEBAR */
 .et-product-collapsed {
   position: absolute;
   inset: 0;
@@ -87,7 +97,7 @@
   justify-content: space-between;
   padding: 2rem 0;
   opacity: 1;
-  transition: opacity 0.4s;
+  transition: opacity 0.3s;
 }
 .et-product-col.is-active .et-product-collapsed {
   opacity: 0;
@@ -103,24 +113,22 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
-/* =========================================
-   4. EXPANDED CONTENT
-   ========================================= */
+/* EXPANDED CONTENT */
 .et-product-content {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  padding: clamp(1.25rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 3rem);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.6s ease 0.3s;
+  transition: opacity 0.5s ease 0.2s; /* Smooth fade in */
   width: 100%;
   min-width: 0;
 }
@@ -133,27 +141,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: clamp(1.5rem, 3vw, 3rem);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
   padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .et-product-id {
   font-family: var(--font-mono);
   font-size: clamp(0.8rem, 1.2vw, 1rem);
   font-weight: 700;
   color: #fff;
-  letter-spacing: 0.1em;
 }
+
 .et-product-live {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: clamp(0.7rem, 1vw, 0.85rem);
+  font-size: 0.85rem;
   color: #10b981;
-  letter-spacing: 0.1em;
-  flex-shrink: 0;
+  text-transform: uppercase;
 }
 .et-product-live .dot {
   width: 6px;
@@ -169,48 +176,48 @@
   gap: clamp(1.5rem, 3vw, 3rem);
   flex: 1;
   min-height: 0;
-  align-items: stretch;
 }
 
 .et-product-copy {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
+  align-items: flex-start;
   min-width: 0;
 }
 
 .et-product-tag {
   color: #00c6ff;
   font-family: var(--font-mono);
-  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-size: clamp(0.8rem, 1vw, 0.95rem);
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 1rem;
 }
+
 .et-product-name {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 4.5rem);
+  font-size: clamp(2.5rem, 4vw, 4rem);
   line-height: 0.9;
   color: #fff;
   text-transform: uppercase;
-  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+  margin: 0 0 1.5rem;
 }
+
 .et-product-desc {
   font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
   color: rgba(255, 255, 255, 0.7);
   max-width: 42ch;
-  margin-bottom: clamp(1.25rem, 2vw, 2rem);
+  margin-bottom: 2rem;
 }
 
 .et-product-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  margin-bottom: clamp(1.25rem, 2vw, 2rem);
+  gap: 3rem;
 }
 .et-product-stats .stat {
   display: flex;
@@ -219,18 +226,18 @@
 }
 .et-product-stats strong {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-size: clamp(2.5rem, 3.5vw, 3.5rem);
   line-height: 1;
   color: #fff;
 }
 .et-product-stats span {
   font-family: var(--font-mono);
-  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
+/* IMAGE CONTAINER */
 .et-product-visual {
   position: relative;
   width: 100%;
@@ -239,9 +246,23 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: #0b1f44;
 }
 
+.et-product-visual img {
+  object-fit: cover;
+  /* Adjusted opacity so it blends with the dark theme perfectly */
+  opacity: 0.85; 
+}
+
+/* FOOTER BUTTON */
+.et-products-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+/* LOADING LINE */
 .et-product-loading-line {
   position: absolute;
   bottom: 0;
@@ -253,101 +274,55 @@
 }
 .et-product-col.is-active .et-product-loading-line {
   width: 100%;
-  transition: width 3s linear;
+  transition: width 4s linear; /* Matches the 4000ms timer */
 }
 
-/* =========================================
-   5. TABLET / MOBILE — vertical stacking
-   ========================================= */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .et-products-stage {
     flex-direction: column;
     height: auto;
-    gap: 0.75rem;
+    gap: 1rem;
     border: none;
-    border-radius: 0;
-    overflow: visible;
   }
-
   .et-product-col {
     flex: none !important;
     width: 100%;
-    min-width: 0;
-    min-height: auto;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    transition: background 0.3s ease;
+    border-radius: 12px;
   }
-
-  .et-product-col.is-active {
-    flex: none !important;
-    background: #05080f;
-  }
-
   .et-product-collapsed {
     position: relative;
-    inset: auto;
     flex-direction: row;
-    align-items: center;
     justify-content: flex-start;
-    gap: 1rem;
     padding: 1.25rem 1.5rem;
-    min-height: 72px;
+    min-height: 70px;
+    gap: 1rem;
   }
-
   .et-product-id-vert {
     writing-mode: horizontal-tb;
     transform: none;
-    font-size: 0.85rem;
-    min-width: 32px;
   }
-
   .et-product-title-vert {
     writing-mode: horizontal-tb;
     transform: none;
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
-    letter-spacing: 0.05em;
   }
-
   .et-product-content {
     position: relative;
-    inset: auto;
-    opacity: 1;
-    visibility: visible;
-    width: 100%;
-    padding: 1.5rem;
     display: none;
+    padding: 1.5rem;
   }
   .et-product-col.is-active .et-product-content {
     display: flex;
   }
-
   .et-product-body {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
-
   .et-product-visual {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     height: auto;
-    min-height: 0;
-    max-height: 320px;
+    max-height: 300px;
   }
-
   .et-product-loading-line {
     display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .et-product-head {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .et-product-stats {
-    gap: 1.25rem;
-  }
-  .et-product-stats strong {
-    font-size: 2rem;
   }
 }

@@ -72,7 +72,7 @@ header.site-header.is-hidden {
   position: relative;
   color: rgba(255, 255, 255, 0.72);
   font-family: var(--font-mono);
-  font-size: clamp(1rem, 1vw, 1.55rem);
+  font-size: clamp(0.95rem, 1vw, 1.35rem);
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: uppercase;
