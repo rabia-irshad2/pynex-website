@@ -50,7 +50,7 @@ export default function HomePage() {
       <QualitiesSection />
       <TeamSection team={team} />
       <SloganMarquee />
-      <ClosingCta />
+      
     </>
   );
 }

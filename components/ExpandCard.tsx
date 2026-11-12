@@ -22,36 +22,31 @@ export default function ExpandCard({
 }) {
   return (
     <Link href={href} className={`project-showcase-card expand-card expand-card-${mode}`}>
-      
-      {/* ORIGINAL DEVICE MOCKUP IMAGES */}
-      {mode === 'project' && image ? (
-        <span className={`project-device ${category === 'AI Solutions' ? 'project-device-phone' : 'project-device-monitor'}`}>
-          <span className="project-device-screen">
-            <Image 
-              src={image} 
-              alt={imageAlt} 
-              width={1200} 
-              height={800} 
-              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw" 
-            />
-          </span>
-          {category !== 'AI Solutions' && <span className="project-device-stand" aria-hidden="true" />}
-        </span>
-      ) : mode === 'article' && image ? (
-        <>
-          <span className="article-expand-image">
-            <Image src={image} alt={imageAlt} width={1600} height={900} sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw" />
-          </span>
-          <span className="article-expand-pill">{category}</span>
-        </>
-      ) : null}
-      
-      {/* TEXT CONTENT */}
-      <span className="project-showcase-copy">
+      {/* FULL IMAGE */}
+{mode === 'project' && image ? (
+  <div className="project-card-media">
+    <Image
+      src={image}
+      alt={imageAlt}
+      fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      className="project-card-image"
+    />
+  </div>
+) : null}
+
+      {/* GRADIENT OVERLAY */}
+      <div className="project-card-overlay" aria-hidden="true" />
+
+      {/* TEXT ON IMAGE */}
+      <div className="project-showcase-copy">
         <span className="project-showcase-category">{category}</span>
-        <span className="project-showcase-title">{title}</span>
-      </span>
-      
+        <h3 className="project-showcase-title">{title}</h3>
+
+        <div className="project-showcase-summary">
+          <p>{summary}</p>
+        </div>
+      </div>
     </Link>
   );
 }
